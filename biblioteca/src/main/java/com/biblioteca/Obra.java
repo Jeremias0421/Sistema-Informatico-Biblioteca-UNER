@@ -8,9 +8,10 @@ public class Obra {
     private String autor03;
     private String areaTematica;
     private String genero;
+    private String isbn;
     
     public Obra(String titulo, String subtitulo, String autor01, String autor02, String autor03, String areaTematica,
-            String genero) {
+            String genero, String isbn) {
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.autor01 = autor01;
@@ -18,6 +19,7 @@ public class Obra {
         this.autor03 = autor03;
         this.areaTematica = areaTematica;
         this.genero = genero;
+        this.isbn = isbn;
     }
 
     public String getTitulo() {
@@ -76,6 +78,12 @@ public class Obra {
         this.genero = genero;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
     
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
 }
