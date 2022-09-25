@@ -3,10 +3,14 @@ package com.biblioteca;
 public class Multa {
     private float monto;
     private int plazo;
+    private Prestamo prestamo;
+    private Lector multado;
 
-    public Multa(float monto, int plazo) {
+    public Multa(float monto, int plazo, Prestamo prestamo, Lector multado) {
         this.monto = monto;
         this.plazo = plazo;
+        this.prestamo = prestamo;
+        this.multado = multado;
     }
 
     public float getMonto() {
@@ -23,6 +27,10 @@ public class Multa {
 
     public void setPlazo(int plazo) {
         this.plazo = plazo;
+    }
+
+    public Prestamo getPrestamo() {
+        return prestamo;
     }
 
     

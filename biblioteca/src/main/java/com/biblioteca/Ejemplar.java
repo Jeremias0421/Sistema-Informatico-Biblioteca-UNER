@@ -11,9 +11,12 @@ public class Ejemplar {
     private LocalDate fechaBaja;
     private String motivoBaja;
     private boolean disponible;
+    private Obra obra;
+    private Reserva reserva;
+    private Prestamo prestamo;
 
     public Ejemplar(String observacionesGenerales, String codigoDeBarra, LocalDate fechaAdquisicion,
-            String formaAquisicion, LocalDate fechaBaja, String motivoBaja, boolean disponible, Identificacion seUbica) {
+            String formaAquisicion, LocalDate fechaBaja, String motivoBaja, boolean disponible, Identificacion seUbica, Obra obra) {
         this.seUbica = seUbica;
         this.observacionesGenerales = observacionesGenerales;
         this.codigoDeBarra = codigoDeBarra;
@@ -22,6 +25,7 @@ public class Ejemplar {
         this.fechaBaja = fechaBaja;
         this.motivoBaja = motivoBaja;
         this.disponible = disponible;
+        this.obra = obra;
     }
 
     

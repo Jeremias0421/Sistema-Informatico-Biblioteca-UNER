@@ -1,5 +1,7 @@
 package com.biblioteca;
 
+import java.util.ArrayList;
+
 public class Obra {
     private String titulo;
     private String subtitulo;
@@ -9,9 +11,11 @@ public class Obra {
     private String areaTematica;
     private String genero;
     private String isbn;
+    private ArrayList<Edicion> ediciones = new ArrayList<>();
+    private ArrayList<Ejemplar> ejemplares;
     
     public Obra(String titulo, String subtitulo, String autor01, String autor02, String autor03, String areaTematica,
-            String genero, String isbn) {
+            String genero, String isbn, Edicion edicion) {
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.autor01 = autor01;
@@ -20,6 +24,8 @@ public class Obra {
         this.areaTematica = areaTematica;
         this.genero = genero;
         this.isbn = isbn;
+        this.ediciones.add((edicion)); //Se pueden añadir mas ediciones despues de inicializar la obra
+        this.ejemplares = new ArrayList<>();
     }
 
     public String getTitulo() {

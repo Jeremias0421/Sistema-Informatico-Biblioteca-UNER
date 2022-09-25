@@ -11,9 +11,10 @@ public class Edicion {
     private int paginas;
     private String idioma;
     private Formato formato;
+    private Obra obra;
 
     public Edicion(String editorial, String paisEdicion, int numeroEdicion, LocalDate anio, int volumenes, int paginas,
-            String idioma, Formato formato) {
+            String idioma, Formato formato, Obra obra) {
         this.editorial = editorial;
         this.paisEdicion = paisEdicion;
         this.numeroEdicion = numeroEdicion;
@@ -22,6 +23,7 @@ public class Edicion {
         this.paginas = paginas;
         this.idioma = idioma;
         this.formato = formato;
+        this.obra = obra;
     }
 
     public String getEditorial() {

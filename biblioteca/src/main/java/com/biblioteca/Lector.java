@@ -1,6 +1,7 @@
 package com.biblioteca;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Lector extends Persona {
     private String correoElectronico;
@@ -10,6 +11,9 @@ public class Lector extends Persona {
     private int nroPostal;
     private String departamento;
     private String localidad;
+    private ArrayList<Multa> multasAcumuladas;
+    private Reserva reserva;
+    private Prestamo prestamo;
     
     public Lector(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, int dni, String tipoDni,
             String correoElectronico, int nroCelular, String nacionalidad, String domicilio, int nroPostal,
@@ -22,6 +26,7 @@ public class Lector extends Persona {
         this.nroPostal = nroPostal;
         this.departamento = departamento;
         this.localidad = localidad;
+        this.multasAcumuladas = new ArrayList<>();
     }
 
     public String getCorreoElectronico() {
