@@ -1,0 +1,8 @@
+--IMPLEMENTAR COMPARE TO EN PRESTAMO
+--Completar equals de Prestamo comparando tambien la asociacion
+--LECTOR: SE REQUIERE UN METODO RESERVAR()
+--EJEMPLAR: SE REQUIERE UN METODO SERRESERVADO()
+--Metodos de control en set para todos y testearlos con JUnit
+
+
+*Testear la clase Ejemplar 
