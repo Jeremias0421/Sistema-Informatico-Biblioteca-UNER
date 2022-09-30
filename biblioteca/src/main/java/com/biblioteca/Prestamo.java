@@ -13,7 +13,7 @@ public class Prestamo implements Comparable<Prestamo> {
     private Funcionario funcionario;
     private ArrayList<Multa> multas;
     private Lector lector;
-    private ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<>();
+    private ArrayList<Ejemplar> ejemplaresPrestados;
 
     public Prestamo(int plazo, Lectura tipo, LocalDate fecha, LocalTime hora, LocalDate fechaDevolucion,Funcionario funcionario, Lector lector, ArrayList<Ejemplar> ejemplares) {
         this.plazo = plazo;

@@ -1,10 +1,12 @@
 package com.biblioteca;
 
+import java.util.ArrayList;
+
 public class Coleccion extends Obra {
     private String nombre;
 
     public Coleccion(String titulo, String subtitulo, String autor01, String autor02, String autor03,
-            String areaTematica, String genero,String isbn,Edicion edicion, String nombre) {
+            String areaTematica, String genero,String isbn, ArrayList<Edicion> edicion, String nombre) {
         super(titulo, subtitulo, autor01, autor02, autor03, areaTematica, genero,isbn,edicion);
         this.nombre = nombre;
     }

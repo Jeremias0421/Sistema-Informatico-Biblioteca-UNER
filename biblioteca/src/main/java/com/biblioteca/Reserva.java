@@ -6,18 +6,12 @@ import java.util.ArrayList;
 public class Reserva {
     private LocalDate fecha;
     private Lector lector;
-    private ArrayList<Ejemplar> ejemplares = new ArrayList<>();
+    private ArrayList<Ejemplar> ejemplares;
 
     public Reserva(LocalDate fecha, Lector lector, ArrayList<Ejemplar> ejemplares) {
         this.fecha = fecha;
         this.lector = lector;
         this.ejemplares = ejemplares;
-    }
-
-    public Reserva(LocalDate fecha,Lector lector, Ejemplar ejemplar) {
-        this.fecha = fecha;
-        this.lector = lector;
-        this.ejemplares.add(ejemplar);
     }
 
     public Lector getLector() {

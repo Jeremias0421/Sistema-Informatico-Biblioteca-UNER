@@ -16,15 +16,15 @@ public class Ejemplar {
     private Prestamo prestamo;
 
     public Ejemplar(String observacionesGenerales, String codigoDeBarra, LocalDate fechaAdquisicion,
-            String formaAquisicion, LocalDate fechaBaja, String motivoBaja, boolean disponible, Identificacion seUbica, Obra obra) {
+            String formaAquisicion, Identificacion seUbica, Obra obra) {
         this.seUbica = seUbica;
         this.observacionesGenerales = observacionesGenerales;
         this.codigoDeBarra = codigoDeBarra;
         this.fechaAdquisicion = fechaAdquisicion;
         this.formaAquisicion = formaAquisicion;
-        this.fechaBaja = fechaBaja;
-        this.motivoBaja = motivoBaja;
-        this.disponible = disponible;
+        this.fechaBaja = null;
+        this.motivoBaja = null;
+        this.disponible = true;
         this.obra = obra;
     }
 

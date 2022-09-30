@@ -11,11 +11,11 @@ public class Obra {
     private String areaTematica;
     private String genero;
     private String isbn;
-    private ArrayList<Edicion> ediciones = new ArrayList<>();
+    private ArrayList<Edicion> ediciones;
     private ArrayList<Ejemplar> ejemplares;
     
     public Obra(String titulo, String subtitulo, String autor01, String autor02, String autor03, String areaTematica,
-            String genero, String isbn, Edicion edicion) {
+            String genero, String isbn, ArrayList<Edicion> edicion) {
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.autor01 = autor01;
@@ -24,7 +24,7 @@ public class Obra {
         this.areaTematica = areaTematica;
         this.genero = genero;
         this.isbn = isbn;
-        this.ediciones.add((edicion)); //Se pueden añadir mas ediciones despues de inicializar la obra
+        this.ediciones = edicion; //Se pueden añadir mas ediciones despues de inicializar la obra
         this.ejemplares = new ArrayList<>();
     }
 
