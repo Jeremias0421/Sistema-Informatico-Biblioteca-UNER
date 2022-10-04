@@ -6,3 +6,12 @@
 
 
 *Testear la clase Ejemplar 
+
+4/10/2022
+-Idea: la fecha de adquisicion de Ejemplar puede ser un LocalDate.now() para liberar carga
+del constructor
+-Idea: el codigo de barra del Ejemplar puede ser el mismo que el isbn de la obra, ya que son iguales
+
+*Todo:
+equals en Obra e Identificacion (seguramente más clases)
+control en setter de codigod e barra Ejemplar de la misma forma que isbn de Obra

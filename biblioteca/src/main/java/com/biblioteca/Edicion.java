@@ -6,14 +6,14 @@ public class Edicion {
     private String editorial;
     private String paisEdicion;
     private int numeroEdicion;
-    private LocalDate anio;
+    private int anio;
     private int volumenes;
     private int paginas;
     private String idioma;
     private Formato formato;
     private Obra obra;
 
-    public Edicion(String editorial, String paisEdicion, int numeroEdicion, LocalDate anio, int volumenes, int paginas,
+    public Edicion(String editorial, String paisEdicion, int numeroEdicion, int anio, int volumenes, int paginas,
             String idioma, Formato formato, Obra obra) {
         this.editorial = editorial;
         this.paisEdicion = paisEdicion;
@@ -50,11 +50,11 @@ public class Edicion {
         this.numeroEdicion = numeroEdicion;
     }
 
-    public LocalDate getAnio() {
+    public int getAnio() {
         return anio;
     }
 
-    public void setAnio(LocalDate anio) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 
@@ -88,6 +88,14 @@ public class Edicion {
 
     public void setFormato(Formato formato) {
         this.formato = formato;
+    }
+
+    public Obra getObra() {
+        return obra;
+    }
+
+    public void setObra(Obra obra) {
+        this.obra = obra;
     }
 
     

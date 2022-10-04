@@ -24,7 +24,7 @@ public class Obra {
         this.areaTematica = areaTematica;
         this.genero = genero;
         this.isbn = isbn;
-        this.ediciones = edicion; //Se pueden añadir mas ediciones despues de inicializar la obra
+        this.ediciones = edicion; 
         this.ejemplares = new ArrayList<>();
     }
 
@@ -87,9 +87,34 @@ public class Obra {
     public String getIsbn() {
         return isbn;
     }
-    
+
     public void setIsbn(String isbn) {
-        this.isbn = isbn;
+        if (isbn.matches("^((978)|(979))(\\d{7}|\\d{10})")){
+            int intNro;
+            int digitoNro;
+            int temp;
+            int sum = 0;
+            for (int i = 0; i < isbn.length(); i++) {  
+                intNro = Integer.parseInt(isbn.substring(i, i+1));  
+                digitoNro = i + 1;  
+                temp = digitoNro * intNro;  
+                sum = sum + temp;  
+            }  
+            if ((sum % 11) == 0){
+                this.isbn = isbn;
+            }
+        }
     }
 
+    public ArrayList<Edicion> getEdiciones() {
+        return ediciones;
+    }
+
+    public ArrayList<Ejemplar> getEjemplares() {
+        return ejemplares;
+    }
+
+    public void añadirEjemplar(Ejemplar ejemplar) {
+        this.ejemplares.add(ejemplar);
+    }
 }

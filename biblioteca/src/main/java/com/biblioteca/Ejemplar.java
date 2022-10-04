@@ -77,6 +77,14 @@ public class Ejemplar {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+    public Obra getObra() {
+        return obra;
+    }
 
+    public void darDeBaja(String motivoBaja) { //Posiblemente mal
+        this.disponible = false;
+        this.fechaBaja = LocalDate.now();
+        this.motivoBaja = motivoBaja;
+    }
     
 }
