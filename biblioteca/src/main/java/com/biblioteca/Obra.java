@@ -23,7 +23,7 @@ public class Obra {
         this.autor03 = autor03;
         this.areaTematica = areaTematica;
         this.genero = genero;
-        this.isbn = isbn;
+        setIsbn(isbn);
         this.ediciones = edicion; 
         this.ejemplares = new ArrayList<>();
     }

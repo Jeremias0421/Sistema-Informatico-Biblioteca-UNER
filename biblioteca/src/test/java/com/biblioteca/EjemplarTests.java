@@ -1,6 +1,7 @@
 package com.biblioteca;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
@@ -39,11 +40,7 @@ public class EjemplarTests {
 
     @Test
     public void constructorTests(){
-       Edicion edicion = new Edicion(null, null, 0, 0, 0, 0, null, null, null);
-       Obra obra = new Obra(null, null, null, null, null, null, null, null, null);
-       Identificacion i = new Identificacion(null, 0, 0, 0, 0, 0);
-       Ejemplar ejemplar = new Ejemplar(null, null, null, null, i, obra);
-
+        assertNotNull(ejemplar);
     }    
 
     @Test
