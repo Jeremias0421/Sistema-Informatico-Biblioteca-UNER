@@ -1,7 +1,5 @@
 package com.biblioteca;
 
-import java.time.LocalDate;
-
 public class Edicion {
     private String editorial;
     private String paisEdicion;

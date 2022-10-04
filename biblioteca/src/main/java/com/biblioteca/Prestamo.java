@@ -116,7 +116,6 @@ public class Prestamo implements Comparable<Prestamo> {
 
     @Override
     public int compareTo(Prestamo o) {
-        // TODO Auto-generated method stub
         return 0;
     }
 

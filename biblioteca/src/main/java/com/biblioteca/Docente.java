@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Docente extends Lector {
     private String carrera;
 
-    public Docente(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, int dni, String tipoDni,
+    public Docente(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, String tipoDni,
             String correoElectronico, String nroCelular, String nacionalidad, String domicilio, int nroPostal,
             String departamento, String localidad, String carrera) {
         super(nombre, apellido, sexo, fechaNacimiento, dni, tipoDni, correoElectronico, nroCelular, nacionalidad,

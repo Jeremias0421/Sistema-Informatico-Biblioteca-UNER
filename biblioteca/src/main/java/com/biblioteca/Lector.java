@@ -2,6 +2,7 @@ package com.biblioteca;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Lector extends Persona {
     private String correoElectronico;
@@ -15,11 +16,11 @@ public class Lector extends Persona {
     private Reserva reserva;
     private Prestamo prestamo;
 
-    public Lector(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, int dni, String tipoDni,
+    public Lector(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, String tipoDni,
             String correoElectronico, String nroCelular, String nacionalidad, String domicilio, int nroPostal,
             String departamento, String localidad) {
         super(nombre, apellido, sexo, fechaNacimiento, dni, tipoDni);
-        this.correoElectronico = correoElectronico;
+        setCorreoElectronico(correoElectronico);
         this.nroCelular = nroCelular;
         this.nacionalidad = nacionalidad;
         this.domicilio = domicilio;
@@ -29,12 +30,36 @@ public class Lector extends Persona {
         this.multasAcumuladas = new ArrayList<>();
     }
 
+    public void pedirPrestamo() {
+
+    }
+
+    public void devolverPrestamo() {
+
+    }
+
+    public void consultarLibros() {
+
+    }
+
     public String getCorreoElectronico() {
         return correoElectronico;
     }
 
     public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        if (correoElectronico.matches(regexPattern))
+            this.correoElectronico = correoElectronico;
+        else
+            throw new Error("Correo invalido");
+
+        // if (evaluarRegex(correoElectronico, regexPattern))
+        // this.correoElectronico = correoElectronico;
+        // else
+        // throw new Error("Correo invalido");
+
     }
 
     public String getNroCelular() {

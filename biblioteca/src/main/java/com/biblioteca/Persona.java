@@ -7,15 +7,15 @@ public abstract class Persona {
     private String apellido;
     private String sexo;
     private LocalDate fechaNacimiento;
-    private int dni;
+    private String dni;
     private String tipoDni;
 
-    public Persona(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, int dni, String tipoDni) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.sexo = sexo;
+    public Persona(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, String tipoDni) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setSexo(sexo);;
         this.fechaNacimiento = fechaNacimiento;
-        this.dni = dni;
+        setDni(dni);
         this.tipoDni = tipoDni;
     }
 
@@ -24,7 +24,11 @@ public abstract class Persona {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre.matches("[A-Z][a-zA-Z]*"))
+            this.nombre = nombre;
+        else
+            throw new Error("Nombre invalido.");
+
     }
 
     public String getApellido() {
@@ -32,7 +36,11 @@ public abstract class Persona {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido.matches("[a-zA-z]+([ '-][a-zA-Z]+)*"))
+            this.apellido = apellido;
+        else
+            throw new Error("Apellido invalido.");
+
     }
 
     public String getSexo() {
@@ -40,7 +48,10 @@ public abstract class Persona {
     }
 
     public void setSexo(String sexo) {
-        this.sexo = sexo;
+        if (sexo.equals("Masculino") || sexo.equals("Femenino"))
+            this.sexo = sexo;
+        else
+            throw new Error("Sexo invalido.");
     }
 
     public LocalDate getFechaNacimiento() {
@@ -51,12 +62,16 @@ public abstract class Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setDni(String dni) {
+        if (dni.matches("\\d{8}"))
+            this.dni = dni;
+        else
+            throw new Error("DNI invalido.");
+
     }
 
     public String getTipoDni() {
@@ -67,5 +82,4 @@ public abstract class Persona {
         this.tipoDni = tipoDni;
     }
 
-    
 }
