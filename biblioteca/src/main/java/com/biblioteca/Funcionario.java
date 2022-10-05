@@ -8,7 +8,7 @@ public class Funcionario extends Persona {
     private String contrasenia;
     private ArrayList<Prestamo> listaprestamos;
 
-    public Funcionario(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, String tipoDni,
+    public Funcionario(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, TipoDni tipoDni,
             String usuario, String contrasenia) {
         super(nombre, apellido, sexo, fechaNacimiento, dni, tipoDni);
         this.usuario = usuario;

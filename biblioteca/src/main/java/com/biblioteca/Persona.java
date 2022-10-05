@@ -8,13 +8,13 @@ public abstract class Persona {
     private String sexo;
     private LocalDate fechaNacimiento;
     private String dni;
-    private String tipoDni;
+    private TipoDni tipoDni;
 
-    public Persona(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, String tipoDni) {
+    public Persona(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, TipoDni tipoDni) {
         setNombre(nombre);
         setApellido(apellido);
         setSexo(sexo);;
-        this.fechaNacimiento = fechaNacimiento;
+        setFechaNacimiento(fechaNacimiento);
         setDni(dni);
         this.tipoDni = tipoDni;
     }
@@ -59,7 +59,9 @@ public abstract class Persona {
     }
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+        if (fechaNacimiento.isAfter(LocalDate.of(1900, 1, 1))&& fechaNacimiento.isBefore(LocalDate.now())) {
+            this.fechaNacimiento = fechaNacimiento;
+        }
     }
 
     public String getDni() {
@@ -74,11 +76,11 @@ public abstract class Persona {
 
     }
 
-    public String getTipoDni() {
+    public TipoDni getTipoDni() {
         return tipoDni;
     }
 
-    public void setTipoDni(String tipoDni) {
+    public void setTipoDni(TipoDni tipoDni) {
         this.tipoDni = tipoDni;
     }
 

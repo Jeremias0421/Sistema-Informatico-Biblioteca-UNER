@@ -1,5 +1,6 @@
 package com.biblioteca;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.LocalDate;
 import java.time.Month;
@@ -16,7 +17,7 @@ public class LectorTest {
         nacimiento = LocalDate.of(2002, Month.NOVEMBER, 04);
 
         lector = new Lector("Jeremias", "Panozzo", "Masculino",
-                nacimiento, "44441299", "DNI TARJETA", "jeremiaspanozzo@gmail.com",
+                nacimiento, "44441299", TipoDni.DNI_TARJETA, "jeremiaspanozzo@gmail.com",
                 "3456025247", "Argentina", "Concejal Veiga 1881", 3200, "Concordia", "Concordia");
 
     }
@@ -50,6 +51,14 @@ public class LectorTest {
     @Test(expected = Error.class)
     public void dni_incorrecto() {
         lector.setDni("4444923");
+    }
+
+    @Test
+    public void setFechaNacimientoTest() {
+        LocalDate fecha = LocalDate.of(1880, 1, 1);
+        lector.setFechaNacimiento(fecha);
+        //No se espera modificacion debido al control del setter
+        assertEquals(nacimiento, lector.getFechaNacimiento());
     }
 
 
