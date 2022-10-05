@@ -30,12 +30,12 @@ public class Lector extends Persona {
         this.multasAcumuladas = new ArrayList<>();
     }
 
-    public void pedirPrestamo() {
-
+    public void pedirPrestamo(Prestamo prestamo) {
+        this.prestamo = prestamo;
     }
 
     public void devolverPrestamo() {
-
+        this.prestamo = null;//Idea: retornar el prestamo en otra variable para poder manipularlo fuera
     }
 
     public void consultarLibros() {
