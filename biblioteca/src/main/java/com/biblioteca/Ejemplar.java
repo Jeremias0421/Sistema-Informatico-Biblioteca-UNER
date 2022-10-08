@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Ejemplar {
     private Identificacion seUbica;
     private String observacionesGenerales;
-    private String codigoDeBarra; //a revisar como tratar el codigo de barra
+    private String codigoDeBarra; // a revisar como tratar el codigo de barra
     private LocalDate fechaAdquisicion;
     private String formaAquisicion;
     private LocalDate fechaBaja;
@@ -28,63 +28,78 @@ public class Ejemplar {
         this.obra = obra;
     }
 
-    
     public Identificacion getSeUbica() {
         return seUbica;
     }
+
     public void setSeUbica(Identificacion seUbica) {
         this.seUbica = seUbica;
     }
+
     public String getObservacionesGenerales() {
         return observacionesGenerales;
     }
+
     public void setObservacionesGenerales(String observacionesGenerales) {
         this.observacionesGenerales = observacionesGenerales;
     }
+
     public String getCodigoDeBarra() {
         return codigoDeBarra;
     }
+
     public void setCodigoDeBarra(String codigoDeBarra) {
         this.codigoDeBarra = codigoDeBarra;
     }
+
     public LocalDate getFechaAdquisicion() {
         return fechaAdquisicion;
     }
+
     public void setFechaAdquisicion(LocalDate fechaAdquisicion) {
         this.fechaAdquisicion = fechaAdquisicion;
     }
+
     public String getFormaAquisicion() {
         return formaAquisicion;
     }
+
     public void setFormaAquisicion(String formaAquisicion) {
         this.formaAquisicion = formaAquisicion;
     }
+
     public LocalDate getFechaBaja() {
         return fechaBaja;
     }
+
     public void setFechaBaja(LocalDate fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
+
     public String getMotivoBaja() {
         return motivoBaja;
     }
+
     public void setMotivoBaja(String motivoBaja) {
         this.motivoBaja = motivoBaja;
     }
+
     public boolean isDisponible() {
         return disponible;
     }
+
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
     public Obra getObra() {
         return obra;
     }
 
-    public void darDeBaja(String motivoBaja) { //Posiblemente mal
+    public void darDeBaja(String motivoBaja) { // Posiblemente mal
         this.disponible = false;
         this.fechaBaja = LocalDate.now();
         this.motivoBaja = motivoBaja;
     }
-    
+
 }

@@ -3,10 +3,8 @@ package com.biblioteca;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
