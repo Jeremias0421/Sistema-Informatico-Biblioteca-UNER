@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class Lector extends Persona {
+public abstract class Lector extends Persona {
     private String correoElectronico;
     private String nroCelular;
     private String nacionalidad;

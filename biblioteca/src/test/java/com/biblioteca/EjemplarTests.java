@@ -14,10 +14,17 @@ public class EjemplarTests {
 
     @Before
     public void setup(){
-        Edicion edicion = new Edicion("FEditorial", "Argentina", 3, 2001, 2, 367, "Español", Formato.PAPEL, null);
+        Edicion edicion = new Edicion("FEditorial", "Argentina", 1, 2002, 10_000, 367, "Español", Formato.PAPEL, null);
+        Edicion edicion1 = new Edicion("FEditorial", "Argentina", 2, 2008, 10_000, 367, "Español", Formato.PAPEL, null);
+        Edicion edicion2 = new Edicion("FEditorial", "Argentina", 3, 20015, 10_100, 367, "Español", Formato.PAPEL, null);
+
         ArrayList<Edicion> ediciones = new ArrayList<>();
         ediciones.add(edicion);
+        ediciones.add(edicion1);
+        ediciones.add(edicion2);
+
         Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones);
+        
         LocalDate adquisicion = LocalDate.of(2019, 7, 22);
         Identificacion seUbica = new Identificacion(null, 1, 1, 1, 1, 1);
 
