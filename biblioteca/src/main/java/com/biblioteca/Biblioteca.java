@@ -46,13 +46,16 @@ public class Biblioteca {
 
     }
 
-    public static void darPrestamoDomicilio(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, int plazo, ArrayList<Ejemplar> prestados) {
+    public static void darPrestamoDomicilio(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, 
+        int plazo, ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles) {
+
         Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
             LocalDate.of(2022,10,15), funcionario, lector, ejemplares);
         funcionario.tomarPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.setDisponible(false);
             prestados.add(ejemplar);
+            disponibles.remove(ejemplar);
         }
     }
 }

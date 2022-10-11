@@ -23,7 +23,7 @@ class AppTest {
     @Before
     void setup(){
         ejemplaresPrestados = new ArrayList<>();
-        
+
     }
    
     @Test
@@ -62,10 +62,21 @@ class AppTest {
         ejemplares.add(ejemplar1);
         ejemplares.add(ejemplar2);
 
+        //Ejemplares Disponibles
+        ejemplaresDisponibles = new ArrayList<>();
+        ejemplaresDisponibles.add(ejemplar1);
+        ejemplaresDisponibles.add(ejemplar2);
+        assertEquals(2, ejemplaresDisponibles.size());
 
-        Biblioteca.darPrestamoDomicilio(lector,ejemplares,funcionario,5,ejemplaresPrestados);
+        //Creacion de Lista de Prestados
+        ejemplaresPrestados = new ArrayList<>();
+
+        //Test del metodo
+        Biblioteca.darPrestamoDomicilio(estudiante,ejemplares,funcionario,5,ejemplaresPrestados,ejemplaresDisponibles);
         for (Ejemplar ejemplar : ejemplares) {
             assertEquals(false, ejemplar.isDisponible());
         }
+        assertEquals(2, ejemplaresPrestados.size());//Se añadieron los 2 ejemplares prestados
+        assertEquals(0, ejemplaresDisponibles.size());//Se removieron los 2 ejemplares disponibles
     }
 }
