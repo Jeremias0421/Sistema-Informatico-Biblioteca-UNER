@@ -13,6 +13,7 @@ public class Obra {
     private String isbn;
     private ArrayList<Edicion> ediciones;
     private ArrayList<Ejemplar> ejemplares;
+    private ArrayList<String> temasIndice;
     
     public Obra(String titulo, String subtitulo, String autor01, String autor02, String autor03, String areaTematica,
             String genero, String isbn, ArrayList<Edicion> edicion) {

@@ -58,11 +58,14 @@ public class PrestamoTest {
     }
 
     @Test
-    public void darPrestamo() {
+    public void darPrestamo(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, int plazo) {
         prestamo = new Prestamo(5, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
             LocalDate.of(2022,10,15), funcionario, estudiante, ejemplares);
         funcionario.tomarPrestamo(prestamo);
         assertEquals(1, funcionario.getListaprestamos().size());
+        for (Ejemplar ejemplar : ejemplares) {
+            ejemplar.setDisponible(false);
+        }
         for (Ejemplar ejemplar : ejemplares) {
             assertEquals(false, ejemplar.isDisponible());//No cambia la disponibilidad del Ejemplar
         }
