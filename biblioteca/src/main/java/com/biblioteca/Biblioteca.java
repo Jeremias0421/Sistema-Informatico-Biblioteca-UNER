@@ -1,14 +1,14 @@
 package com.biblioteca;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Biblioteca {
 
+    static ArrayList<Ejemplar> ejemplaresDisponibles = null;
+    static ArrayList<Ejemplar> ejemplaresPrestados = null;
+
     public static void main(String[] args) {
-        System.out.println(LocalDate.now());
-        System.out.println(LocalTime.now());
+        
     }
 
     /** */

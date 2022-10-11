@@ -1,28 +1,28 @@
 package com.biblioteca;
 
 public class Identificacion {
-    private Ejemplar seUbica;
+    private Ejemplar ejemplar;
     private int pasillo;
     private int estante;
     private int fila;
     private int columna;
     private int posicion;
 
-    public Identificacion(Ejemplar seUbica, int pasillo, int estante, int fila, int columna, int posicion) {
-        this.seUbica = seUbica;
-        this.pasillo = pasillo;
-        this.estante = estante;
-        this.fila = fila;
-        this.columna = columna;
-        this.posicion = posicion;
+    public Identificacion(Ejemplar ejemplar, int pasillo, int estante, int fila, int columna, int posicion) {
+        this.ejemplar = ejemplar;
+        setPasillo(pasillo);
+        setEstante(estante);
+        setFila(fila);
+        setColumna(columna);
+        setPosicion(posicion);
     }
 
     public Ejemplar getSeUbica() {
-        return seUbica;
+        return ejemplar;
     }
 
     public void setSeUbica(Ejemplar seUbica) {
-        this.seUbica = seUbica;
+        this.ejemplar = seUbica;
     }
 
     public int getPasillo() {
@@ -30,7 +30,9 @@ public class Identificacion {
     }
 
     public void setPasillo(int pasillo) {
-        this.pasillo = pasillo;
+        if (pasillo > 0) {
+            this.pasillo = pasillo;
+        }
     }
 
     public int getEstante() {
@@ -38,7 +40,9 @@ public class Identificacion {
     }
 
     public void setEstante(int estante) {
-        this.estante = estante;
+        if (estante > 0) {
+            this.estante = estante;
+        }
     }
 
     public int getFila() {
@@ -46,7 +50,9 @@ public class Identificacion {
     }
 
     public void setFila(int fila) {
-        this.fila = fila;
+        if (fila > 0) {
+            this.fila = fila;
+        }
     }
 
     public int getColumna() {
@@ -54,7 +60,9 @@ public class Identificacion {
     }
 
     public void setColumna(int columna) {
-        this.columna = columna;
+        if (columna > 0) {
+            this.columna = columna;
+        }
     }
 
     public int getPosicion() {
@@ -62,8 +70,51 @@ public class Identificacion {
     }
 
     public void setPosicion(int posicion) {
-        this.posicion = posicion;
+        if (posicion > 0) {
+            this.posicion = posicion;
+        }
+
     }
 
-    
+    public void cambiarUbicacion(int pasillo, int estante, int fila, int columna, int posicion) {
+        setPasillo(pasillo);
+        setEstante(estante);
+        setFila(fila);
+        setColumna(columna);
+        setPosicion(posicion);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s-%s-%s-%s-%s", getPasillo(), getEstante(), getFila(), getColumna(), getPosicion());
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Identificacion other = (Identificacion) obj;
+        if (ejemplar == null) {
+            if (other.ejemplar != null)
+                return false;
+        } else if (!ejemplar.equals(other.ejemplar))
+            return false;
+        if (pasillo != other.pasillo)
+            return false;
+        if (estante != other.estante)
+            return false;
+        if (fila != other.fila)
+            return false;
+        if (columna != other.columna)
+            return false;
+        if (posicion != other.posicion)
+            return false;
+        return true;
+    }
+
 }
