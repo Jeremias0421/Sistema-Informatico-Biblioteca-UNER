@@ -58,4 +58,17 @@ public class Biblioteca {
             disponibles.remove(ejemplar);
         }
     }
+
+    public static void darPrestamoSala(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, 
+        ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles) {
+
+        Prestamo prestamo = new Prestamo(0, Lectura.SALA, LocalDate.now(), LocalTime.now(),
+            LocalDate.now(), funcionario, lector, ejemplares);
+        funcionario.tomarPrestamo(prestamo);
+        for (Ejemplar ejemplar : ejemplares) {
+            ejemplar.setDisponible(false);
+            prestados.add(ejemplar);
+            disponibles.remove(ejemplar);
+        }
+    }
 }

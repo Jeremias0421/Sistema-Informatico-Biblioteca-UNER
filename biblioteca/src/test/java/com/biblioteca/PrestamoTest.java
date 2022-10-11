@@ -58,7 +58,7 @@ public class PrestamoTest {
     }
 
     @Test
-    public void darPrestamo(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, int plazo) {
+    public void darPrestamo() {
         prestamo = new Prestamo(5, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
             LocalDate.of(2022,10,15), funcionario, estudiante, ejemplares);
         funcionario.tomarPrestamo(prestamo);
