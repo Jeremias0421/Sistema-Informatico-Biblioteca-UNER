@@ -54,6 +54,10 @@ public abstract class Lector extends Persona {
         //Completar
     }
 
+    public boolean isMultado() {
+        return multasAcumuladas.size() > 0;
+    }
+
     public String getCorreoElectronico() {
         return correoElectronico;
     }
