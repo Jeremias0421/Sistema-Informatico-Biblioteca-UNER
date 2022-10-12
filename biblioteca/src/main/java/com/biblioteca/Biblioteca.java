@@ -1,5 +1,6 @@
 package com.biblioteca;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class Biblioteca {
         Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
             LocalDate.of(2022,10,15), funcionario, lector, ejemplares);
         funcionario.tomarPrestamo(prestamo);
+        lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.setDisponible(false);
             prestados.add(ejemplar);
@@ -65,10 +67,26 @@ public class Biblioteca {
         Prestamo prestamo = new Prestamo(0, Lectura.SALA, LocalDate.now(), LocalTime.now(),
             LocalDate.now(), funcionario, lector, ejemplares);
         funcionario.tomarPrestamo(prestamo);
+        lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.setDisponible(false);
             prestados.add(ejemplar);
             disponibles.remove(ejemplar);
         }
+    }
+
+    public static void devolverPrestamo(Prestamo prestamo, Funcionario funcionario,ArrayList<Ejemplar>prestados,
+        ArrayList<Ejemplar> disponibles) {
+        for (Ejemplar ejemplar : prestamo.getEjemplaresPrestados()) {
+            prestados.remove(ejemplar);
+            disponibles.add(ejemplar);
+            ejemplar.setDisponible(true);
+        }
+        Lector lector = prestamo.getLector();
+        funcionario.tomarDevolucion(prestamo);
+        if (Duration.between(prestamo.getFecha().atStartOfDay(), LocalDate.now().atStartOfDay()).toDays()>prestamo.getPlazo()) {
+            lector.cargarMulta(new Multa(100f, 5, prestamo, lector));
+        }
+        lector.devolverPrestamo();
     }
 }

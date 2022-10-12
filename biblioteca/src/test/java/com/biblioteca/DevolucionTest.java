@@ -1,16 +1,14 @@
 package com.biblioteca;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
-class AppTest {
+public class DevolucionTest {
     //Biblioteca
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Ejemplar> ejemplaresPrestados = null;
@@ -21,20 +19,13 @@ class AppTest {
 
     //Para prestamo
     Funcionario funcionario = null;
-    Lector lector = null;
-
+    Estudiante estudiante = null;
 
     @Before
-    void setup(){
-        ejemplaresPrestados = new ArrayList<>();
-
-    }
-   
-    @Test
-    void realizarPrestamoTest(){
+    public void setup() {
         //Objetos necesarios para el prestamo
         LocalDate nacimiento = LocalDate.of(2002, 3, 04);
-        Estudiante estudiante = new Estudiante("Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+        estudiante = new Estudiante("Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
                 "jeremiaspanozzo@gmail.com", "3456025247", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
                 "Argentina");
         lectores.add(estudiante);
@@ -83,5 +74,15 @@ class AppTest {
         }
         assertEquals(2, ejemplaresPrestados.size());//Se añadieron los 2 ejemplares prestados
         assertEquals(0, ejemplaresDisponibles.size());//Se removieron los 2 ejemplares disponibles
+    }
+
+    @Test
+    public void DevolucionTesting() {
+        Biblioteca.devolverPrestamo(estudiante.getPrestamo(), funcionario, ejemplaresPrestados, ejemplaresDisponibles);
+        for (Ejemplar ejemplar : ejemplaresDisponibles) {
+            assertEquals(true, ejemplar.isDisponible());
+        }
+        assertEquals(0, ejemplaresPrestados.size());
+        assertEquals(2, ejemplaresDisponibles.size());
     }
 }

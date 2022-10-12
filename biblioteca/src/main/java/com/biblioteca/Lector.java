@@ -37,9 +37,21 @@ public abstract class Lector extends Persona {
     public void devolverPrestamo() {
         this.prestamo = null;//Idea: retornar el prestamo en otra variable para poder manipularlo fuera
     }
+    
+    public Prestamo getPrestamo() {
+        return prestamo;
+    }
 
     public void consultarLibros() {
 
+    }
+
+    public void cargarMulta(Multa multa) {
+        multasAcumuladas.add(multa);
+    }
+
+    public void levantarMulta() {
+        //Completar
     }
 
     public String getCorreoElectronico() {
