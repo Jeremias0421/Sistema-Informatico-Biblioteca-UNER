@@ -50,6 +50,12 @@ public class Biblioteca {
     public static void darPrestamoDomicilio(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, 
         int plazo, ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles) {
 
+        for (Ejemplar ejemplar : ejemplares) {
+            if (!ejemplar.isDisponible()) {
+                throw new IllegalArgumentException(ejemplar + ": No disponible");
+            }
+        }
+
         if (!lector.isMultado()) {
             Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
             LocalDate.of(2022,10,15), funcionario, lector, ejemplares);
@@ -60,11 +66,19 @@ public class Biblioteca {
                 prestados.add(ejemplar);
                 disponibles.remove(ejemplar);
             }
+        }else{
+            throw new IllegalArgumentException("Lector multado");
         }
     }
 
     public static void darPrestamoSala(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario, 
         ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles) {
+
+        for (Ejemplar ejemplar : ejemplares) {
+            if (!ejemplar.isDisponible()) {
+                throw new IllegalArgumentException(ejemplar + ": No disponible");
+            }
+        }
         
         if (!lector.isMultado()) {
             Prestamo prestamo = new Prestamo(0, Lectura.SALA, LocalDate.now(), LocalTime.now(),
@@ -76,8 +90,9 @@ public class Biblioteca {
                 prestados.add(ejemplar);
                 disponibles.remove(ejemplar);
             }
+        }else{
+            throw new IllegalArgumentException("Lector multado");
         }
-        
     }
 
     public static void devolverPrestamo(Prestamo prestamo, Funcionario funcionario,ArrayList<Ejemplar>prestados,

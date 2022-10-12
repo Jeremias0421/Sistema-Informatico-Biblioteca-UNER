@@ -27,7 +27,7 @@ public abstract class Persona {
         if (nombre.matches("[A-Z][a-zA-Z]*"))
             this.nombre = nombre;
         else
-            throw new Error("Nombre invalido.");
+            throw new IllegalArgumentException("Nombre invalido.");
 
     }
 
