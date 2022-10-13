@@ -68,7 +68,7 @@ public class EstudianteTests {
         assertEquals("jeremiaspanozzo@gmail.com", estudiante.getCorreoElectronico());
     }
 
-    @Test(expected = Error.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nombre_invalido() {
         estudiante.setNombre("_jeremias");
     }
