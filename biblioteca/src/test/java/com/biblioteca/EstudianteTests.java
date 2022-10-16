@@ -68,20 +68,26 @@ public class EstudianteTests {
         assertEquals("jeremiaspanozzo@gmail.com", estudiante.getCorreoElectronico());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void nombre_invalido() {
-        estudiante.setNombre("_jeremias");
+    @Test (expected = IllegalArgumentException.class)
+    public void nombreInvalidoTest(){
+        Estudiante estudiante = new Estudiante("-Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "3456025247", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");
     }
 
-    @Test(expected = Error.class)
-    public void apellido_invalido() {
-        estudiante.setApellido("{Panozzo");
+    @Test (expected = IllegalArgumentException.class)
+    public void apellidoInvalidoTest(){
+        Estudiante estudiante = new Estudiante("Jeremias", "Pano2-zzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "3456025247", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");
     }
 
-    @Test(expected = Error.class)
-    public void sexo_invalido() {
-        estudiante.setSexo("{Panozzo");
+    @Test (expected = IllegalArgumentException.class)
+    public void sexoInvalidoTest(){
+        Estudiante estudiante = new Estudiante("Jeremias", "Panozzo", "Masculine", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "3456025247", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");
+        
     }
-
 
 }
