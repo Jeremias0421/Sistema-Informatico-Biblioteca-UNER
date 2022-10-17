@@ -77,6 +77,10 @@ public abstract class Lector extends Persona {
     public boolean isMultado() {
         return multasAcumuladas.size() > 0;
     }
+    
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
 
     public String getCorreoElectronico() {
         return correoElectronico;

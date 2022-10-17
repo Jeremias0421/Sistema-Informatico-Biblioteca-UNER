@@ -8,6 +8,7 @@ public class Biblioteca {
 
     static ArrayList<Ejemplar> ejemplaresDisponibles = null;
     static ArrayList<Ejemplar> ejemplaresPrestados = null;
+    static ArrayList<Ejemplar> ejemplaresReservados = null;
 
     public static void main(String[] args) {
         
@@ -62,6 +63,7 @@ public class Biblioteca {
             lector.pedirPrestamo(prestamo);
             for (Ejemplar ejemplar : ejemplares) {
                 ejemplar.setDisponible(false);
+                ejemplar.setPrestamo(prestamo);
                 prestados.add(ejemplar);
                 disponibles.remove(ejemplar);
             }
@@ -86,6 +88,7 @@ public class Biblioteca {
             lector.pedirPrestamo(prestamo);
             for (Ejemplar ejemplar : ejemplares) {
                 ejemplar.setDisponible(false);
+                ejemplar.setPrestamo(prestamo);
                 prestados.add(ejemplar);
                 disponibles.remove(ejemplar);
             }
@@ -100,6 +103,7 @@ public class Biblioteca {
             prestados.remove(ejemplar);
             disponibles.add(ejemplar);
             ejemplar.setDisponible(true);
+            ejemplar.setPrestamo(null);
         }
         Lector lector = prestamo.getLector();
         funcionario.tomarDevolucion(prestamo);
@@ -107,5 +111,28 @@ public class Biblioteca {
             lector.cargarMulta(new Multa(100f, 5, prestamo, lector));
         }
         lector.devolverPrestamo();
+    }
+
+    public static void reservarEjemplares(Lector lector, ArrayList<Ejemplar> ejemplares, ArrayList<Ejemplar> disponibles,
+        ArrayList<Ejemplar> reservados) {
+        
+            for (Ejemplar ejemplar : ejemplares) {
+                if (!ejemplar.isDisponible()) {
+                    throw new IllegalArgumentException(ejemplar + "No disponible");
+                }
+            }
+
+            if (!lector.isMultado()) {
+                Reserva reserva = new Reserva(LocalDate.of(2022, 10, 28), lector, ejemplares);
+                lector.setReserva(reserva);
+                for (Ejemplar ejemplar : ejemplares) {
+                    ejemplar.setDisponible(false);
+                    ejemplar.setReserva(reserva);
+                    disponibles.remove(ejemplar);
+                    reservados.add(ejemplar);
+                }
+            }else{
+                throw new IllegalArgumentException("Lector Multado");
+            }
     }
 }

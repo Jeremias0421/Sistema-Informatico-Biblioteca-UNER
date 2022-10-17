@@ -28,6 +28,14 @@ public class Ejemplar {
         this.obra = obra;
     }
 
+    public void setPrestamo(Prestamo prestamo) {
+        this.prestamo = prestamo;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
     public Identificacion getSeUbica() {
         return seUbica;
     }
