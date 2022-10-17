@@ -59,7 +59,7 @@ public class PrestamoTest {
 
     @Test
     public void darPrestamo() {
-        prestamo = new Prestamo(5, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
+        prestamo = new Prestamo(5, Lectura.DOMICILO,
             LocalDate.of(2022,10,15), funcionario, estudiante, ejemplares);
         funcionario.tomarPrestamo(prestamo);
         assertEquals(1, funcionario.getListaprestamos().size());

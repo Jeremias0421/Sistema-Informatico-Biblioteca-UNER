@@ -2,7 +2,6 @@ package com.biblioteca;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Biblioteca {
@@ -57,7 +56,7 @@ public class Biblioteca {
         }
 
         if (!lector.isMultado()) {
-            Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO, LocalDate.now(), LocalTime.now(),
+            Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO,
             LocalDate.of(2022,10,15), funcionario, lector, ejemplares);
             funcionario.tomarPrestamo(prestamo);
             lector.pedirPrestamo(prestamo);
@@ -81,7 +80,7 @@ public class Biblioteca {
         }
         
         if (!lector.isMultado()) {
-            Prestamo prestamo = new Prestamo(0, Lectura.SALA, LocalDate.now(), LocalTime.now(),
+            Prestamo prestamo = new Prestamo(0, Lectura.SALA,
             LocalDate.now(), funcionario, lector, ejemplares);
             funcionario.tomarPrestamo(prestamo);
             lector.pedirPrestamo(prestamo);
