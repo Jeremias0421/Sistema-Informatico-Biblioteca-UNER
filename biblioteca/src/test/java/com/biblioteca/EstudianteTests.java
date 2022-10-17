@@ -90,4 +90,28 @@ public class EstudianteTests {
         
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void telefonoInvalidoTest(){
+        Estudiante estudiante = new Estudiante("Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "345602524", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");        
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void nacionalidadInvalidoTest(){
+        Estudiante estudiante = new Estudiante("Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "3456025247", "Argenti43", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");        
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void setCelularInvalidoTest(){
+        estudiante.setNroCelular("asdas");
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void setNroPostalInvalidoTest(){
+        estudiante.setNroPostal(-12);
+    }
+
 }
