@@ -54,14 +54,14 @@ public class Biblioteca {
                 if (ejemplar.getReserva() != null) {
                     if (ejemplar.getReserva() != lector.getReserva()) { //Comprueba si fue reservado por el lector
                         //Si Paso la fecha de la reserva saca la reserva
-                        if ((ejemplar.getReserva().getFecha()).compareTo(LocalDate.now()) > 0) {
+                        if ((ejemplar.getReserva().getFecha()).isAfter(LocalDate.now())) {
                             reservaVencida(ejemplar, reservados, disponibles);
                         }else{
                             throw new IllegalArgumentException(ejemplar + " Reservado");
                         }
                     }else{
                         //Comprueba si fue reservado para el dia del prestamo
-                        if ((ejemplar.getReserva().getFecha()).compareTo(LocalDate.now()) < 0) {
+                        if ((ejemplar.getReserva().getFecha()).isBefore(LocalDate.now())) {
                             throw new IllegalArgumentException("Fecha de prestamo anticipada a la reservada");
                         }else{
                             levantarReserva(lector, reservados, disponibles);

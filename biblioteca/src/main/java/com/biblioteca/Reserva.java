@@ -9,6 +9,9 @@ public class Reserva {
     private ArrayList<Ejemplar> ejemplares;
 
     public Reserva(LocalDate fecha, Lector lector, ArrayList<Ejemplar> ejemplares) {
+        if (fecha.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Fecha anterior al dia actual");
+        }
         this.fecha = fecha;
         this.lector = lector;
         this.ejemplares = ejemplares;
@@ -26,8 +29,4 @@ public class Reserva {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-    
 }

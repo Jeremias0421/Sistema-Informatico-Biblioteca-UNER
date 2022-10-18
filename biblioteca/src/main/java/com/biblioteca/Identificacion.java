@@ -8,13 +8,28 @@ public class Identificacion {
     private int columna;
     private int posicion;
 
-    public Identificacion(Ejemplar ejemplar, int pasillo, int estante, int fila, int columna, int posicion) {
+    public Identificacion(Ejemplar ejemplar, int pasillo, int estante, int fila, int columna, int posicion) {        
+        if (pasillo < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (estante < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (fila < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (columna < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (posicion < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
         this.ejemplar = ejemplar;
-        setPasillo(pasillo);
-        setEstante(estante);
-        setFila(fila);
-        setColumna(columna);
-        setPosicion(posicion);
+        this.pasillo = pasillo;
+        this.estante = estante;
+        this.fila = fila;
+        this.columna = columna;
+        this.posicion = posicion;
     }
 
     public Ejemplar getSeUbica() {
@@ -29,59 +44,45 @@ public class Identificacion {
         return pasillo;
     }
 
-    public void setPasillo(int pasillo) {
-        if (pasillo > 0) {
-            this.pasillo = pasillo;
-        }
-    }
-
     public int getEstante() {
         return estante;
-    }
-
-    public void setEstante(int estante) {
-        if (estante > 0) {
-            this.estante = estante;
-        }
     }
 
     public int getFila() {
         return fila;
     }
 
-    public void setFila(int fila) {
-        if (fila > 0) {
-            this.fila = fila;
-        }
-    }
-
     public int getColumna() {
         return columna;
-    }
-
-    public void setColumna(int columna) {
-        if (columna > 0) {
-            this.columna = columna;
-        }
     }
 
     public int getPosicion() {
         return posicion;
     }
 
-    public void setPosicion(int posicion) {
-        if (posicion > 0) {
-            this.posicion = posicion;
-        }
 
-    }
 
     public void cambiarUbicacion(int pasillo, int estante, int fila, int columna, int posicion) {
-        setPasillo(pasillo);
-        setEstante(estante);
-        setFila(fila);
-        setColumna(columna);
-        setPosicion(posicion);
+        if (pasillo < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (estante < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (fila < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (columna < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        if (posicion < 0) {
+            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        }
+        this.pasillo = pasillo;
+        this.estante = estante;
+        this.fila = fila;
+        this.columna = columna;
+        this.posicion = posicion;
     }
 
     @Override
