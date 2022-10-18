@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Prestamo implements Comparable<Prestamo> {
+public class Prestamo {
     private int plazo;
     private Lectura tipo;
     private LocalDate fecha;
@@ -27,37 +27,6 @@ public class Prestamo implements Comparable<Prestamo> {
         this.ejemplaresPrestados = ejemplares;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Prestamo other = (Prestamo) obj;
-        if (fecha == null) {
-            if (other.fecha != null)
-                return false;
-        } else if (!fecha.equals(other.fecha))
-            return false;
-        if (fechaDevolucion == null) {
-            if (other.fechaDevolucion != null)
-                return false;
-        } else if (!fechaDevolucion.equals(other.fechaDevolucion))
-            return false;
-        if (hora == null) {
-            if (other.hora != null)
-                return false;
-        } else if (!hora.equals(other.hora))
-            return false;
-        if (plazo != other.plazo)
-            return false;
-        if (tipo != other.tipo)
-            return false;
-        return true;
-    }
-
     public ArrayList<Ejemplar> getEjemplaresPrestados() {
         return ejemplaresPrestados;
     }
@@ -78,32 +47,16 @@ public class Prestamo implements Comparable<Prestamo> {
         return plazo;
     }
 
-    public void setPlazo(int plazo) {
-        this.plazo = plazo;
-    }
-
     public Lectura getTipo() {
         return tipo;
-    }
-
-    public void setTipo(Lectura tipo) {
-        this.tipo = tipo;
     }
 
     public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
     public LocalTime getHora() {
         return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
     }
 
     public LocalDate getFechaDevolucion() {
@@ -112,13 +65,6 @@ public class Prestamo implements Comparable<Prestamo> {
 
     public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
-    }
-
-    @Override
-    public int compareTo(Prestamo o) {
-        return 0;
-    }
-
-    
+    }    
 
 }

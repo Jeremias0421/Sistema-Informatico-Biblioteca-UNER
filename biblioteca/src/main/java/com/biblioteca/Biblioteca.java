@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
-    static ArrayList<Ejemplar> ejemplaresDisponibles = null;
-    static ArrayList<Ejemplar> ejemplaresPrestados = null;
-    static ArrayList<Ejemplar> ejemplaresReservados = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
+    ArrayList<Ejemplar> ejemplaresPrestados = null;
+    ArrayList<Ejemplar> ejemplaresReservados = null;
 
     public static void main(String[] args) {
         
@@ -159,7 +159,7 @@ public class Biblioteca {
         if (lector.isMultado()) {
             throw new IllegalArgumentException("Lector Multado");
         }
-        Reserva reserva = new Reserva(LocalDate.of(2022, 10, 28), lector, ejemplares);
+        Reserva reserva = new Reserva(fecha, lector, ejemplares);
         lector.setReserva(reserva);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.setDisponible(false);
