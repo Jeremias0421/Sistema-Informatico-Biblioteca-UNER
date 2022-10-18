@@ -4,6 +4,8 @@
  */
 package com.GUI;
 
+import com.biblioteca.TipoDni;
+
 /**
  *
  * @author dalzo
@@ -27,6 +29,12 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         userTxt = new javax.swing.JTextField();
         userTxt1 = new javax.swing.JTextField();
         userTxt2 = new javax.swing.JTextField();
@@ -36,6 +44,8 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt6 = new javax.swing.JTextField();
         userTxt7 = new javax.swing.JTextField();
         logoutButton = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Funcionario");
@@ -46,9 +56,35 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         bg.setBackground(new java.awt.Color(3, 33, 67));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextField2.setBackground(new java.awt.Color(0, 8, 16));
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 170, -1));
+
+        jTextField3.setBackground(new java.awt.Color(0, 8, 16));
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 170, -1));
+
+        jTextField4.setBackground(new java.awt.Color(0, 8, 16));
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 170, -1));
+
+        jTextField5.setBackground(new java.awt.Color(0, 8, 16));
+        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 170, -1));
+
+        jComboBox1.setBackground(new java.awt.Color(0, 8, 16));
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
+        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 170, -1));
+
+        jFormattedTextField1.setBackground(new java.awt.Color(0, 8, 16));
+        jFormattedTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jFormattedTextField1.setText("aaaa/mm/dd");
+        bg.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 170, -1));
+
         userTxt.setEditable(false);
         userTxt.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt.setForeground(new java.awt.Color(255, 255, 255));
         userTxt.setText("Nombre");
         userTxt.setBorder(null);
@@ -62,7 +98,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
         userTxt1.setEditable(false);
         userTxt1.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt1.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt1.setForeground(new java.awt.Color(255, 255, 255));
         userTxt1.setText("Apellido");
         userTxt1.setBorder(null);
@@ -72,11 +108,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 userTxt1ActionPerformed(evt);
             }
         });
-        bg.add(userTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 90, -1));
+        bg.add(userTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 70, -1));
 
         userTxt2.setEditable(false);
         userTxt2.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt2.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt2.setForeground(new java.awt.Color(255, 255, 255));
         userTxt2.setText("Sexo");
         userTxt2.setBorder(null);
@@ -86,11 +122,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 userTxt2ActionPerformed(evt);
             }
         });
-        bg.add(userTxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 90, -1));
+        bg.add(userTxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 50, -1));
 
         userTxt3.setEditable(false);
         userTxt3.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt3.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt3.setForeground(new java.awt.Color(255, 255, 255));
         userTxt3.setText("Nacimiento");
         userTxt3.setBorder(null);
@@ -100,11 +136,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 userTxt3ActionPerformed(evt);
             }
         });
-        bg.add(userTxt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, -1));
+        bg.add(userTxt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, -1));
 
         userTxt4.setEditable(false);
         userTxt4.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt4.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt4.setForeground(new java.awt.Color(255, 255, 255));
         userTxt4.setText("DNI");
         userTxt4.setBorder(null);
@@ -114,11 +150,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 userTxt4ActionPerformed(evt);
             }
         });
-        bg.add(userTxt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 90, -1));
+        bg.add(userTxt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, -1));
 
         userTxt5.setEditable(false);
         userTxt5.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt5.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt5.setForeground(new java.awt.Color(255, 255, 255));
         userTxt5.setText("Tipo DNI");
         userTxt5.setBorder(null);
@@ -128,11 +164,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 userTxt5ActionPerformed(evt);
             }
         });
-        bg.add(userTxt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 90, -1));
+        bg.add(userTxt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, -1));
 
         userTxt6.setEditable(false);
         userTxt6.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt6.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt6.setForeground(new java.awt.Color(255, 255, 255));
         userTxt6.setText("Usuario");
         userTxt6.setBorder(null);
@@ -146,7 +182,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
         userTxt7.setEditable(false);
         userTxt7.setBackground(new java.awt.Color(3, 33, 67));
-        userTxt7.setFont(new java.awt.Font("Segoe UI Light", 1, 16)); // NOI18N
+        userTxt7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         userTxt7.setForeground(new java.awt.Color(255, 255, 255));
         userTxt7.setText("Contraseña");
         userTxt7.setBorder(null);
@@ -164,6 +200,16 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         logoutButton.setText("Crear funcionario");
         logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bg.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, 30));
+
+        jPasswordField1.setBackground(new java.awt.Color(0, 8, 16));
+        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setText("jPasswordField1");
+        bg.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 170, -1));
+
+        jComboBox2.setBackground(new java.awt.Color(0, 8, 16));
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDni.values()));
+        bg.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +295,14 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<TipoDni> jComboBox2;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JButton logoutButton;
     private javax.swing.JTextField userTxt;
     private javax.swing.JTextField userTxt1;
