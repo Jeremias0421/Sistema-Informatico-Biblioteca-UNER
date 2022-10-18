@@ -89,5 +89,5 @@ public abstract class Persona {
 
     public void setTipoDni(TipoDni tipoDni) {
         this.tipoDni = tipoDni;
-    }
+    }    
 }

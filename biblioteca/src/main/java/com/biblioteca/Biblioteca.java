@@ -54,7 +54,7 @@ public class Biblioteca {
                 if (ejemplar.getReserva() != null) {
                     if (ejemplar.getReserva() != lector.getReserva()) { //Comprueba si fue reservado por el lector
                         //Si Paso la fecha de la reserva saca la reserva
-                        if ((ejemplar.getReserva().getFecha()).isAfter(LocalDate.now())) {
+                        if ((ejemplar.getReserva().getFecha()).isBefore(LocalDate.now())) {
                             reservaVencida(ejemplar, reservados, disponibles);
                         }else{
                             throw new IllegalArgumentException(ejemplar + " Reservado");
@@ -81,8 +81,9 @@ public class Biblioteca {
         funcionario.tomarPrestamo(prestamo);
         lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
-            ejemplar.setDisponible(false);
-            ejemplar.setPrestamo(prestamo);
+            ejemplar.darEnPrestamo(prestamo);
+            // ejemplar.setDisponible(false);
+            // ejemplar.setPrestamo(prestamo);
             prestados.add(ejemplar);
             disponibles.remove(ejemplar);
         }
@@ -124,8 +125,9 @@ public class Biblioteca {
         funcionario.tomarPrestamo(prestamo);
         lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
-            ejemplar.setDisponible(false);
-            ejemplar.setPrestamo(prestamo);
+            ejemplar.darEnPrestamo(prestamo);
+            // ejemplar.setDisponible(false);
+            // ejemplar.setPrestamo(prestamo);
             prestados.add(ejemplar);
             disponibles.remove(ejemplar);
         }
@@ -136,8 +138,9 @@ public class Biblioteca {
         for (Ejemplar ejemplar : prestamo.getEjemplaresPrestados()) {
             prestados.remove(ejemplar);
             disponibles.add(ejemplar);
-            ejemplar.setDisponible(true);
-            ejemplar.setPrestamo(null);
+            ejemplar.devolverEjemplar();
+            // ejemplar.setDisponible(true);
+            // ejemplar.setPrestamo(null);
         }
         Lector lector = prestamo.getLector();
         funcionario.tomarDevolucion(prestamo);
@@ -152,7 +155,9 @@ public class Biblioteca {
         
         for (Ejemplar ejemplar : ejemplares) {
             if (!ejemplar.isDisponible()) {
-                throw new IllegalArgumentException(ejemplar + "No disponible");
+                if (ejemplar.getFechaBaja() != null || ejemplar.getReserva() !=null) {
+                    throw new IllegalArgumentException(ejemplar + "No disponible");
+                }
             }
         }
 
@@ -162,8 +167,9 @@ public class Biblioteca {
         Reserva reserva = new Reserva(fecha, lector, ejemplares);
         lector.setReserva(reserva);
         for (Ejemplar ejemplar : ejemplares) {
-            ejemplar.setDisponible(false);
-            ejemplar.setReserva(reserva);
+            ejemplar.reservarEjemplar(reserva);
+            // ejemplar.setDisponible(false);
+            // ejemplar.setReserva(reserva);
             disponibles.remove(ejemplar);
             reservados.add(ejemplar);
         }
@@ -173,8 +179,9 @@ public class Biblioteca {
         for (Ejemplar ejemplar : lector.getReserva().getEjemplares()) {
             disponibles.add(ejemplar);
             reservados.remove(ejemplar);
-            ejemplar.setDisponible(true);
-            ejemplar.setReserva(null);
+            // ejemplar.setDisponible(true);
+            // ejemplar.setReserva(null);
+            ejemplar.sacarReserva();
         }
         lector.setReserva(null);
     }
@@ -186,8 +193,9 @@ public class Biblioteca {
         }
         ejemplar.getReserva().getLector().setReserva(null);
         for (Ejemplar ejemplarRes : ejemplar.getReserva().getEjemplares()) {
-            ejemplarRes.setReserva(null);
-            ejemplarRes.setDisponible(true);
+            // ejemplarRes.setReserva(null);
+            // ejemplarRes.setDisponible(true);
+            ejemplar.sacarReserva();
             reservados.remove(ejemplarRes);
             disponibles.add(ejemplarRes);
         }

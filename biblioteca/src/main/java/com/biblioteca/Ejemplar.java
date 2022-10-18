@@ -28,16 +28,33 @@ public class Ejemplar {
         this.obra = obra;
     }
 
-    public void setPrestamo(Prestamo prestamo) {
+    public void darEnPrestamo(Prestamo prestamo) {
+        this.disponible = false;
         this.prestamo = prestamo;
     }
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
+    public void devolverEjemplar() {
+        this.disponible = true;
+        this.prestamo = null;
     }
+
+    public void reservarEjemplar(Reserva reserva){
+        this.reserva = reserva;
+        this.disponible = false;
+    }
+
+    public void sacarReserva() {
+        this.reserva = null;
+        this.disponible = true;
+    }
+
 
     public Reserva getReserva() {
         return reserva;
+    }
+
+    public Prestamo getPrestamo() {
+        return prestamo;
     }
 
     public Identificacion getSeUbica() {
@@ -98,10 +115,6 @@ public class Ejemplar {
 
     public boolean isDisponible() {
         return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public Obra getObra() {

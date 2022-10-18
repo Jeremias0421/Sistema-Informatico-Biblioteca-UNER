@@ -63,7 +63,7 @@ public class PrestamoTest {
         funcionario.tomarPrestamo(prestamo);
         assertEquals(1, funcionario.getListaprestamos().size());
         for (Ejemplar ejemplar : ejemplares) {
-            ejemplar.setDisponible(false);
+            ejemplar.darEnPrestamo(prestamo);
         }
         for (Ejemplar ejemplar : ejemplares) {
             assertEquals(false, ejemplar.isDisponible());//No cambia la disponibilidad del Ejemplar

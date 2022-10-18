@@ -141,7 +141,7 @@ class AppTest {
         ejemplaresReservados = new ArrayList<>();
 
         //_______Se realiza la reserva___________
-        LocalDate fechaReserva = LocalDate.of(2022, 10, 18);
+        LocalDate fechaReserva = LocalDate.of(2022, 10, 19);
         Biblioteca.reservarEjemplares(estudiante, fechaReserva, ejemplares, ejemplaresDisponibles,
         ejemplaresReservados);
         assertEquals(0, ejemplaresDisponibles.size());
