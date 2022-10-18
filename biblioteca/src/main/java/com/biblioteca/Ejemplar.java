@@ -36,6 +36,10 @@ public class Ejemplar {
         this.reserva = reserva;
     }
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+
     public Identificacion getSeUbica() {
         return seUbica;
     }

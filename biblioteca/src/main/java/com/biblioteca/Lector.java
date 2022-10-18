@@ -62,6 +62,10 @@ public abstract class Lector extends Persona {
         return prestamo;
     }
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+
     public void consultarLibros() {
 
     }

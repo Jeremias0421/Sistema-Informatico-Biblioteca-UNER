@@ -1,6 +1,7 @@
 package com.biblioteca;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class DevolucionTest {
     //Biblioteca
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Ejemplar> ejemplaresPrestados = null;
+    ArrayList<Ejemplar> ejemplaresReservados = null;
 
     //Listas para almacenar objetos creados
     ArrayList<Lector> lectores = new ArrayList<>();
@@ -67,8 +69,11 @@ public class DevolucionTest {
         //Creacion de Lista de Prestados
         ejemplaresPrestados = new ArrayList<>();
 
+        //Creacion de Lista de Reservados
+        ejemplaresReservados = new ArrayList<>();
+
         //Test del metodo
-        Biblioteca.darPrestamoDomicilio(estudiante,ejemplares,funcionario,5,ejemplaresPrestados,ejemplaresDisponibles);
+        Biblioteca.darPrestamoDomicilio(estudiante,ejemplares,funcionario,5,ejemplaresPrestados,ejemplaresDisponibles, ejemplaresReservados);
         for (Ejemplar ejemplar : ejemplares) {
             assertEquals(false, ejemplar.isDisponible());
         }
@@ -84,5 +89,6 @@ public class DevolucionTest {
         }
         assertEquals(0, ejemplaresPrestados.size());
         assertEquals(2, ejemplaresDisponibles.size());
+        assertNull(estudiante.getPrestamo());
     }
 }
