@@ -32,7 +32,9 @@ public class Multa {
     public Prestamo getPrestamo() {
         return prestamo;
     }
-
     
+    public Lector getMultado() {
+        return multado;
+    }
 
 }
