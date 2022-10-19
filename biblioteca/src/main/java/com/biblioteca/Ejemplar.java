@@ -121,7 +121,10 @@ public class Ejemplar {
         return obra;
     }
 
-    public void darDeBaja(String motivoBaja) { // Posiblemente mal
+    public void darDeBaja(String motivoBaja) throws Exception {
+        if (!this.disponible) {
+            throw new Exception("El ejemplar no está disponible para darlo de baja");
+        }
         this.disponible = false;
         this.fechaBaja = LocalDate.now();
         this.motivoBaja = motivoBaja;
