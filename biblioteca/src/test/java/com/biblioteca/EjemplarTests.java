@@ -53,7 +53,11 @@ public class EjemplarTests {
         assertEquals(true, ejemplar.isDisponible());
         assertNull(ejemplar.getMotivoBaja());
         assertNull(ejemplar.getFechaBaja());
-        ejemplar.darDeBaja("Sin razon");
+        try {
+            ejemplar.darDeBaja("Sin razon");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         assertEquals(false, ejemplar.isDisponible());
         assertEquals(LocalDate.now(), ejemplar.getFechaBaja());
         assertEquals("Sin razon", ejemplar.getMotivoBaja());

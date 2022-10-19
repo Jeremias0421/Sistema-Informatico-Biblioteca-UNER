@@ -20,3 +20,7 @@ control en setter de codigod e barra Ejemplar de la misma forma que isbn de Obra
 *Todo:
 Control en metodos de prestamo en biblioteca sobre si esta reservada la obra y si es por ese mismo lector.
 Testear el metodo con JUnit
+
+19/10
+*todo:
+Arreglar metodo de validacion de ISBN
