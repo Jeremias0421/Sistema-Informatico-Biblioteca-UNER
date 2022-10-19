@@ -61,7 +61,7 @@ public class ReservaTests {
     
     @Test
     public void reservaTests(){
-        LocalDate fechaReserva = LocalDate.of(2022, 10, 18);
+        LocalDate fechaReserva = LocalDate.of(2022, 10, 28);
         Biblioteca.reservarEjemplares(estudiante, fechaReserva, ejemplaresPorReservar, ejemplaresDisponibles,
         ejemplaresReservados);
         assertEquals(0, ejemplaresDisponibles.size());

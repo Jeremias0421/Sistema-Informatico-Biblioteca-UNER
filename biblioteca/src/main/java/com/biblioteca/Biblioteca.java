@@ -82,8 +82,6 @@ public class Biblioteca {
         lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.darEnPrestamo(prestamo);
-            // ejemplar.setDisponible(false);
-            // ejemplar.setPrestamo(prestamo);
             prestados.add(ejemplar);
             disponibles.remove(ejemplar);
         }
@@ -126,8 +124,6 @@ public class Biblioteca {
         lector.pedirPrestamo(prestamo);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.darEnPrestamo(prestamo);
-            // ejemplar.setDisponible(false);
-            // ejemplar.setPrestamo(prestamo);
             prestados.add(ejemplar);
             disponibles.remove(ejemplar);
         }
@@ -139,8 +135,6 @@ public class Biblioteca {
             prestados.remove(ejemplar);
             disponibles.add(ejemplar);
             ejemplar.devolverEjemplar();
-            // ejemplar.setDisponible(true);
-            // ejemplar.setPrestamo(null);
         }
         Lector lector = prestamo.getLector();
         funcionario.tomarDevolucion(prestamo);
@@ -168,8 +162,6 @@ public class Biblioteca {
         lector.setReserva(reserva);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.reservarEjemplar(reserva);
-            // ejemplar.setDisponible(false);
-            // ejemplar.setReserva(reserva);
             disponibles.remove(ejemplar);
             reservados.add(ejemplar);
         }
@@ -179,8 +171,6 @@ public class Biblioteca {
         for (Ejemplar ejemplar : lector.getReserva().getEjemplares()) {
             disponibles.add(ejemplar);
             reservados.remove(ejemplar);
-            // ejemplar.setDisponible(true);
-            // ejemplar.setReserva(null);
             ejemplar.sacarReserva();
         }
         lector.setReserva(null);
@@ -193,8 +183,6 @@ public class Biblioteca {
         }
         ejemplar.getReserva().getLector().setReserva(null);
         for (Ejemplar ejemplarRes : ejemplar.getReserva().getEjemplares()) {
-            // ejemplarRes.setReserva(null);
-            // ejemplarRes.setDisponible(true);
             ejemplar.sacarReserva();
             reservados.remove(ejemplarRes);
             disponibles.add(ejemplarRes);

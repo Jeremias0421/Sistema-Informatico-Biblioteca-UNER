@@ -44,5 +44,9 @@ public class Funcionario extends Persona {
         this.contrasenia = contrasenia;
     }
 
+    public String toCSV() {
+        return this.usuario + "," + this.contrasenia + "\n";
+    }
+
     
 }
