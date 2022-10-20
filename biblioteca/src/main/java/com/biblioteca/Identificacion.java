@@ -9,19 +9,19 @@ public class Identificacion {
     private int posicion;
 
     public Identificacion(Ejemplar ejemplar, int pasillo, int estante, int fila, int columna, int posicion) {        
-        if (pasillo < 0) {
-            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        if (pasillo <= 0) {
+            throw new IllegalArgumentException("Pasillo debe ser mayor a 0");
         }
-        if (estante < 0) {
-            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        if (estante <= 0) {
+            throw new IllegalArgumentException("Estante debe ser mayor a 0");
         }
-        if (fila < 0) {
-            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        if (fila <= 0) {
+            throw new IllegalArgumentException("Fila debe ser mayor a 0");
         }
-        if (columna < 0) {
-            throw new IllegalArgumentException("Posicion debe ser mayor a 0");
+        if (columna <= 0) {
+            throw new IllegalArgumentException("Columna debe ser mayor a 0");
         }
-        if (posicion < 0) {
+        if (posicion <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
         this.ejemplar = ejemplar;
@@ -61,19 +61,19 @@ public class Identificacion {
     }
 
     public void cambiarUbicacion(int pasillo, int estante, int fila, int columna, int posicion) {
-        if (pasillo < 0) {
+        if (pasillo <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
-        if (estante < 0) {
+        if (estante <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
-        if (fila < 0) {
+        if (fila <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
-        if (columna < 0) {
+        if (columna <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
-        if (posicion < 0) {
+        if (posicion <= 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
         }
         this.pasillo = pasillo;
