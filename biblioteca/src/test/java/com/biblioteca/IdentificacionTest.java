@@ -13,8 +13,8 @@ public class IdentificacionTest {
 
     @Test
     public void test2() {
-        Identificacion identificacion2 = new Identificacion(null, 5, 6, 7, 0, 7);
-        assertEquals("5-6-7-0-7", identificacion2.toString());
+        Identificacion identificacion2 = new Identificacion(null, 5, 6, 7, 1, 7);
+        assertEquals("5-6-7-1-7", identificacion2.toString());
     }
 
     @Test
@@ -60,5 +60,10 @@ public class IdentificacionTest {
     public void cambiarUbicacionInvalida(){
         Identificacion identificacion = new Identificacion(null, 10, 12, 7, 19, -7);
         identificacion.cambiarUbicacion(-1, -1, -1, -1, -1);
+    }
+
+    @Test (expected = IllegalArgumentException.class) 
+    public void identificacionEnCero(){
+        Identificacion identificacion = new Identificacion(null, 0, 0, 0, 0, 0);
     }
 }
