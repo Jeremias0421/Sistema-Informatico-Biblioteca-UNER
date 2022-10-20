@@ -11,6 +11,7 @@ public class Biblioteca {
     ArrayList<Ejemplar> ejemplaresReservados = null;
 
     public static void main(String[] args) {
+        ArrayList<Funcionario> funcionariosActivos = new ArrayList<>();
         
     }
 

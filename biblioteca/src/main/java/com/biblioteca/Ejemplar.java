@@ -101,16 +101,8 @@ public class Ejemplar {
         return fechaBaja;
     }
 
-    public void setFechaBaja(LocalDate fechaBaja) {
-        this.fechaBaja = fechaBaja;
-    }
-
     public String getMotivoBaja() {
         return motivoBaja;
-    }
-
-    public void setMotivoBaja(String motivoBaja) {
-        this.motivoBaja = motivoBaja;
     }
 
     public boolean isDisponible() {
