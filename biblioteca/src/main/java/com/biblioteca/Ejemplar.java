@@ -3,7 +3,7 @@ package com.biblioteca;
 import java.time.LocalDate;
 
 public class Ejemplar {
-    private Identificacion seUbica;
+    private Identificacion ID;
     private String observacionesGenerales;
     private String codigoDeBarra; // a revisar como tratar el codigo de barra
     private LocalDate fechaAdquisicion;
@@ -16,8 +16,8 @@ public class Ejemplar {
     private Prestamo prestamo;
 
     public Ejemplar(String observacionesGenerales, String codigoDeBarra, LocalDate fechaAdquisicion,
-            String formaAquisicion, Identificacion seUbica, Obra obra) {
-        this.seUbica = seUbica;
+            String formaAquisicion, Identificacion ID, Obra obra) {
+        this.ID = ID;
         this.observacionesGenerales = observacionesGenerales;
         this.codigoDeBarra = codigoDeBarra;
         this.fechaAdquisicion = fechaAdquisicion;
@@ -58,11 +58,11 @@ public class Ejemplar {
     }
 
     public Identificacion getSeUbica() {
-        return seUbica;
+        return ID;
     }
 
     public void setSeUbica(Identificacion seUbica) {
-        this.seUbica = seUbica;
+        this.ID = seUbica;
     }
 
     public String getObservacionesGenerales() {

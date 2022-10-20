@@ -24,3 +24,4 @@ Testear el metodo con JUnit
 19/10
 *todo:
 Arreglar metodo de validacion de ISBN
+Agregar Indice
