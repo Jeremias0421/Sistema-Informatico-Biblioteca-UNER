@@ -6,6 +6,7 @@ package com.GUI;
 
 import com.biblioteca.Funcionario;
 import com.biblioteca.TipoDni;
+import com.biblioteca.TipoFuncionario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class Login extends javax.swing.JFrame {
         funcionarios = new ArrayList();
         funcionarios.add(new Funcionario("Jorge", "Hernandez", "Masculino", LocalDate.of(
                 2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"admin",
-                "admin"));
+                "admin", TipoFuncionario.ADMIN));
         initComponents();
     }
 
@@ -182,9 +183,12 @@ public class Login extends javax.swing.JFrame {
     private void Logear(){
         Funcionario funcionario = checkLogin();
         if (funcionario != null){
-            //comprobar si es admin o no
             this.setVisible(false);
-            new AdminPanel().setVisible(true);
+            if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
+                new AdminPanel().setVisible(true);
+            }else{
+                new FuncionarioPanel().setVisible(true);
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
         }

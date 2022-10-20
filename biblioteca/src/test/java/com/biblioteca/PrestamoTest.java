@@ -26,7 +26,7 @@ public class PrestamoTest {
                 "Argentina");
         funcionario = new Funcionario("Jorge", "Hernandez", "Masculino", LocalDate.of(
                 2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"jorgito",
-                "jorgito123");
+                "jorgito123", TipoFuncionario.ADMIN);
 
         Edicion edicion1 = new Edicion("Editorial", "Argentina", 0, 
             2008, 2, 890, "Español", Formato.PAPEL, null);
