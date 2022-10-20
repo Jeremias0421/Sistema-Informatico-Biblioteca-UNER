@@ -60,8 +60,6 @@ public class Identificacion {
         return posicion;
     }
 
-
-
     public void cambiarUbicacion(int pasillo, int estante, int fila, int columna, int posicion) {
         if (pasillo < 0) {
             throw new IllegalArgumentException("Posicion debe ser mayor a 0");
@@ -89,7 +87,6 @@ public class Identificacion {
     public String toString() {
         return String.format("%s-%s-%s-%s-%s", getPasillo(), getEstante(), getFila(), getColumna(), getPosicion());
     }
-
 
     @Override
     public boolean equals(Object obj) {
