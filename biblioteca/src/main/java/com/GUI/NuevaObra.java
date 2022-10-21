@@ -7,9 +7,7 @@ package com.GUI;
 import com.biblioteca.Edicion;
 import com.biblioteca.Formato;
 import com.biblioteca.TipoObra;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  *
@@ -17,11 +15,15 @@ import javax.swing.ListModel;
  */
 public class NuevaObra extends javax.swing.JFrame {
 
+    DefaultListModel<Edicion> listModel;
+            
     /**
      * Creates new form NuevaObra
      */
     public NuevaObra() {
         initComponents();
+        this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
+        
     }
 
     /**
@@ -405,6 +407,7 @@ public class NuevaObra extends javax.swing.JFrame {
 
         jListEdiciones.setBackground(new java.awt.Color(0, 8, 16));
         jListEdiciones.setForeground(new java.awt.Color(255, 255, 255));
+        jListEdiciones.setModel(new DefaultListModel<Edicion>());
         jScrollPane1.setViewportView(jListEdiciones);
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 326, 290, 110));
@@ -451,7 +454,7 @@ public class NuevaObra extends javax.swing.JFrame {
     }//GEN-LAST:event_checkColecStateChanged
 
     private void guardarEdicionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEdicionBtnActionPerformed
-        
+        listModel.addElement(new Edicion("editorial", "pais", 1, 2001, 2, 200, "español", Formato.CD, null));
     }//GEN-LAST:event_guardarEdicionBtnActionPerformed
     
     
