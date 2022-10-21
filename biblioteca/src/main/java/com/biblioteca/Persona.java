@@ -11,11 +11,17 @@ import java.time.LocalDate;
  * @version 1.0
  */
 public abstract class Persona {
+    /** Primer nombre de la persona */
     private final String nombre;
+    /** Apellido paterno de la persona */
     private final String apellido;
+    /** Sexo de la persona especificado en el DNI */
     private final String sexo;
+    /** Fecha de nacimiento de la persona */
     private final LocalDate fechaNacimiento;
+    /** Documento Nacional de Identidad de la persona */
     private final String dni;
+    /** Tipo de documento de la persona */
     private TipoDni tipoDni;
 
     /**
@@ -25,8 +31,8 @@ public abstract class Persona {
      * @param fechaNacimiento la fecha de nacimiento de la persona
      * @param dni             el numero de documento de la persona
      * @param tipoDni         el tipo de documento de la persona
-     * @throws IllegalArgumentException si el constructor recibe como parametros
-     *                                  valores invalidos para sus atributos
+     * @throws IllegalArgumentException si recibe como parametros valores invalidos
+     * 
      */
     public Persona(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni,
             TipoDni tipoDni) {
@@ -66,37 +72,35 @@ public abstract class Persona {
     }
 
     /**
-     * 
-     * @return el apellido de la persona
+     * @return apellido de la persona
      */
     public String getApellido() {
         return apellido;
     }
 
     /**
-     * 
-     * @return el sexo de la persona
+     * @return sexo de la persona
      */
     public String getSexo() {
         return sexo;
     }
 
     /**
-     * @return la fecha de nacimiento de la persona
+     * @return fecha de nacimiento de la persona
      */
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     /**
-     * @return el numero de documento de la persona
+     * @return numero de documento de la persona
      */
     public String getDni() {
         return dni;
     }
 
     /**
-     * @return el tipo de documento de la persona
+     * @return tipo de documento de la persona
      */
     public TipoDni getTipoDni() {
         return tipoDni;
