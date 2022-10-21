@@ -4,16 +4,30 @@
  */
 package com.GUI;
 
+import com.biblioteca.Funcionario;
+import com.biblioteca.TipoDni;
+import com.biblioteca.TipoFuncionario;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dalzo
  */
 public class Login extends javax.swing.JFrame {
+    
+    ArrayList<Funcionario> funcionarios = null;
+    
 
     /**
      * Creates new form Login
      */
     public Login() {
+        funcionarios = new ArrayList();
+        funcionarios.add(new Funcionario("Jorge", "Hernandez", "Masculino", LocalDate.of(
+                2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"admin",
+                "admin", TipoFuncionario.ADMIN));
         initComponents();
     }
 
@@ -98,6 +112,11 @@ public class Login extends javax.swing.JFrame {
         LoginButton.setForeground(new java.awt.Color(255, 255, 255));
         LoginButton.setText("Iniciar Sesion");
         LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButtonActionPerformed(evt);
+            }
+        });
         bg.add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
 
         jPasswordField1.setBackground(new java.awt.Color(3, 33, 67));
@@ -137,13 +156,44 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userTxtActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
+        Logear();
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void userBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBoxActionPerformed
-        // TODO add your handling code here:
+        Logear();
     }//GEN-LAST:event_userBoxActionPerformed
 
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        Logear();
+    }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private Funcionario checkLogin(){
+        String user = userBox.getText();
+        String pw = String.valueOf(jPasswordField1.getPassword());
+        
+        
+        for (Funcionario funcionario : funcionarios) {
+            if(user.equals(funcionario.getUsuario()) && pw.equals(funcionario.getContrasenia())){
+                return funcionario;
+            }
+        }
+        return null;
+    }
+    
+    private void Logear(){
+        Funcionario funcionario = checkLogin();
+        if (funcionario != null){
+            this.setVisible(false);
+            if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
+                new AdminPanel().setVisible(true);
+            }else{
+                new FuncionarioPanel().setVisible(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

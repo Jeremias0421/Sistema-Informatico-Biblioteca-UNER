@@ -6,13 +6,15 @@ import java.util.ArrayList;
 public class Funcionario extends Persona {
     private String usuario;
     private String contrasenia;
+    private TipoFuncionario tipoFuncionario;
     private ArrayList<Prestamo> listaprestamos;
 
     public Funcionario(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, TipoDni tipoDni,
-            String usuario, String contrasenia) {
+            String usuario, String contrasenia, TipoFuncionario tipoFuncionario) {
         super(nombre, apellido, sexo, fechaNacimiento, dni, tipoDni);
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+        this.tipoFuncionario = tipoFuncionario;
         this.listaprestamos = new ArrayList<>();
     }
 
@@ -42,6 +44,10 @@ public class Funcionario extends Persona {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public TipoFuncionario getTipoFuncionario() {
+        return tipoFuncionario;
     }
 
     public String toCSV() {

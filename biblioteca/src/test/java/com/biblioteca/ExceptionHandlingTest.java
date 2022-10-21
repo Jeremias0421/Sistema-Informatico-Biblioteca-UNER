@@ -12,7 +12,7 @@ public class ExceptionHandlingTest {
         try {
             funcionario = new Funcionario("123", "Hernandez", "Masculino", LocalDate.of(
             2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"jorgito",
-            "jorgito123");
+            "jorgito123", TipoFuncionario.ADMIN);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
