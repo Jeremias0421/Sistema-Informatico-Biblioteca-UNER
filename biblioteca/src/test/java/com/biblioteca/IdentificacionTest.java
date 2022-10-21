@@ -27,7 +27,7 @@ public class IdentificacionTest {
     public void cambiarUbicacion() {
         Identificacion identificacion3 = new Identificacion(null, 10, 12, 7, 19, 7);
         assertEquals("10-12-7-19-7", identificacion3.toString());
-        identificacion3.cambiarUbicacion(1, 1, 1, 1, 1);
+        identificacion3.cambiarID(1, 1, 1, 1, 1);
         assertEquals("1-1-1-1-1", identificacion3.toString());
     }
 
@@ -59,7 +59,7 @@ public class IdentificacionTest {
     @Test (expected = IllegalArgumentException.class)
     public void cambiarUbicacionInvalida(){
         Identificacion identificacion = new Identificacion(null, 10, 12, 7, 19, -7);
-        identificacion.cambiarUbicacion(-1, -1, -1, -1, -1);
+        identificacion.cambiarID(-1, -1, -1, -1, -1);
     }
 
     @Test (expected = IllegalArgumentException.class) 
