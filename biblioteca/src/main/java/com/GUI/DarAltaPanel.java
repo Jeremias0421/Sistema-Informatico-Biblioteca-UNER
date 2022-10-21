@@ -224,6 +224,11 @@ public class DarAltaPanel extends javax.swing.JFrame {
         nuevaObraBtn.setForeground(new java.awt.Color(255, 255, 255));
         nuevaObraBtn.setText("Nueva");
         nuevaObraBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevaObraBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaObraBtnActionPerformed(evt);
+            }
+        });
         bg.add(nuevaObraBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,6 +253,11 @@ public class DarAltaPanel extends javax.swing.JFrame {
         this.setVisible(false);
         new AdminPanel().setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
+
+    private void nuevaObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaObraBtnActionPerformed
+      this.setVisible(false);
+      new NuevaObra().setVisible(true);
+    }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
     /**
      * @param args the command line arguments
