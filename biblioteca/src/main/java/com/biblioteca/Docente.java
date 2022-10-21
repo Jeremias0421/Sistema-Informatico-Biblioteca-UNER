@@ -15,7 +15,7 @@ public final class Docente extends Lector {
     private String carrera;
 
     /**
-     * Crea una nueva instancia
+     * Crea una nueva instancia de la clase.
      * 
      * @param nombre            nombre
      * @param apellido          apellido
@@ -32,7 +32,8 @@ public final class Docente extends Lector {
      * @param departamento      departamento donde reside el docente
      * @param localidad         localidad donde reside el docente
      * @param carrera           carrera en la que imparte el docente
-     * @exception IllegalArgumentException si {@code carrera}
+     * @exception IllegalArgumentException si la carrera contiene caracteres
+     *                                     numericos y/o especiales.
      */
     public Docente(String nombre, String apellido, String sexo, LocalDate fechaNacimiento, String dni, TipoDni tipoDni,
             String correoElectronico, String nroCelular, String nacionalidad, String domicilio, int nroPostal,
@@ -56,7 +57,7 @@ public final class Docente extends Lector {
     }
 
     /**
-     * Permite modificar la carrera.
+     * Permite modificar la carrera por una nueva.
      * 
      * @param carrera Una nueva carrera
      */
@@ -68,8 +69,8 @@ public final class Docente extends Lector {
      * Comprueba la validacion de la carrera.
      * 
      * @param carrera
-     * @return {@code true} si la carrera contiene caracteres del alfabeto;
-     *         de lo contrario {@code false}
+     * @return {@code true} si la carrera no contiene caracteres
+     *         numericos y/o especiales.
      */
     private boolean validarCarrera(String carrera) {
         return carrera.matches("[A-Z][a-z A-Z]*");
