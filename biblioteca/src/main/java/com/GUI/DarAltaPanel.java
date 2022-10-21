@@ -36,7 +36,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        bg = new javax.swing.JPanel();
         tituloPanel = new javax.swing.JLabel();
         cartelObra = new javax.swing.JTextField();
         cartelObsrv = new javax.swing.JTextField();
@@ -49,30 +49,30 @@ public class DarAltaPanel extends javax.swing.JFrame {
         menuObras = new javax.swing.JComboBox<>();
         volverBtn = new javax.swing.JButton();
         guardarEjemplarBtn = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
-        jSpinner5 = new javax.swing.JSpinner();
-        cartelUbicacion1 = new javax.swing.JTextField();
-        cartelUbicacion2 = new javax.swing.JTextField();
-        cartelUbicacion3 = new javax.swing.JTextField();
-        cartelUbicacion4 = new javax.swing.JTextField();
-        cartelUbicacion5 = new javax.swing.JTextField();
-        volverBtn1 = new javax.swing.JButton();
+        columna = new javax.swing.JSpinner();
+        posicion = new javax.swing.JSpinner();
+        fila = new javax.swing.JSpinner();
+        estante = new javax.swing.JSpinner();
+        pasillo = new javax.swing.JSpinner();
+        cartelPosicion = new javax.swing.JTextField();
+        cartelPasillo = new javax.swing.JTextField();
+        cartelFila = new javax.swing.JTextField();
+        cartelColumna = new javax.swing.JTextField();
+        cartelEstante = new javax.swing.JTextField();
+        nuevaObraBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nuevo ejemplar");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(3, 33, 67));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bg.setBackground(new java.awt.Color(3, 33, 67));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tituloPanel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tituloPanel.setForeground(new java.awt.Color(255, 255, 255));
         tituloPanel.setText("ALTA DE EJEMPLAR");
         tituloPanel.setFocusable(false);
-        jPanel1.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+        bg.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         cartelObra.setEditable(false);
         cartelObra.setBackground(new java.awt.Color(3, 33, 67));
@@ -81,7 +81,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
         cartelObra.setText("Obra");
         cartelObra.setBorder(null);
         cartelObra.setFocusable(false);
-        jPanel1.add(cartelObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, -1));
+        bg.add(cartelObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, -1));
 
         cartelObsrv.setEditable(false);
         cartelObsrv.setBackground(new java.awt.Color(3, 33, 67));
@@ -90,7 +90,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
         cartelObsrv.setText("Observaciones");
         cartelObsrv.setBorder(null);
         cartelObsrv.setFocusable(false);
-        jPanel1.add(cartelObsrv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, -1));
+        bg.add(cartelObsrv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, -1));
 
         cartelCodigo.setEditable(false);
         cartelCodigo.setBackground(new java.awt.Color(3, 33, 67));
@@ -99,7 +99,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
         cartelCodigo.setText("Codigo");
         cartelCodigo.setBorder(null);
         cartelCodigo.setFocusable(false);
-        jPanel1.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, -1));
+        bg.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, -1));
 
         cartelFormaAdq.setEditable(false);
         cartelFormaAdq.setBackground(new java.awt.Color(3, 33, 67));
@@ -108,7 +108,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
         cartelFormaAdq.setText("Forma adquisicon");
         cartelFormaAdq.setBorder(null);
         cartelFormaAdq.setFocusable(false);
-        jPanel1.add(cartelFormaAdq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
+        bg.add(cartelFormaAdq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
 
         cartelUbicacion.setEditable(false);
         cartelUbicacion.setBackground(new java.awt.Color(3, 33, 67));
@@ -117,19 +117,19 @@ public class DarAltaPanel extends javax.swing.JFrame {
         cartelUbicacion.setText("Ubicacion");
         cartelUbicacion.setBorder(null);
         cartelUbicacion.setFocusable(false);
-        jPanel1.add(cartelUbicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 90, -1));
+        bg.add(cartelUbicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 90, -1));
 
         codigoBarra.setBackground(new java.awt.Color(0, 8, 16));
         codigoBarra.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(codigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 220, -1));
+        bg.add(codigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 220, -1));
 
         observaciones.setBackground(new java.awt.Color(0, 8, 16));
         observaciones.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 220, -1));
+        bg.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 220, -1));
 
         fAdquisicion.setBackground(new java.awt.Color(0, 8, 16));
         fAdquisicion.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(fAdquisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, -1));
+        bg.add(fAdquisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, -1));
 
         menuObras.setBackground(new java.awt.Color(0, 8, 16));
         menuObras.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,7 +138,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
                 menuObrasActionPerformed(evt);
             }
         });
-        jPanel1.add(menuObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 220, -1));
+        bg.add(menuObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 220, -1));
 
         volverBtn.setBackground(new java.awt.Color(96, 106, 135));
         volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -150,91 +150,91 @@ public class DarAltaPanel extends javax.swing.JFrame {
                 volverBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 130, 30));
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 130, 30));
 
         guardarEjemplarBtn.setBackground(new java.awt.Color(96, 106, 135));
         guardarEjemplarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         guardarEjemplarBtn.setForeground(new java.awt.Color(255, 255, 255));
         guardarEjemplarBtn.setText("Guardar ejemplar");
         guardarEjemplarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(guardarEjemplarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 130, 30));
+        bg.add(guardarEjemplarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 130, 30));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, -1));
+        columna.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        bg.add(columna, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, -1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 60, -1));
+        posicion.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        bg.add(posicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 60, -1));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-        jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 60, -1));
+        fila.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        bg.add(fila, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 60, -1));
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-        jPanel1.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 60, -1));
+        estante.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        bg.add(estante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 60, -1));
 
-        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-        jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
+        pasillo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        bg.add(pasillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
 
-        cartelUbicacion1.setEditable(false);
-        cartelUbicacion1.setBackground(new java.awt.Color(3, 33, 67));
-        cartelUbicacion1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
-        cartelUbicacion1.setForeground(new java.awt.Color(255, 255, 255));
-        cartelUbicacion1.setText("posicion");
-        cartelUbicacion1.setBorder(null);
-        cartelUbicacion1.setFocusable(false);
-        jPanel1.add(cartelUbicacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, -1));
+        cartelPosicion.setEditable(false);
+        cartelPosicion.setBackground(new java.awt.Color(3, 33, 67));
+        cartelPosicion.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelPosicion.setForeground(new java.awt.Color(255, 255, 255));
+        cartelPosicion.setText("posicion");
+        cartelPosicion.setBorder(null);
+        cartelPosicion.setFocusable(false);
+        bg.add(cartelPosicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, -1));
 
-        cartelUbicacion2.setEditable(false);
-        cartelUbicacion2.setBackground(new java.awt.Color(3, 33, 67));
-        cartelUbicacion2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
-        cartelUbicacion2.setForeground(new java.awt.Color(255, 255, 255));
-        cartelUbicacion2.setText("pasillo");
-        cartelUbicacion2.setBorder(null);
-        cartelUbicacion2.setFocusable(false);
-        jPanel1.add(cartelUbicacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 50, -1));
+        cartelPasillo.setEditable(false);
+        cartelPasillo.setBackground(new java.awt.Color(3, 33, 67));
+        cartelPasillo.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelPasillo.setForeground(new java.awt.Color(255, 255, 255));
+        cartelPasillo.setText("pasillo");
+        cartelPasillo.setBorder(null);
+        cartelPasillo.setFocusable(false);
+        bg.add(cartelPasillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 50, -1));
 
-        cartelUbicacion3.setEditable(false);
-        cartelUbicacion3.setBackground(new java.awt.Color(3, 33, 67));
-        cartelUbicacion3.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
-        cartelUbicacion3.setForeground(new java.awt.Color(255, 255, 255));
-        cartelUbicacion3.setText("fila");
-        cartelUbicacion3.setBorder(null);
-        cartelUbicacion3.setFocusable(false);
-        jPanel1.add(cartelUbicacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 30, -1));
+        cartelFila.setEditable(false);
+        cartelFila.setBackground(new java.awt.Color(3, 33, 67));
+        cartelFila.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelFila.setForeground(new java.awt.Color(255, 255, 255));
+        cartelFila.setText("fila");
+        cartelFila.setBorder(null);
+        cartelFila.setFocusable(false);
+        bg.add(cartelFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 30, -1));
 
-        cartelUbicacion4.setEditable(false);
-        cartelUbicacion4.setBackground(new java.awt.Color(3, 33, 67));
-        cartelUbicacion4.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
-        cartelUbicacion4.setForeground(new java.awt.Color(255, 255, 255));
-        cartelUbicacion4.setText("columna");
-        cartelUbicacion4.setBorder(null);
-        cartelUbicacion4.setFocusable(false);
-        jPanel1.add(cartelUbicacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, -1));
+        cartelColumna.setEditable(false);
+        cartelColumna.setBackground(new java.awt.Color(3, 33, 67));
+        cartelColumna.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelColumna.setForeground(new java.awt.Color(255, 255, 255));
+        cartelColumna.setText("columna");
+        cartelColumna.setBorder(null);
+        cartelColumna.setFocusable(false);
+        bg.add(cartelColumna, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, -1));
 
-        cartelUbicacion5.setEditable(false);
-        cartelUbicacion5.setBackground(new java.awt.Color(3, 33, 67));
-        cartelUbicacion5.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
-        cartelUbicacion5.setForeground(new java.awt.Color(255, 255, 255));
-        cartelUbicacion5.setText("estante");
-        cartelUbicacion5.setBorder(null);
-        cartelUbicacion5.setFocusable(false);
-        jPanel1.add(cartelUbicacion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 60, -1));
+        cartelEstante.setEditable(false);
+        cartelEstante.setBackground(new java.awt.Color(3, 33, 67));
+        cartelEstante.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelEstante.setForeground(new java.awt.Color(255, 255, 255));
+        cartelEstante.setText("estante");
+        cartelEstante.setBorder(null);
+        cartelEstante.setFocusable(false);
+        bg.add(cartelEstante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 60, -1));
 
-        volverBtn1.setBackground(new java.awt.Color(96, 106, 135));
-        volverBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        volverBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        volverBtn1.setText("Nueva");
-        volverBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(volverBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, -1));
+        nuevaObraBtn.setBackground(new java.awt.Color(96, 106, 135));
+        nuevaObraBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nuevaObraBtn.setForeground(new java.awt.Color(255, 255, 255));
+        nuevaObraBtn.setText("Nueva");
+        nuevaObraBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(nuevaObraBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
 
         pack();
@@ -285,30 +285,30 @@ public class DarAltaPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
     private javax.swing.JTextField cartelCodigo;
+    private javax.swing.JTextField cartelColumna;
+    private javax.swing.JTextField cartelEstante;
+    private javax.swing.JTextField cartelFila;
     private javax.swing.JTextField cartelFormaAdq;
     private javax.swing.JTextField cartelObra;
     private javax.swing.JTextField cartelObsrv;
+    private javax.swing.JTextField cartelPasillo;
+    private javax.swing.JTextField cartelPosicion;
     private javax.swing.JTextField cartelUbicacion;
-    private javax.swing.JTextField cartelUbicacion1;
-    private javax.swing.JTextField cartelUbicacion2;
-    private javax.swing.JTextField cartelUbicacion3;
-    private javax.swing.JTextField cartelUbicacion4;
-    private javax.swing.JTextField cartelUbicacion5;
     private javax.swing.JTextField codigoBarra;
+    private javax.swing.JSpinner columna;
+    private javax.swing.JSpinner estante;
     private javax.swing.JTextField fAdquisicion;
+    private javax.swing.JSpinner fila;
     private javax.swing.JButton guardarEjemplarBtn;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
     private javax.swing.JComboBox<Obra> menuObras;
+    private javax.swing.JButton nuevaObraBtn;
     private javax.swing.JTextField observaciones;
+    private javax.swing.JSpinner pasillo;
+    private javax.swing.JSpinner posicion;
     private javax.swing.JLabel tituloPanel;
     private javax.swing.JButton volverBtn;
-    private javax.swing.JButton volverBtn1;
     // End of variables declaration//GEN-END:variables
     
     private void customComponents(){
