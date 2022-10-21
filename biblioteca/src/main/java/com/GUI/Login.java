@@ -24,10 +24,12 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        //Codigo con proposito de prueba:
         funcionarios = new ArrayList();
         funcionarios.add(new Funcionario("Jorge", "Hernandez", "Masculino", LocalDate.of(
                 2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"admin",
                 "admin", TipoFuncionario.ADMIN));
+        //Codigo que no es de prueba
         initComponents();
     }
 

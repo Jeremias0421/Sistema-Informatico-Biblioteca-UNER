@@ -4,17 +4,27 @@
  */
 package com.GUI;
 
+import com.biblioteca.Obra;
+import java.util.ArrayList;
+
 /**
  *
  * @author dalzo
  */
 public class DarAltaPanel extends javax.swing.JFrame {
 
+    ArrayList<Obra> listadoObras = null;
     /**
      * Creates new form DarAltaPanel
      */
     public DarAltaPanel() {
+        //Codigo con proposito de prueba:
+        listadoObras = new ArrayList();
+        Obra obraTest = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", null);
+        listadoObras.add(obraTest);
+        //Codigo que o es de prueba:
         initComponents();
+        customComponents();
     }
 
     /**
@@ -27,10 +37,194 @@ public class DarAltaPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        tituloPanel = new javax.swing.JLabel();
+        cartelObra = new javax.swing.JTextField();
+        cartelObsrv = new javax.swing.JTextField();
+        cartelCodigo = new javax.swing.JTextField();
+        cartelFormaAdq = new javax.swing.JTextField();
+        cartelUbicacion = new javax.swing.JTextField();
+        codigoBarra = new javax.swing.JTextField();
+        observaciones = new javax.swing.JTextField();
+        fAdquisicion = new javax.swing.JTextField();
+        menuObras = new javax.swing.JComboBox<>();
+        volverBtn = new javax.swing.JButton();
+        guardarEjemplarBtn = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        jSpinner3 = new javax.swing.JSpinner();
+        jSpinner4 = new javax.swing.JSpinner();
+        jSpinner5 = new javax.swing.JSpinner();
+        cartelUbicacion1 = new javax.swing.JTextField();
+        cartelUbicacion2 = new javax.swing.JTextField();
+        cartelUbicacion3 = new javax.swing.JTextField();
+        cartelUbicacion4 = new javax.swing.JTextField();
+        cartelUbicacion5 = new javax.swing.JTextField();
+        volverBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nuevo ejemplar");
+        setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(3, 33, 67));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tituloPanel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        tituloPanel.setForeground(new java.awt.Color(255, 255, 255));
+        tituloPanel.setText("ALTA DE EJEMPLAR");
+        tituloPanel.setFocusable(false);
+        jPanel1.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        cartelObra.setEditable(false);
+        cartelObra.setBackground(new java.awt.Color(3, 33, 67));
+        cartelObra.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelObra.setForeground(new java.awt.Color(255, 255, 255));
+        cartelObra.setText("Obra");
+        cartelObra.setBorder(null);
+        cartelObra.setFocusable(false);
+        jPanel1.add(cartelObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, -1));
+
+        cartelObsrv.setEditable(false);
+        cartelObsrv.setBackground(new java.awt.Color(3, 33, 67));
+        cartelObsrv.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelObsrv.setForeground(new java.awt.Color(255, 255, 255));
+        cartelObsrv.setText("Observaciones");
+        cartelObsrv.setBorder(null);
+        cartelObsrv.setFocusable(false);
+        jPanel1.add(cartelObsrv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, -1));
+
+        cartelCodigo.setEditable(false);
+        cartelCodigo.setBackground(new java.awt.Color(3, 33, 67));
+        cartelCodigo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        cartelCodigo.setText("Codigo");
+        cartelCodigo.setBorder(null);
+        cartelCodigo.setFocusable(false);
+        jPanel1.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, -1));
+
+        cartelFormaAdq.setEditable(false);
+        cartelFormaAdq.setBackground(new java.awt.Color(3, 33, 67));
+        cartelFormaAdq.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelFormaAdq.setForeground(new java.awt.Color(255, 255, 255));
+        cartelFormaAdq.setText("Forma adquisicon");
+        cartelFormaAdq.setBorder(null);
+        cartelFormaAdq.setFocusable(false);
+        jPanel1.add(cartelFormaAdq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
+
+        cartelUbicacion.setEditable(false);
+        cartelUbicacion.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelUbicacion.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion.setText("Ubicacion");
+        cartelUbicacion.setBorder(null);
+        cartelUbicacion.setFocusable(false);
+        jPanel1.add(cartelUbicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 90, -1));
+
+        codigoBarra.setBackground(new java.awt.Color(0, 8, 16));
+        codigoBarra.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(codigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 220, -1));
+
+        observaciones.setBackground(new java.awt.Color(0, 8, 16));
+        observaciones.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 220, -1));
+
+        fAdquisicion.setBackground(new java.awt.Color(0, 8, 16));
+        fAdquisicion.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(fAdquisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, -1));
+
+        menuObras.setBackground(new java.awt.Color(0, 8, 16));
+        menuObras.setForeground(new java.awt.Color(255, 255, 255));
+        menuObras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuObrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(menuObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 220, -1));
+
+        volverBtn.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn.setText("Volver");
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 130, 30));
+
+        guardarEjemplarBtn.setBackground(new java.awt.Color(96, 106, 135));
+        guardarEjemplarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        guardarEjemplarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        guardarEjemplarBtn.setText("Guardar ejemplar");
+        guardarEjemplarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(guardarEjemplarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 130, 30));
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, -1));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 60, -1));
+
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 60, -1));
+
+        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        jPanel1.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 60, -1));
+
+        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
+
+        cartelUbicacion1.setEditable(false);
+        cartelUbicacion1.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelUbicacion1.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion1.setText("posicion");
+        cartelUbicacion1.setBorder(null);
+        cartelUbicacion1.setFocusable(false);
+        jPanel1.add(cartelUbicacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, -1));
+
+        cartelUbicacion2.setEditable(false);
+        cartelUbicacion2.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelUbicacion2.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion2.setText("pasillo");
+        cartelUbicacion2.setBorder(null);
+        cartelUbicacion2.setFocusable(false);
+        jPanel1.add(cartelUbicacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 50, -1));
+
+        cartelUbicacion3.setEditable(false);
+        cartelUbicacion3.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion3.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelUbicacion3.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion3.setText("fila");
+        cartelUbicacion3.setBorder(null);
+        cartelUbicacion3.setFocusable(false);
+        jPanel1.add(cartelUbicacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 30, -1));
+
+        cartelUbicacion4.setEditable(false);
+        cartelUbicacion4.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion4.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelUbicacion4.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion4.setText("columna");
+        cartelUbicacion4.setBorder(null);
+        cartelUbicacion4.setFocusable(false);
+        jPanel1.add(cartelUbicacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, -1));
+
+        cartelUbicacion5.setEditable(false);
+        cartelUbicacion5.setBackground(new java.awt.Color(3, 33, 67));
+        cartelUbicacion5.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
+        cartelUbicacion5.setForeground(new java.awt.Color(255, 255, 255));
+        cartelUbicacion5.setText("estante");
+        cartelUbicacion5.setBorder(null);
+        cartelUbicacion5.setFocusable(false);
+        jPanel1.add(cartelUbicacion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 60, -1));
+
+        volverBtn1.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn1.setText("Nueva");
+        volverBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(volverBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -40,11 +234,20 @@ public class DarAltaPanel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuObrasActionPerformed
+        
+    }//GEN-LAST:event_menuObrasActionPerformed
+
+    private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
+        this.setVisible(false);
+        new AdminPanel().setVisible(true);
+    }//GEN-LAST:event_volverBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,6 +285,40 @@ public class DarAltaPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cartelCodigo;
+    private javax.swing.JTextField cartelFormaAdq;
+    private javax.swing.JTextField cartelObra;
+    private javax.swing.JTextField cartelObsrv;
+    private javax.swing.JTextField cartelUbicacion;
+    private javax.swing.JTextField cartelUbicacion1;
+    private javax.swing.JTextField cartelUbicacion2;
+    private javax.swing.JTextField cartelUbicacion3;
+    private javax.swing.JTextField cartelUbicacion4;
+    private javax.swing.JTextField cartelUbicacion5;
+    private javax.swing.JTextField codigoBarra;
+    private javax.swing.JTextField fAdquisicion;
+    private javax.swing.JButton guardarEjemplarBtn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JSpinner jSpinner4;
+    private javax.swing.JSpinner jSpinner5;
+    private javax.swing.JComboBox<Obra> menuObras;
+    private javax.swing.JTextField observaciones;
+    private javax.swing.JLabel tituloPanel;
+    private javax.swing.JButton volverBtn;
+    private javax.swing.JButton volverBtn1;
     // End of variables declaration//GEN-END:variables
+    
+    private void customComponents(){
+        crearListaObras();
+    }
+    
+    private void crearListaObras() {
+            menuObras.addItem(null);
+            for (Obra o : listadoObras) {
+                    menuObras.addItem(o);
+            }
+    }
 }

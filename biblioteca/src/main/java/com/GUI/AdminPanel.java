@@ -57,6 +57,11 @@ public class AdminPanel extends javax.swing.JFrame {
         logOutBoton.setForeground(new java.awt.Color(255, 255, 255));
         logOutBoton.setText("Log Out");
         logOutBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logOutBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBotonActionPerformed(evt);
+            }
+        });
         jPanel1.add(logOutBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 357, 100, -1));
 
         darAltaBoton.setBackground(new java.awt.Color(96, 106, 135));
@@ -64,6 +69,11 @@ public class AdminPanel extends javax.swing.JFrame {
         darAltaBoton.setForeground(new java.awt.Color(255, 255, 255));
         darAltaBoton.setText("Dar de alta");
         darAltaBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        darAltaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                darAltaBotonActionPerformed(evt);
+            }
+        });
         jPanel1.add(darAltaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 150, 40));
 
         darBajaBoton.setBackground(new java.awt.Color(96, 106, 135));
@@ -135,6 +145,16 @@ public class AdminPanel extends javax.swing.JFrame {
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarFBtonActionPerformed
+
+    private void logOutBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBotonActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_logOutBotonActionPerformed
+
+    private void darAltaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darAltaBotonActionPerformed
+        this.setVisible(false);
+        new DarAltaPanel().setVisible(true);
+    }//GEN-LAST:event_darAltaBotonActionPerformed
 
     /**
      * @param args the command line arguments
