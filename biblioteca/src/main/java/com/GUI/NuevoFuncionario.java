@@ -9,6 +9,7 @@ import com.biblioteca.TipoDni;
 import com.biblioteca.TipoFuncionario;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,6 +55,8 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         pw = new javax.swing.JPasswordField();
         tipoDni = new javax.swing.JComboBox<>();
         volverBtn = new javax.swing.JButton();
+        userTxt8 = new javax.swing.JTextField();
+        tipoFuncionario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Funcionario");
@@ -66,18 +69,38 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
         user.setBackground(new java.awt.Color(0, 8, 16));
         user.setForeground(new java.awt.Color(255, 255, 255));
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
         bg.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 170, -1));
 
         nombre.setBackground(new java.awt.Color(0, 8, 16));
         nombre.setForeground(new java.awt.Color(255, 255, 255));
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
         bg.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 170, -1));
 
         apellido.setBackground(new java.awt.Color(0, 8, 16));
         apellido.setForeground(new java.awt.Color(255, 255, 255));
+        apellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apellidoActionPerformed(evt);
+            }
+        });
         bg.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 170, -1));
 
         dni.setBackground(new java.awt.Color(0, 8, 16));
         dni.setForeground(new java.awt.Color(255, 255, 255));
+        dni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dniActionPerformed(evt);
+            }
+        });
         bg.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 170, -1));
 
         sexo.setBackground(new java.awt.Color(0, 8, 16));
@@ -88,6 +111,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         nacimiento.setBackground(new java.awt.Color(0, 8, 16));
         nacimiento.setForeground(new java.awt.Color(255, 255, 255));
         nacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        nacimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nacimientoActionPerformed(evt);
+            }
+        });
         bg.add(nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 170, -1));
 
         userTxt.setEditable(false);
@@ -97,11 +125,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt.setText("Nombre");
         userTxt.setBorder(null);
         userTxt.setFocusable(false);
-        userTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxtActionPerformed(evt);
-            }
-        });
         bg.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, -1));
 
         userTxt1.setEditable(false);
@@ -111,11 +134,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt1.setText("Apellido");
         userTxt1.setBorder(null);
         userTxt1.setFocusable(false);
-        userTxt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt1ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 70, -1));
 
         userTxt2.setEditable(false);
@@ -125,11 +143,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt2.setText("Sexo");
         userTxt2.setBorder(null);
         userTxt2.setFocusable(false);
-        userTxt2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt2ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 50, -1));
 
         userTxt3.setEditable(false);
@@ -139,11 +152,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt3.setText("Nacimiento");
         userTxt3.setBorder(null);
         userTxt3.setFocusable(false);
-        userTxt3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt3ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 90, -1));
 
         userTxt4.setEditable(false);
@@ -153,11 +161,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt4.setText("DNI");
         userTxt4.setBorder(null);
         userTxt4.setFocusable(false);
-        userTxt4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt4ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, -1));
 
         userTxt5.setEditable(false);
@@ -167,11 +170,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt5.setText("Tipo DNI");
         userTxt5.setBorder(null);
         userTxt5.setFocusable(false);
-        userTxt5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt5ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, -1));
 
         userTxt6.setEditable(false);
@@ -181,11 +179,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt6.setText("Usuario");
         userTxt6.setBorder(null);
         userTxt6.setFocusable(false);
-        userTxt6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt6ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 90, -1));
 
         userTxt7.setEditable(false);
@@ -195,11 +188,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt7.setText("Contraseña");
         userTxt7.setBorder(null);
         userTxt7.setFocusable(false);
-        userTxt7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt7ActionPerformed(evt);
-            }
-        });
         bg.add(userTxt7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, -1));
 
         crearFuncionarioBtn.setBackground(new java.awt.Color(96, 106, 135));
@@ -212,11 +200,16 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                 crearFuncionarioBtnActionPerformed(evt);
             }
         });
-        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, 30));
+        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 130, 30));
 
         pw.setBackground(new java.awt.Color(0, 8, 16));
         pw.setForeground(new java.awt.Color(255, 255, 255));
         pw.setText("jPasswordField1");
+        pw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwActionPerformed(evt);
+            }
+        });
         bg.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 170, -1));
 
         tipoDni.setBackground(new java.awt.Color(0, 8, 16));
@@ -229,7 +222,26 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         volverBtn.setForeground(new java.awt.Color(255, 255, 255));
         volverBtn.setText("Volver");
         volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 30));
+        volverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverBtnActionPerformed(evt);
+            }
+        });
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 120, 30));
+
+        userTxt8.setEditable(false);
+        userTxt8.setBackground(new java.awt.Color(3, 33, 67));
+        userTxt8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        userTxt8.setForeground(new java.awt.Color(255, 255, 255));
+        userTxt8.setText("Tipo");
+        userTxt8.setBorder(null);
+        userTxt8.setFocusable(false);
+        bg.add(userTxt8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 40, 20));
+
+        tipoFuncionario.setBackground(new java.awt.Color(0, 8, 16));
+        tipoFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        tipoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(TipoFuncionario.values()));
+        bg.add(tipoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,72 +251,85 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxtActionPerformed
-
-    private void userTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt1ActionPerformed
-
-    private void userTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt2ActionPerformed
-
-    private void userTxt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt3ActionPerformed
-
-    private void userTxt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt4ActionPerformed
-
-    private void userTxt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt5ActionPerformed
-
-    private void userTxt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt6ActionPerformed
-
-    private void userTxt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt7ActionPerformed
-
     private void crearFuncionarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtnActionPerformed
         crearFuncionario();
     }//GEN-LAST:event_crearFuncionarioBtnActionPerformed
 
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_nombreActionPerformed
+
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_apellidoActionPerformed
+
+    private void nacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacimientoActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_nacimientoActionPerformed
+
+    private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_dniActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_userActionPerformed
+
+    private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_pwActionPerformed
+
+    private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
+        this.setVisible(false);
+        new AdminPanel().setVisible(true);
+    }//GEN-LAST:event_volverBtnActionPerformed
+
     private void crearFuncionario(){
-        //Creacion de la fecha de Nacimiento
-        String formattedDate = nacimiento.getText();
-        String splittedDate[] = formattedDate.split("/");
-        
-        LocalDate fechaNacimiento = LocalDate.of(
-                Integer.parseInt(splittedDate[2]),
-                Integer.parseInt(splittedDate[1]),
-                Integer.parseInt(splittedDate[0])
-        );
-        //Conversion del pwField a String
-        String contrasenia = String.valueOf(pw);
         //Creacion del objeto funcionario
-        Funcionario funcionario = new Funcionario(nombre.getText(), apellido.getText(), sexo.getSelectedItem().toString(),
-                fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
-                user.getText(), contrasenia, TipoFuncionario.REGULAR);
+        if (checkNoNulls()) {
+            //Creacion de la fecha de Nacimiento
+            String formattedDate = nacimiento.getText();
+            String splittedDate[] = formattedDate.split("/");
+
+            LocalDate fechaNacimiento = LocalDate.of(
+                    Integer.parseInt(splittedDate[2]),
+                    Integer.parseInt(splittedDate[1]),
+                    Integer.parseInt(splittedDate[0])
+            );
+            //Conversion del pwField a String
+            String contrasenia = String.valueOf(pw.getPassword());
+            try{
+                Funcionario funcionario = new Funcionario(nombre.getText(), apellido.getText(), sexo.getSelectedItem().toString(),
+                    fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
+                    user.getText(), contrasenia,(TipoFuncionario) tipoFuncionario.getSelectedItem());
+                funcionarios.add(funcionario);
+                setAllToNull();
+            }catch (IllegalArgumentException e){
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Argumento Invalido",2);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Faltan completar campos", "Error Al crear Funcionario", 2);
+        }
+        
+    }
+    
+    private boolean checkNoNulls(){
+        return !(nombre.getText().isEmpty() || apellido.getText().isEmpty() || nacimiento.getText().isEmpty() || dni.getText().isEmpty() || user.getText().isEmpty() || pw.getPassword().length <1);
+    }
+    
+    private void setAllToNull(){
         nombre.setText(null);
         apellido.setText(null);
         nacimiento.setText(null);
         dni.setText(null);
         user.setText(null);
         pw.setText(null);
-        
-        funcionarios.add(funcionario);
     }
     
     /**
@@ -353,6 +378,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     private javax.swing.JPasswordField pw;
     private javax.swing.JComboBox<String> sexo;
     private javax.swing.JComboBox<TipoDni> tipoDni;
+    private javax.swing.JComboBox<TipoFuncionario> tipoFuncionario;
     private javax.swing.JTextField user;
     private javax.swing.JTextField userTxt;
     private javax.swing.JTextField userTxt1;
@@ -362,6 +388,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField userTxt5;
     private javax.swing.JTextField userTxt6;
     private javax.swing.JTextField userTxt7;
+    private javax.swing.JTextField userTxt8;
     private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 }
