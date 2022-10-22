@@ -122,4 +122,22 @@ public class Ejemplar {
         this.motivoBaja = motivoBaja;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ejemplar other = (Ejemplar) obj;
+        if (ID == null) {
+            if (other.ID != null)
+                return false;
+        } else if (!ID.equals(other.ID))
+            return false;
+        return true;
+    }
+
+    
 }
