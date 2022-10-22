@@ -11,7 +11,6 @@ public class Biblioteca {
     ArrayList<Ejemplar> ejemplaresReservados = null;
 
     public static void main(String[] args) {
-        ArrayList<Funcionario> funcionariosActivos = new ArrayList<>();
         
     }
 
@@ -160,7 +159,7 @@ public class Biblioteca {
             throw new IllegalArgumentException("Lector Multado");
         }
         Reserva reserva = new Reserva(fecha, lector, ejemplares);
-        lector.setReserva(reserva);
+        lector.reservarEjemplares(reserva);
         for (Ejemplar ejemplar : ejemplares) {
             ejemplar.reservarEjemplar(reserva);
             disponibles.remove(ejemplar);
@@ -174,7 +173,7 @@ public class Biblioteca {
             reservados.remove(ejemplar);
             ejemplar.sacarReserva();
         }
-        lector.setReserva(null);
+        lector.reservarEjemplares(null);
     }
 
     public static void reservaVencida(Ejemplar ejemplar, ArrayList<Ejemplar> reservados, ArrayList<Ejemplar> disponibles) {
@@ -182,7 +181,7 @@ public class Biblioteca {
         if ((ejemplar.getReserva().getFecha()).compareTo(LocalDate.now()) <= 0) {
             throw new IllegalArgumentException("Fecha de prestamo debe ser menor");
         }
-        ejemplar.getReserva().getLector().setReserva(null);
+        ejemplar.getReserva().getLector().reservarEjemplares(null);
         for (Ejemplar ejemplarRes : ejemplar.getReserva().getEjemplares()) {
             ejemplar.sacarReserva();
             reservados.remove(ejemplarRes);
