@@ -139,7 +139,8 @@ public class AdminPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroBotonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new NuevoFuncionario().setVisible(true);
     }//GEN-LAST:event_registroBotonActionPerformed
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
