@@ -297,6 +297,12 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         Funcionario funcionario = new Funcionario(nombre.getText(), apellido.getText(), sexo.getSelectedItem().toString(),
                 fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
                 user.getText(), contrasenia, TipoFuncionario.REGULAR);
+        nombre.setText(null);
+        apellido.setText(null);
+        nacimiento.setText(null);
+        dni.setText(null);
+        user.setText(null);
+        pw.setText(null);
         
         funcionarios.add(funcionario);
     }
