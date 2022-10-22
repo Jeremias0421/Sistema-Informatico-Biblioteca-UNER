@@ -4,18 +4,25 @@
  */
 package com.GUI;
 
+import com.biblioteca.Funcionario;
 import com.biblioteca.TipoDni;
+import com.biblioteca.TipoFuncionario;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author dalzo
  */
 public class NuevoFuncionario extends javax.swing.JFrame {
+    ArrayList<Funcionario> funcionarios = null;
 
+    
     /**
      * Creates new form RegistroFuncionario
      */
     public NuevoFuncionario() {
+        funcionarios = new ArrayList();
         initComponents();
     }
 
@@ -29,12 +36,12 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        user = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
+        dni = new javax.swing.JTextField();
+        sexo = new javax.swing.JComboBox<>();
+        nacimiento = new javax.swing.JFormattedTextField();
         userTxt = new javax.swing.JTextField();
         userTxt1 = new javax.swing.JTextField();
         userTxt2 = new javax.swing.JTextField();
@@ -43,9 +50,10 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         userTxt5 = new javax.swing.JTextField();
         userTxt6 = new javax.swing.JTextField();
         userTxt7 = new javax.swing.JTextField();
-        logoutButton = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        crearFuncionarioBtn = new javax.swing.JButton();
+        pw = new javax.swing.JPasswordField();
+        tipoDni = new javax.swing.JComboBox<>();
+        volverBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Funcionario");
@@ -56,31 +64,31 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         bg.setBackground(new java.awt.Color(3, 33, 67));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.setBackground(new java.awt.Color(0, 8, 16));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 170, -1));
+        user.setBackground(new java.awt.Color(0, 8, 16));
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 170, -1));
 
-        jTextField3.setBackground(new java.awt.Color(0, 8, 16));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 170, -1));
+        nombre.setBackground(new java.awt.Color(0, 8, 16));
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 170, -1));
 
-        jTextField4.setBackground(new java.awt.Color(0, 8, 16));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 170, -1));
+        apellido.setBackground(new java.awt.Color(0, 8, 16));
+        apellido.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 170, -1));
 
-        jTextField5.setBackground(new java.awt.Color(0, 8, 16));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 170, -1));
+        dni.setBackground(new java.awt.Color(0, 8, 16));
+        dni.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 170, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 8, 16));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
-        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 170, -1));
+        sexo.setBackground(new java.awt.Color(0, 8, 16));
+        sexo.setForeground(new java.awt.Color(255, 255, 255));
+        sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
+        bg.add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 170, -1));
 
-        jFormattedTextField1.setBackground(new java.awt.Color(0, 8, 16));
-        jFormattedTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField1.setText("aaaa/mm/dd");
-        bg.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 170, -1));
+        nacimiento.setBackground(new java.awt.Color(0, 8, 16));
+        nacimiento.setForeground(new java.awt.Color(255, 255, 255));
+        nacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        bg.add(nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 170, -1));
 
         userTxt.setEditable(false);
         userTxt.setBackground(new java.awt.Color(3, 33, 67));
@@ -194,22 +202,34 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         });
         bg.add(userTxt7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, -1));
 
-        logoutButton.setBackground(new java.awt.Color(96, 106, 135));
-        logoutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
-        logoutButton.setText("Crear funcionario");
-        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, 30));
+        crearFuncionarioBtn.setBackground(new java.awt.Color(96, 106, 135));
+        crearFuncionarioBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        crearFuncionarioBtn.setForeground(new java.awt.Color(255, 255, 255));
+        crearFuncionarioBtn.setText("Crear funcionario");
+        crearFuncionarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        crearFuncionarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearFuncionarioBtnActionPerformed(evt);
+            }
+        });
+        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, 30));
 
-        jPasswordField1.setBackground(new java.awt.Color(0, 8, 16));
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("jPasswordField1");
-        bg.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 170, -1));
+        pw.setBackground(new java.awt.Color(0, 8, 16));
+        pw.setForeground(new java.awt.Color(255, 255, 255));
+        pw.setText("jPasswordField1");
+        bg.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 170, -1));
 
-        jComboBox2.setBackground(new java.awt.Color(0, 8, 16));
-        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDni.values()));
-        bg.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 170, -1));
+        tipoDni.setBackground(new java.awt.Color(0, 8, 16));
+        tipoDni.setForeground(new java.awt.Color(255, 255, 255));
+        tipoDni.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDni.values()));
+        bg.add(tipoDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 170, -1));
+
+        volverBtn.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn.setText("Volver");
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,6 +277,30 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userTxt7ActionPerformed
 
+    private void crearFuncionarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtnActionPerformed
+        crearFuncionario();
+    }//GEN-LAST:event_crearFuncionarioBtnActionPerformed
+
+    private void crearFuncionario(){
+        //Creacion de la fecha de Nacimiento
+        String formattedDate = nacimiento.getText();
+        String splittedDate[] = formattedDate.split("/");
+        
+        LocalDate fechaNacimiento = LocalDate.of(
+                Integer.parseInt(splittedDate[2]),
+                Integer.parseInt(splittedDate[1]),
+                Integer.parseInt(splittedDate[0])
+        );
+        //Conversion del pwField a String
+        String contrasenia = String.valueOf(pw);
+        //Creacion del objeto funcionario
+        Funcionario funcionario = new Funcionario(nombre.getText(), apellido.getText(), sexo.getSelectedItem().toString(),
+                fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
+                user.getText(), contrasenia, TipoFuncionario.REGULAR);
+        
+        funcionarios.add(funcionario);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -294,16 +338,16 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apellido;
     private javax.swing.JPanel bg;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<TipoDni> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JButton logoutButton;
+    private javax.swing.JButton crearFuncionarioBtn;
+    private javax.swing.JTextField dni;
+    private javax.swing.JFormattedTextField nacimiento;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JPasswordField pw;
+    private javax.swing.JComboBox<String> sexo;
+    private javax.swing.JComboBox<TipoDni> tipoDni;
+    private javax.swing.JTextField user;
     private javax.swing.JTextField userTxt;
     private javax.swing.JTextField userTxt1;
     private javax.swing.JTextField userTxt2;
@@ -312,5 +356,6 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField userTxt5;
     private javax.swing.JTextField userTxt6;
     private javax.swing.JTextField userTxt7;
+    private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 }
