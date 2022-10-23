@@ -81,6 +81,11 @@ public class AdminPanel extends javax.swing.JFrame {
         darBajaBoton.setForeground(new java.awt.Color(255, 255, 255));
         darBajaBoton.setText("Dar de baja");
         darBajaBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        darBajaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                darBajaBotonActionPerformed(evt);
+            }
+        });
         jPanel1.add(darBajaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 150, 40));
 
         registroBoton.setBackground(new java.awt.Color(96, 106, 135));
@@ -144,7 +149,8 @@ public class AdminPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_registroBotonActionPerformed
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new EliminarFuncionario().setVisible(true);
     }//GEN-LAST:event_eliminarFBtonActionPerformed
 
     private void logOutBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBotonActionPerformed
@@ -156,6 +162,11 @@ public class AdminPanel extends javax.swing.JFrame {
         this.setVisible(false);
         new DarAltaPanel().setVisible(true);
     }//GEN-LAST:event_darAltaBotonActionPerformed
+
+    private void darBajaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darBajaBotonActionPerformed
+        this.setVisible(false);
+        new DarBajaPanel().setVisible(true);
+    }//GEN-LAST:event_darBajaBotonActionPerformed
 
     /**
      * @param args the command line arguments

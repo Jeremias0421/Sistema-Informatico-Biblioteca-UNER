@@ -186,7 +186,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
         for (Ejemplar ejemplar : ejemplares) {
             row[0] = ejemplar.getObra().getTitulo();
             row[1] = ejemplar.getCodigoDeBarra();
-            row[2] = ejemplar.getFechaAdquisicion();
+            row[2] = ejemplar.getFechaAdquisicion().toString();
             row[3] = ejemplar.getSeUbica().toString();
         }
         model.addRow(row);
