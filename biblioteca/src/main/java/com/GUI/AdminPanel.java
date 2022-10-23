@@ -117,6 +117,11 @@ public class AdminPanel extends javax.swing.JFrame {
         irFuncionarioBoton.setForeground(new java.awt.Color(255, 255, 255));
         irFuncionarioBoton.setText("Panel funcionario");
         irFuncionarioBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irFuncionarioBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irFuncionarioBotonActionPerformed(evt);
+            }
+        });
         jPanel1.add(irFuncionarioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 150, 40));
 
         tituloAdmin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -167,6 +172,11 @@ public class AdminPanel extends javax.swing.JFrame {
         this.setVisible(false);
         new DarBajaPanel().setVisible(true);
     }//GEN-LAST:event_darBajaBotonActionPerformed
+
+    private void irFuncionarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irFuncionarioBotonActionPerformed
+        this.setVisible(false);
+        new FuncionarioPanel().setVisible(true);
+    }//GEN-LAST:event_irFuncionarioBotonActionPerformed
 
     /**
      * @param args the command line arguments

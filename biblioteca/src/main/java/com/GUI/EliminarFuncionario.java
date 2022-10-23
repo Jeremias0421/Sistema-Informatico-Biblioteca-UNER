@@ -6,6 +6,7 @@ package com.GUI;
 
 import com.biblioteca.Funcionario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -142,12 +143,16 @@ public class EliminarFuncionario extends javax.swing.JFrame {
     }
     
     private void eliminarFuncionario(){
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Funcionario funcionario = funcionarios.get(jTable1.getSelectedRow());
-        
-        funcionarios.remove(jTable1.getSelectedRow());
-        model.removeRow(jTable1.getSelectedRow());
-        mostrarFuncionarios();
+        if(jTable1.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "Ninguna fila seleccionada", "Error", 2);
+        }else{
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Funcionario funcionario = funcionarios.get(jTable1.getSelectedRow());
+
+            funcionarios.remove(jTable1.getSelectedRow());
+            model.removeRow(jTable1.getSelectedRow());
+            mostrarFuncionarios();
+        }
     }
     
     /**

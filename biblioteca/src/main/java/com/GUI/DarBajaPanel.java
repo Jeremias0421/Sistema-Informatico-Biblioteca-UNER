@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -193,20 +194,24 @@ public class DarBajaPanel extends javax.swing.JFrame {
     }
     
     private void darBajaEjemplar(){
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if(jTable1.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "Ninguna fila seleccionada", "Error", 2);
+        }else{
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        Ejemplar ejemplar = ejemplares.get(jTable1.getSelectedRow());
-        try {
-            ejemplar.darDeBaja(motivoBaja.getText());
-        } catch (Exception ex) {
-            Logger.getLogger(DarBajaPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Ejemplar ejemplar = ejemplares.get(jTable1.getSelectedRow());
+            try {
+                ejemplar.darDeBaja(motivoBaja.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(DarBajaPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            ejemplaresDeBaja.add(ejemplar);
+            ejemplares.remove(jTable1.getSelectedRow());
+
+            model.removeRow(jTable1.getSelectedRow());
+            mostrarEjemplares();
         }
-        
-        ejemplaresDeBaja.add(ejemplar);
-        ejemplares.remove(jTable1.getSelectedRow());
-        
-        model.removeRow(jTable1.getSelectedRow());
-        mostrarEjemplares();
     }
     
     /**

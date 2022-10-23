@@ -58,6 +58,11 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setText("Log Out");
         logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 357, 100, -1));
 
         tomarPrestamoButon.setBackground(new java.awt.Color(96, 106, 135));
@@ -152,6 +157,11 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     private void tomarPrestamoButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarPrestamoButonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tomarPrestamoButonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
