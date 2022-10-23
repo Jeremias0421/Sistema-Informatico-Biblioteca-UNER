@@ -21,6 +21,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
      * Creates new form EliminarFuncionario
      */
     public EliminarFuncionario() {
+        funcionarios = new ArrayList();
         initComponents();
     }
 
