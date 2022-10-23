@@ -5,8 +5,7 @@ package com.biblioteca;
  *
  * @author Ezequiel Dalzotto
  * @author Jeremias Panozzo
- * @version "%I%, %G%"
- * @since 1.0
+ * @version 1.0
  */
 public class Identificacion {
 
@@ -158,7 +157,6 @@ public class Identificacion {
         return String.format("%s-%s-%s-%s-%s", getPasillo(), getEstante(), getFila(), getColumna(), getPosicion());
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
