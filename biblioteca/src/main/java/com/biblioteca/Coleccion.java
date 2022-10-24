@@ -37,7 +37,7 @@ public class Coleccion extends Obra {
             String areaTematica, String genero, String isbn, ArrayList<Edicion> edicion, String nombre,
             String isbnColeccion) {
 
-        super(titulo, subtitulo, autor01, autor02, autor03, areaTematica, genero, isbn, edicion);
+        super(titulo, subtitulo, autor01, autor02, autor03, areaTematica, genero, isbn, edicion, TipoObra.LIBRO);
         this.nombre = nombre;
         this.isbnColeccion = isbnColeccion;
     }
