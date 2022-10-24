@@ -5,17 +5,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
+ * Clase que representa a un sistema de Biblioteca.
+ * 
  * @author Ezequiel Dalzotto
  * @author Jeremias Panozzo
  * @version 1.0
  */
 public class Biblioteca {
 
-    ArrayList<Ejemplar> ejemplaresDisponibles = new ArrayList<>();
-    ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<>();
-    ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<>();
-    ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
-    ArrayList<Lector> clientes = new ArrayList<>();
+    static ArrayList<Ejemplar> ejemplaresDisponibles = new ArrayList<>();
+    static ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<>();
+    static ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<>();
+    static ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
+    static ArrayList<Lector> clientes = new ArrayList<>();
 
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
         ArrayList<Lector> listado = new ArrayList<>();
@@ -31,15 +33,16 @@ public class Biblioteca {
     }
 
     public static void obrasMasSolicitadasAlumnosYDocentes() {
-
+        
     }
 
     public static void obrasMasSolicitadasGeneral() {
 
     }
 
-    public ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia) {
+    public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia) {
         ArrayList<Ejemplar> lista = new ArrayList<>();
+
         for (Obra obra : listadoDeObras) {
 
             if (obra.getAreaTematica().equals(areaReferencia)) {
@@ -55,8 +58,17 @@ public class Biblioteca {
         return lista;
     }
 
-    public static void obrasReservadas() {
+    public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha) {
+        ArrayList<Ejemplar> e = new ArrayList<>();
 
+        for (Ejemplar ejemplar : ejemplaresReservados) {
+
+            LocalDate f = ejemplar.getReserva().getFecha();
+            if (f.isAfter(fecha)) {
+                e.add(ejemplar);
+            }
+        }
+        return e;
     }
 
     public static void listarMultasPorPeriodo() {
