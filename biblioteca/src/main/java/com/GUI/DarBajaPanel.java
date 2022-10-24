@@ -8,6 +8,7 @@ import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Formato;
+import com.biblioteca.Funcionario;
 import com.biblioteca.Identificacion;
 import com.biblioteca.Obra;
 import com.biblioteca.TipoObra;
@@ -26,6 +27,9 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
     ArrayList<Ejemplar> ejemplares = null;
     ArrayList<Ejemplar> ejemplaresDeBaja = null;
+    ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
     
     /**
      * Creates new form DarBajaPanel
@@ -66,6 +70,16 @@ public class DarBajaPanel extends javax.swing.JFrame {
         initComponents();
         mostrarEjemplares();
 
+    }
+    
+    public DarBajaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        ejemplaresDeBaja = new ArrayList();//TODO: completar con fichero
+        funcionarios = funcionarioList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
+        initComponents();
+        mostrarEjemplares();
     }
 
     /**
@@ -187,7 +201,8 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel().setVisible(true);
+        new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void mostrarEjemplares(){

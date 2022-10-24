@@ -5,7 +5,10 @@
 package com.GUI;
 
 import com.biblioteca.Biblioteca;
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
+import com.biblioteca.Obra;
 import com.biblioteca.TipoDni;
 import com.biblioteca.TipoFuncionario;
 import java.time.LocalDate;
@@ -18,6 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class NuevoFuncionario extends javax.swing.JFrame {
     ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
 
     
     /**
@@ -30,6 +36,14 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     
     public NuevoFuncionario(ArrayList<Funcionario> funcionariosList){
         funcionarios = funcionariosList;
+        initComponents();
+    }
+    
+    public NuevoFuncionario(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        funcionarios = funcionariosList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
         initComponents();
     }
 
@@ -293,7 +307,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel().setVisible(true);
+        new AdminPanel(funcionarios, ejemplares, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void crearFuncionario(){

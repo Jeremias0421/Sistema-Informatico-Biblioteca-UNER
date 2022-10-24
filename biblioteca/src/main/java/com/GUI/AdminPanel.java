@@ -174,12 +174,12 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
         this.setVisible(false);
-        new EliminarFuncionario().setVisible(true);
+        new EliminarFuncionario(funcionarios, ejemplares, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_eliminarFBtonActionPerformed
 
     private void logOutBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBotonActionPerformed
         this.setVisible(false);
-        new Login().setVisible(true);
+        new Login(funcionarios,ejemplares,obras,ediciones).setVisible(true);
     }//GEN-LAST:event_logOutBotonActionPerformed
 
     private void darAltaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darAltaBotonActionPerformed
@@ -189,7 +189,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void darBajaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darBajaBotonActionPerformed
         this.setVisible(false);
-        new DarBajaPanel().setVisible(true);
+        new DarBajaPanel(funcionarios, ejemplares, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_darBajaBotonActionPerformed
 
     private void irFuncionarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irFuncionarioBotonActionPerformed

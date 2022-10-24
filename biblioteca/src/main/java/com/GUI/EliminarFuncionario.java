@@ -4,7 +4,10 @@
  */
 package com.GUI;
 
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
+import com.biblioteca.Obra;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +19,9 @@ import javax.swing.table.DefaultTableModel;
 public class EliminarFuncionario extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
     
     /**
      * Creates new form EliminarFuncionario
@@ -23,6 +29,15 @@ public class EliminarFuncionario extends javax.swing.JFrame {
     public EliminarFuncionario() {
         funcionarios = new ArrayList();
         initComponents();
+    }
+    
+    public EliminarFuncionario(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        funcionarios = funcionarioList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
+        initComponents();
+        mostrarFuncionarios();
     }
 
     /**
@@ -127,20 +142,21 @@ public class EliminarFuncionario extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         this.setVisible(false);
-        new AdminPanel().setVisible(true);
+        new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+
     }//GEN-LAST:event_volverActionPerformed
 
     private void mostrarFuncionarios(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[3];
         
         for (Funcionario funcionario : funcionarios) {
+            Object[] row = new Object[3];
             row[0] = funcionario.getUsuario();
             row[1] = funcionario.getNombre();
             row[2] = funcionario.getDni();
+            model.addRow(row);
         }
-        model.addRow(row);
     }
     
     private void eliminarFuncionario(){
