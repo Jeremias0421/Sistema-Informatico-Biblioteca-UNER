@@ -133,11 +133,6 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
         menuObras.setBackground(new java.awt.Color(0, 8, 16));
         menuObras.setForeground(new java.awt.Color(255, 255, 255));
-        menuObras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuObrasActionPerformed(evt);
-            }
-        });
         bg.add(menuObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 220, -1));
 
         volverBtn.setBackground(new java.awt.Color(96, 106, 135));
@@ -245,10 +240,6 @@ public class DarAltaPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuObrasActionPerformed
-        
-    }//GEN-LAST:event_menuObrasActionPerformed
-
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
         new AdminPanel().setVisible(true);
@@ -259,6 +250,18 @@ public class DarAltaPanel extends javax.swing.JFrame {
       new NuevaObra().setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
+    private void nuevoEjemplar(){
+        
+    }
+    
+    private boolean checkNoNulls(){
+        return !(
+                codigoBarra.getText().isEmpty()
+                || fAdquisicion.getText().isEmpty()
+                || observaciones.getText().isEmpty()
+        );
+    }
+    
     /**
      * @param args the command line arguments
      */
