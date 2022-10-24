@@ -199,4 +199,9 @@ public class Edicion {
         this.obra = obra;
     }
 
+    public String toCSV() {
+        return editorial + "," + paisEdicion + "," + numeroEdicion
+                + "," + anio + "," + volumenes + "," + paginas + "," + idioma
+                + "," + formato + "," + obra.toCSVforEdicion() + "\n";
+    }
 }

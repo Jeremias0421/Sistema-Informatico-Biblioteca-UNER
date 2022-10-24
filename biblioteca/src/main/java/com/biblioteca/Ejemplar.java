@@ -257,6 +257,13 @@ public class Ejemplar {
     }
 
     /**
+     * @param obra
+     */
+    public void setObra(Obra obra) {
+        this.obra = obra;
+    }
+
+    /**
      * Dar de baja un Ejemplar permitiendo ser imposibilitado para ser prestado de
      * nuevo.
      * 
@@ -289,4 +296,12 @@ public class Ejemplar {
         return true;
     }
 
+    public String toCSV() {
+        return ID.toCSV() + "," + observacionesGenerales + ","
+                + codigoDeBarra + "," + fechaAdquisicion + "," + formaAquisicion
+                + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","
+                + obra + "," + obra.getIsbn() + "\n";
+    }
+
+    
 }

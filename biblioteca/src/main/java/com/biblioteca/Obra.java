@@ -196,4 +196,15 @@ public class Obra {
         return temasIndice;
     }
 
+    public String toCSV() {
+        return titulo + "," + subtitulo + "," + autor01 + "," + autor02
+                + "," + autor03 + "," + areaTematica + "," + genero + "," + isbn
+                + "," + tipoObra + "\n";
+    }
+
+    public String toCSVforEdicion() {
+        return titulo + "," + subtitulo + "," + autor01 + "," + autor02
+                + "," + autor03 + "," + areaTematica + "," + genero + "," + isbn
+                + "," + tipoObra;
+    }
 }

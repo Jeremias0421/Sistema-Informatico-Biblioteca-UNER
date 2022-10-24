@@ -4,7 +4,10 @@
  */
 package com.GUI;
 
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
+import com.biblioteca.Obra;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +17,9 @@ import java.util.ArrayList;
 public class AdminPanel extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
     
     /**
      * Creates new form AdminPanel
@@ -22,8 +28,11 @@ public class AdminPanel extends javax.swing.JFrame {
         initComponents();
     }
     
-    public AdminPanel(ArrayList<Funcionario> funcionariosList){
+    public AdminPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionariosList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
         initComponents();
     }
 
@@ -175,7 +184,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void darAltaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darAltaBotonActionPerformed
         this.setVisible(false);
-        new DarAltaPanel().setVisible(true);
+        new DarAltaPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
     }//GEN-LAST:event_darAltaBotonActionPerformed
 
     private void darBajaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darBajaBotonActionPerformed

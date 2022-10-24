@@ -4,9 +4,12 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Coleccion;
 import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
 import com.biblioteca.Formato;
+import com.biblioteca.Funcionario;
 import com.biblioteca.Obra;
 import com.biblioteca.TipoObra;
 import java.util.ArrayList;
@@ -18,8 +21,11 @@ import javax.swing.JOptionPane;
  * @author dalzo
  */
 public class NuevaObra extends javax.swing.JFrame {
-
+    ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
     ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
+    
     DefaultListModel<Edicion> listModel;
             
     /**
@@ -30,6 +36,15 @@ public class NuevaObra extends javax.swing.JFrame {
         this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
         obras = new ArrayList();
         
+    }
+    
+    public NuevaObra(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        initComponents();
+        this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
+        funcionarios = funcionarioList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
     }
 
     /**
@@ -441,7 +456,7 @@ public class NuevaObra extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new DarAltaPanel().setVisible(true);
+        new DarAltaPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void checkColecStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkColecStateChanged
@@ -483,11 +498,11 @@ public class NuevaObra extends javax.swing.JFrame {
     
     private void crearObra() throws IllegalArgumentException{
         //Union en ArrayList de las ediciones creadas
-        ArrayList<Edicion> ediciones = new ArrayList();
+        ArrayList<Edicion> edicionesLocal = new ArrayList();
         
         for (int i = 0; i < listModel.size(); i++) {
             Edicion edicion = listModel.getElementAt(i);
-            ediciones.add(edicion);
+            edicionesLocal.add(edicion);
         }
         
         //creacion de Obra o Coleccion
@@ -502,11 +517,17 @@ public class NuevaObra extends javax.swing.JFrame {
                     aTematica.getText(),
                     genero.getText(),
                     isbn.getText(),
-                    ediciones,
+                    edicionesLocal,
                     nombreColeccion.getText(),
                     isbnColeccion.getText()
             );
             obras.add(coleccion);
+            Biblioteca.guardarObras(obras);
+            for (Edicion edicion : edicionesLocal){
+                ediciones.add(edicion);
+            }
+            Biblioteca.guardarEdiciones(ediciones);
+            
             
         }else{
             //creacion de la obra
@@ -519,11 +540,17 @@ public class NuevaObra extends javax.swing.JFrame {
                     aTematica.getText(),
                     genero.getText(),
                     isbn.getText(),
-                    ediciones,
+                    edicionesLocal,
                     (TipoObra) TipoObras.getSelectedItem()
             );
 
             obras.add(obra);
+            Biblioteca.guardarObras(obras);
+            for (Edicion edicion : edicionesLocal){
+                edicion.setObra(obra);
+                ediciones.add(edicion);
+            }
+            Biblioteca.guardarEdiciones(ediciones);
         }
     }
     

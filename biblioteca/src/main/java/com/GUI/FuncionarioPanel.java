@@ -4,16 +4,35 @@
  */
 package com.GUI;
 
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
+import com.biblioteca.Funcionario;
+import com.biblioteca.Obra;
+import java.util.ArrayList;
+
 /**
  *
  * @author dalzo
  */
 public class FuncionarioPanel extends javax.swing.JFrame {
 
+    ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
+    
     /**
      * Creates new form FuncionarioPanel
      */
     public FuncionarioPanel() {
+        initComponents();
+    }
+    
+    public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        funcionarios = funcionariosList;
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
         initComponents();
     }
 

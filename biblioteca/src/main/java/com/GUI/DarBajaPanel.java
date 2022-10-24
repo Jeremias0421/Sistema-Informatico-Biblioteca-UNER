@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Formato;
@@ -39,8 +40,17 @@ public class DarBajaPanel extends javax.swing.JFrame {
         ediciones.add(edicion);
         ediciones.add(edicion1);
         ediciones.add(edicion2);
+        
+        
 
         Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones, TipoObra.DIARIO);
+        ArrayList<Obra> obras = new ArrayList();
+        obras.add(obra);
+        for (Edicion edicions : ediciones) {
+            edicions.setObra(obra);
+        }
+        Biblioteca.guardarEdiciones(ediciones);        
+        Biblioteca.guardarObras(obras);
         
         LocalDate adquisicion = LocalDate.of(2019, 7, 22);
         Identificacion seUbica = new Identificacion(null, 1, 1, 1, 1, 1);

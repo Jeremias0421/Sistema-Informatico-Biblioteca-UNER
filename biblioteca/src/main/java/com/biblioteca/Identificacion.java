@@ -183,4 +183,11 @@ public class Identificacion {
             return false;
         return true;
     }
+
+    public String toCSV() {
+        return pasillo + "," + estante + "," + fila + "," + columna
+                + "," + posicion;
+    }
+
+    
 }

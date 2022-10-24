@@ -5,7 +5,10 @@
 package com.GUI;
 
 import com.biblioteca.Biblioteca;
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
+import com.biblioteca.Obra;
 import com.biblioteca.TipoDni;
 import com.biblioteca.TipoFuncionario;
 import java.time.LocalDate;
@@ -19,6 +22,9 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
     
 
     /**
@@ -34,9 +40,11 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Login(ArrayList<Funcionario> funcionarioList){
+    public Login(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionarioList;
-        Biblioteca.guardarEnArchivo(funcionarios);
+        ejemplares = ejemplaresList;
+        obras = obrasList;
+        ediciones = edicionesList;
         initComponents();
     }
 
@@ -193,7 +201,7 @@ public class Login extends javax.swing.JFrame {
         if (funcionario != null){
             this.setVisible(false);
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
-                new AdminPanel(funcionarios).setVisible(true);
+                new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
             }else{
                 new FuncionarioPanel().setVisible(true);
             }

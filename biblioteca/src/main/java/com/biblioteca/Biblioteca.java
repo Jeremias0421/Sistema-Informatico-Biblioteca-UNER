@@ -29,9 +29,15 @@ public class Biblioteca {
 
     public static void main(String[] args) throws FileNotFoundException{
         ArrayList<Funcionario> funcionarios = cargarFuncionarios();
+        ArrayList<Edicion> edicions = cargarEdiciones();
+        ArrayList<Obra> obras = cargarObras(edicions);
+        ArrayList<Ejemplar> ejemplares = cargarEjemplares(obras);
+
+        new Login(funcionarios, ejemplares, obras, edicions).setVisible(true);
 
 
-        new Login(funcionarios).setVisible(true);
+
+        // new Login(funcionarios).setVisible(true);
     }
 
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
@@ -252,7 +258,7 @@ public class Biblioteca {
     }
 
 
-    //Manejo de Ficheros
+    //****************Manejo de Ficheros**********************
 
     public static ArrayList<Funcionario> cargarFuncionarios() {
         ArrayList<Funcionario> retorno = new ArrayList<>();
@@ -283,6 +289,176 @@ public class Biblioteca {
             FileWriter fw = new FileWriter("csv/funcionarios.csv", false);
             for (Funcionario f : funcionarios) {
                 fw.append(f.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+    public static ArrayList<Edicion> cargarEdiciones() {
+        ArrayList<Edicion> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/ediciones.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                retorno.add(new Edicion(
+                    c[0],
+                    c[1],
+                    Integer.parseInt(c[2]),
+                    Integer.parseInt(c[3]),
+                    Integer.parseInt(c[4]),
+                    Integer.parseInt(c[5]),
+                    c[6],
+                    Formato.valueOf(c[7]),
+                    new Obra(
+                        c[8],
+                        c[9],
+                        c[10],
+                        c[11],
+                        c[12],
+                        c[13],
+                        c[14],
+                        c[15],
+                        new ArrayList<>(),
+                        TipoObra.valueOf(c[16])
+                    )
+                ));
+
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarEdiciones(ArrayList<Edicion> ediciones) {
+        try {
+            PrintWriter w = new PrintWriter("csv/ediciones.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/ediciones.csv"));
+            FileWriter fw = new FileWriter("csv/ediciones.csv", false);
+            for (Edicion e : ediciones) {
+                fw.append(e.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+    public static ArrayList<Obra> cargarObras(ArrayList<Edicion> edicions) {
+        ArrayList<Obra> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/obras.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                Obra obra = new Obra(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], new ArrayList<>(),TipoObra.valueOf(c[8]));
+
+                retorno.add(obra);
+                for (Edicion edicion : edicions) {
+                    if (c[7].equals(edicion.getObra().getIsbn())) {
+                        obra.getEdiciones().add(edicion);
+                        edicion.setObra(obra);
+                    }
+                }
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarObras(ArrayList<Obra> obras) {
+        try {
+            PrintWriter w = new PrintWriter("csv/obras.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/obras.csv"));
+            FileWriter fw = new FileWriter("csv/obras.csv", false);
+            for (Obra e : obras) {
+                fw.append(e.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+    public static ArrayList<Ejemplar> cargarEjemplares(ArrayList<Obra> obras) {
+        ArrayList<Ejemplar> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplares.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                Ejemplar ejemplar = new Ejemplar(
+                    c[5],
+                    c[6],
+                    LocalDate.parse(c[7]),
+                    c[8],
+                    new Identificacion(null, Integer.parseInt(c[1]), 
+                        Integer.parseInt(c[2]),
+                        Integer.parseInt(c[3]),
+                        Integer.parseInt(c[4]),
+                        Integer.parseInt(c[5])),
+                    null
+                );
+                for (Obra obra : obras) {
+                    if(c[9].equals(obra.getIsbn())){
+                        ejemplar.setObra(obra);
+                        obra.añadirEjemplar(ejemplar);
+                    }
+                }
+                ejemplar.getSeUbica().setSeUbica(ejemplar);
+                retorno.add(ejemplar);
+
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarEjemplares(ArrayList<Ejemplar> ejemplares) {
+        try {
+            PrintWriter w = new PrintWriter("csv/ejemplares.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplares.csv"));
+            FileWriter fw = new FileWriter("csv/ejemplares.csv", false);
+            for (Ejemplar e : ejemplares) {
+                fw.append(e.toCSV());
             }
             fw.flush();
             fw.close();

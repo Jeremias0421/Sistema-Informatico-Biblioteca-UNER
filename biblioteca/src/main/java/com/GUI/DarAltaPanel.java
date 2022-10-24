@@ -4,7 +4,9 @@
  */
 package com.GUI;
 
+import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
+import com.biblioteca.Funcionario;
 import com.biblioteca.Identificacion;
 import com.biblioteca.Obra;
 import com.biblioteca.TipoObra;
@@ -18,8 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class DarAltaPanel extends javax.swing.JFrame {
 
+    ArrayList<Funcionario> funcionarios = null;
     ArrayList<Obra> listadoObras = null;
     ArrayList<Ejemplar> listadoEjemplares = null;
+    ArrayList<Edicion> ediciones = null;
+    
     /**
      * Creates new form DarAltaPanel
      */
@@ -31,6 +36,16 @@ public class DarAltaPanel extends javax.swing.JFrame {
         listadoObras.add(obraTest);
         //Codigo que o es de prueba:
         
+        
+        initComponents();
+        customComponents();
+    }
+    
+    public DarAltaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+        funcionarios = funcionarioList;
+        listadoEjemplares = ejemplaresList;
+        listadoObras = obrasList;
+        ediciones = edicionesList;
         
         initComponents();
         customComponents();
@@ -256,12 +271,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel().setVisible(true);
+        new AdminPanel(funcionarios,listadoEjemplares,listadoObras,ediciones).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void nuevaObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaObraBtnActionPerformed
       this.setVisible(false);
-      new NuevaObra().setVisible(true);
+      new NuevaObra(funcionarios,listadoEjemplares,listadoObras,ediciones).setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
     private void guardarEjemplarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEjemplarBtnActionPerformed
