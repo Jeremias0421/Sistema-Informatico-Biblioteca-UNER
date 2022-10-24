@@ -4,10 +4,14 @@
  */
 package com.GUI;
 
+import com.biblioteca.Coleccion;
 import com.biblioteca.Edicion;
 import com.biblioteca.Formato;
+import com.biblioteca.Obra;
 import com.biblioteca.TipoObra;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +19,7 @@ import javax.swing.DefaultListModel;
  */
 public class NuevaObra extends javax.swing.JFrame {
 
+    ArrayList<Obra> obras = null;
     DefaultListModel<Edicion> listModel;
             
     /**
@@ -23,6 +28,7 @@ public class NuevaObra extends javax.swing.JFrame {
     public NuevaObra() {
         initComponents();
         this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
+        obras = new ArrayList();
         
     }
 
@@ -45,7 +51,6 @@ public class NuevaObra extends javax.swing.JFrame {
         carteltAutor = new javax.swing.JTextField();
         cartelATematica = new javax.swing.JTextField();
         cartelGenero = new javax.swing.JTextField();
-        cartelCaracteristica = new javax.swing.JTextField();
         cartelISBN = new javax.swing.JTextField();
         cartelTipoObra = new javax.swing.JTextField();
         titulo = new javax.swing.JTextField();
@@ -54,7 +59,6 @@ public class NuevaObra extends javax.swing.JFrame {
         tAutor = new javax.swing.JTextField();
         aTematica = new javax.swing.JTextField();
         genero = new javax.swing.JTextField();
-        caracteristica = new javax.swing.JTextField();
         isbn = new javax.swing.JTextField();
         indice = new javax.swing.JTextField();
         subtitulo = new javax.swing.JTextField();
@@ -84,6 +88,8 @@ public class NuevaObra extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListEdiciones = new javax.swing.JList<>();
         formato = new javax.swing.JComboBox<>();
+        cartelIsbnColeccion = new javax.swing.JTextField();
+        isbnColeccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -113,7 +119,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelIndice.setText("Indice");
         cartelIndice.setBorder(null);
         cartelIndice.setFocusable(false);
-        bg.add(cartelIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 50, -1));
+        bg.add(cartelIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 50, -1));
 
         cartelSubt.setEditable(false);
         cartelSubt.setBackground(new java.awt.Color(3, 33, 67));
@@ -169,15 +175,6 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelGenero.setFocusable(false);
         bg.add(cartelGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 60, -1));
 
-        cartelCaracteristica.setEditable(false);
-        cartelCaracteristica.setBackground(new java.awt.Color(3, 33, 67));
-        cartelCaracteristica.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        cartelCaracteristica.setForeground(new java.awt.Color(255, 255, 255));
-        cartelCaracteristica.setText("Característica");
-        cartelCaracteristica.setBorder(null);
-        cartelCaracteristica.setFocusable(false);
-        bg.add(cartelCaracteristica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, -1));
-
         cartelISBN.setEditable(false);
         cartelISBN.setBackground(new java.awt.Color(3, 33, 67));
         cartelISBN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -185,7 +182,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelISBN.setText("ISBN");
         cartelISBN.setBorder(null);
         cartelISBN.setFocusable(false);
-        bg.add(cartelISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 50, -1));
+        bg.add(cartelISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 50, -1));
 
         cartelTipoObra.setEditable(false);
         cartelTipoObra.setBackground(new java.awt.Color(3, 33, 67));
@@ -194,7 +191,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelTipoObra.setText("Tipo de Obra");
         cartelTipoObra.setBorder(null);
         cartelTipoObra.setFocusable(false);
-        bg.add(cartelTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 100, -1));
+        bg.add(cartelTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, -1));
 
         titulo.setBackground(new java.awt.Color(0, 8, 16));
         titulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,17 +217,13 @@ public class NuevaObra extends javax.swing.JFrame {
         genero.setForeground(new java.awt.Color(255, 255, 255));
         bg.add(genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 250, -1));
 
-        caracteristica.setBackground(new java.awt.Color(0, 8, 16));
-        caracteristica.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(caracteristica, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 250, -1));
-
         isbn.setBackground(new java.awt.Color(0, 8, 16));
         isbn.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 250, -1));
+        bg.add(isbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 250, -1));
 
         indice.setBackground(new java.awt.Color(0, 8, 16));
         indice.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(indice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 250, -1));
+        bg.add(indice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 250, -1));
 
         subtitulo.setBackground(new java.awt.Color(0, 8, 16));
         subtitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,19 +232,19 @@ public class NuevaObra extends javax.swing.JFrame {
         TipoObras.setBackground(new java.awt.Color(0, 8, 16));
         TipoObras.setForeground(new java.awt.Color(255, 255, 255));
         TipoObras.setModel(new javax.swing.DefaultComboBoxModel<>(TipoObra.values()));
-        TipoObras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoObrasActionPerformed(evt);
-            }
-        });
-        bg.add(TipoObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 250, -1));
+        bg.add(TipoObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 250, -1));
 
         guardarObraBtn.setBackground(new java.awt.Color(96, 106, 135));
         guardarObraBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         guardarObraBtn.setForeground(new java.awt.Color(255, 255, 255));
         guardarObraBtn.setText("Guardar Obra");
         guardarObraBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(guardarObraBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 130, 30));
+        guardarObraBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarObraBtnActionPerformed(evt);
+            }
+        });
+        bg.add(guardarObraBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 130, 30));
 
         volverBtn.setBackground(new java.awt.Color(96, 106, 135));
         volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -263,7 +256,7 @@ public class NuevaObra extends javax.swing.JFrame {
                 volverBtnActionPerformed(evt);
             }
         });
-        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 130, 30));
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 130, 30));
 
         checkColec.setBackground(new java.awt.Color(3, 33, 67));
         checkColec.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -271,7 +264,7 @@ public class NuevaObra extends javax.swing.JFrame {
                 checkColecStateChanged(evt);
             }
         });
-        bg.add(checkColec, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 20, 20));
+        bg.add(checkColec, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 20, 20));
 
         cartelEsColec.setEditable(false);
         cartelEsColec.setBackground(new java.awt.Color(3, 33, 67));
@@ -280,7 +273,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelEsColec.setText("Es coleccion");
         cartelEsColec.setBorder(null);
         cartelEsColec.setFocusable(false);
-        bg.add(cartelEsColec, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 90, -1));
+        bg.add(cartelEsColec, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 90, -1));
 
         cartelNombre.setEditable(false);
         cartelNombre.setBackground(new java.awt.Color(3, 33, 67));
@@ -289,16 +282,16 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelNombre.setText("Nombre");
         cartelNombre.setBorder(null);
         cartelNombre.setFocusable(false);
-        bg.add(cartelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
+        bg.add(cartelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         nombreColeccion.setEditable(false);
         nombreColeccion.setBackground(new java.awt.Color(0, 8, 16));
         nombreColeccion.setForeground(new java.awt.Color(255, 255, 255));
         nombreColeccion.setFocusable(false);
-        bg.add(nombreColeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 180, -1));
+        bg.add(nombreColeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 180, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 3, 10, 490));
+        bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 3, 10, 500));
 
         tituloPanel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tituloPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,7 +309,7 @@ public class NuevaObra extends javax.swing.JFrame {
                 guardarEdicionBtnActionPerformed(evt);
             }
         });
-        bg.add(guardarEdicionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 130, 30));
+        bg.add(guardarEdicionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 130, 30));
 
         cartelFormato.setEditable(false);
         cartelFormato.setBackground(new java.awt.Color(3, 33, 67));
@@ -410,12 +403,27 @@ public class NuevaObra extends javax.swing.JFrame {
         jListEdiciones.setModel(new DefaultListModel<Edicion>());
         jScrollPane1.setViewportView(jListEdiciones);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 326, 290, 110));
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 326, 290, 120));
 
         formato.setBackground(new java.awt.Color(0, 8, 16));
         formato.setForeground(new java.awt.Color(255, 255, 255));
         formato.setModel(new javax.swing.DefaultComboBoxModel<>(Formato.values()));
         bg.add(formato, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 220, -1));
+
+        cartelIsbnColeccion.setEditable(false);
+        cartelIsbnColeccion.setBackground(new java.awt.Color(3, 33, 67));
+        cartelIsbnColeccion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelIsbnColeccion.setForeground(new java.awt.Color(187, 187, 255));
+        cartelIsbnColeccion.setText("ISBN");
+        cartelIsbnColeccion.setBorder(null);
+        cartelIsbnColeccion.setFocusable(false);
+        bg.add(cartelIsbnColeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, 20));
+
+        isbnColeccion.setEditable(false);
+        isbnColeccion.setBackground(new java.awt.Color(0, 8, 16));
+        isbnColeccion.setForeground(new java.awt.Color(255, 255, 255));
+        isbnColeccion.setFocusable(false);
+        bg.add(isbnColeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -425,15 +433,11 @@ public class NuevaObra extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TipoObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoObrasActionPerformed
-
-    }//GEN-LAST:event_TipoObrasActionPerformed
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
@@ -445,18 +449,136 @@ public class NuevaObra extends javax.swing.JFrame {
             cartelNombre.setForeground(new java.awt.Color(255, 255, 255));
             nombreColeccion.setFocusable(true);
             nombreColeccion.setEditable(true);
+            cartelIsbnColeccion.setForeground(new java.awt.Color(255, 255, 255));
+            isbnColeccion.setFocusable(true);
+            isbnColeccion.setEditable(true);
         }else{
             cartelNombre.setForeground(new java.awt.Color(187, 187, 255));
             nombreColeccion.setEditable(false);
             nombreColeccion.setFocusable(false);
             nombreColeccion.setText(null);
+            cartelIsbnColeccion.setForeground(new java.awt.Color(187, 187, 255));
+            isbnColeccion.setFocusable(false);
+            isbnColeccion.setEditable(false);
         }
     }//GEN-LAST:event_checkColecStateChanged
 
     private void guardarEdicionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEdicionBtnActionPerformed
         listModel.addElement(new Edicion("editorial", "pais", 1, 2001, 2, 200, "español", Formato.CD, null));
     }//GEN-LAST:event_guardarEdicionBtnActionPerformed
+
+    private void guardarObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarObraBtnActionPerformed
+        if(checkNoNulls()){
+            try{
+                crearObra();
+                setAllToNull();
+                JOptionPane.showMessageDialog(rootPane, "Obra creada exitosamente!", "Aviso", 1);
+            }catch(IllegalArgumentException e){
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Faltan completar campos", "Error", 2);
+        }
+    }//GEN-LAST:event_guardarObraBtnActionPerformed
     
+    private void crearObra() throws IllegalArgumentException{
+        //Union en ArrayList de las ediciones creadas
+        ArrayList<Edicion> ediciones = new ArrayList();
+        
+        for (int i = 0; i < listModel.size(); i++) {
+            Edicion edicion = listModel.getElementAt(i);
+            ediciones.add(edicion);
+        }
+        
+        //creacion de Obra o Coleccion
+        if(checkColec.isSelected()){
+            //creacion de la coleccion
+            Coleccion coleccion = new Coleccion(
+                    titulo.getText(),
+                    subtitulo.getText(),
+                    pAutor.getText(),
+                    sAutor.getText(),
+                    tAutor.getText(),
+                    aTematica.getText(),
+                    genero.getText(),
+                    isbn.getText(),
+                    ediciones,
+                    nombreColeccion.getText(),
+                    isbnColeccion.getText()
+            );
+            obras.add(coleccion);
+            
+        }else{
+            //creacion de la obra
+            Obra obra = new Obra(
+                    titulo.getText(),
+                    subtitulo.getText(),
+                    pAutor.getText(),
+                    sAutor.getText(),
+                    tAutor.getText(),
+                    aTematica.getText(),
+                    genero.getText(),
+                    isbn.getText(),
+                    ediciones
+            );
+
+            obras.add(obra);
+        }
+    }
+    
+    private boolean checkNoNulls(){
+        if(checkColec.isSelected()){
+            return !(
+                    titulo.getText().isEmpty()
+                    || subtitulo.getText().isEmpty()
+                    || pAutor.getText().isEmpty()
+                    || sAutor.getText().isEmpty()
+                    || tAutor.getText().isEmpty()
+                    || aTematica.getText().isEmpty()
+                    || genero.getText().isEmpty()
+                    || isbn.getText().isEmpty()
+                    || listModel.size() <= 0
+                    || nombreColeccion.getText().isEmpty()
+                    || isbnColeccion.getText().isEmpty()
+                );
+        }
+        return !(
+                    titulo.getText().isEmpty()
+                    || subtitulo.getText().isEmpty()
+                    || pAutor.getText().isEmpty()
+                    || sAutor.getText().isEmpty()
+                    || tAutor.getText().isEmpty()
+                    || aTematica.getText().isEmpty()
+                    || genero.getText().isEmpty()
+                    || isbn.getText().isEmpty()
+                    || listModel.size() <= 0
+                );
+    }
+    
+    private void setAllToNull(){
+        if(checkColec.isSelected()){
+            titulo.setText(null);
+            subtitulo.setText(null);
+            pAutor.setText(null);
+            sAutor.setText(null);
+            tAutor.setText(null);
+            aTematica.setText(null);
+            genero.setText(null);
+            isbn.setText(null);
+            listModel.removeAllElements();
+            nombreColeccion.setText(null);
+            isbnColeccion.setText(null);
+        }
+            titulo.setText(null);
+            subtitulo.setText(null);
+            pAutor.setText(null);
+            sAutor.setText(null);
+            tAutor.setText(null);
+            aTematica.setText(null);
+            genero.setText(null);
+            isbn.setText(null);
+            listModel.removeAllElements();
+    }
     
     /**
      * @param args the command line arguments
@@ -498,10 +620,8 @@ public class NuevaObra extends javax.swing.JFrame {
     private javax.swing.JTextField aTematica;
     private javax.swing.JTextField anio;
     private javax.swing.JPanel bg;
-    private javax.swing.JTextField caracteristica;
     private javax.swing.JTextField cartelATematica;
     private javax.swing.JTextField cartelAnio;
-    private javax.swing.JTextField cartelCaracteristica;
     private javax.swing.JTextField cartelEditorial;
     private javax.swing.JTextField cartelEsColec;
     private javax.swing.JTextField cartelFormato;
@@ -509,6 +629,7 @@ public class NuevaObra extends javax.swing.JFrame {
     private javax.swing.JTextField cartelISBN;
     private javax.swing.JTextField cartelIdioma;
     private javax.swing.JTextField cartelIndice;
+    private javax.swing.JTextField cartelIsbnColeccion;
     private javax.swing.JTextField cartelNombre;
     private javax.swing.JTextField cartelPags;
     private javax.swing.JTextField cartelPais;
@@ -528,6 +649,7 @@ public class NuevaObra extends javax.swing.JFrame {
     private javax.swing.JTextField idioma;
     private javax.swing.JTextField indice;
     private javax.swing.JTextField isbn;
+    private javax.swing.JTextField isbnColeccion;
     private javax.swing.JList<Edicion> jListEdiciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
