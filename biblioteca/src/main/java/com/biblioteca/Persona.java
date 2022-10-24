@@ -163,4 +163,11 @@ public abstract class Persona {
     private boolean validarNombre(String nombre) {
         return nombre.matches("[A-Z][a-zA-Z]*");
     }
+
+    public String toCSV() {
+        return nombre + "," + apellido + "," + sexo + ","
+                + fechaNacimiento + "," + dni + "," + tipoDni + ",";
+    }
+
+    
 }

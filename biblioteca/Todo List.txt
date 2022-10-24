@@ -31,3 +31,5 @@ Agregar Indice
 
 24/10
 *Completar controles sobre los fields de Nuevo Ejemplar GUI
+
+*Fichero para ejemplares, obras, funcionarios 

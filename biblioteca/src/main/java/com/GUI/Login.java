@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Funcionario;
 import com.biblioteca.TipoDni;
 import com.biblioteca.TipoFuncionario;
@@ -30,6 +31,12 @@ public class Login extends javax.swing.JFrame {
                 2001, 2, 23), "14798365", TipoDni.DNI_TARJETA,"admin",
                 "admin", TipoFuncionario.ADMIN));
         //Codigo que no es de prueba
+        initComponents();
+    }
+    
+    public Login(ArrayList<Funcionario> funcionarioList){
+        funcionarios = funcionarioList;
+        Biblioteca.guardarEnArchivo(funcionarios);
         initComponents();
     }
 
@@ -186,7 +193,7 @@ public class Login extends javax.swing.JFrame {
         if (funcionario != null){
             this.setVisible(false);
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
-                new AdminPanel().setVisible(true);
+                new AdminPanel(funcionarios).setVisible(true);
             }else{
                 new FuncionarioPanel().setVisible(true);
             }

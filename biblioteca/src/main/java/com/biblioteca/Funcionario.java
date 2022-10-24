@@ -51,8 +51,11 @@ public class Funcionario extends Persona {
     }
 
     public String toCSV() {
-        return this.usuario + "," + this.contrasenia + "\n";
+        return super.toCSV() + usuario + "," + contrasenia + ","
+                + tipoFuncionario + "," + listaprestamos + "\n";
     }
+
+    
 
     
 }

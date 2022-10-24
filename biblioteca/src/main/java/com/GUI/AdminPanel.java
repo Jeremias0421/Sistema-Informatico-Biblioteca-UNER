@@ -4,16 +4,26 @@
  */
 package com.GUI;
 
+import com.biblioteca.Funcionario;
+import java.util.ArrayList;
+
 /**
  *
  * @author dalzo
  */
 public class AdminPanel extends javax.swing.JFrame {
 
+    ArrayList<Funcionario> funcionarios = null;
+    
     /**
      * Creates new form AdminPanel
      */
     public AdminPanel() {
+        initComponents();
+    }
+    
+    public AdminPanel(ArrayList<Funcionario> funcionariosList){
+        funcionarios = funcionariosList;
         initComponents();
     }
 
@@ -150,7 +160,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void registroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroBotonActionPerformed
         this.setVisible(false);
-        new NuevoFuncionario().setVisible(true);
+        new NuevoFuncionario(funcionarios).setVisible(true);
     }//GEN-LAST:event_registroBotonActionPerformed
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed

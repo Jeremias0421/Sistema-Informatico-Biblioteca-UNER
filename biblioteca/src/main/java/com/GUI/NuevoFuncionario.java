@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Funcionario;
 import com.biblioteca.TipoDni;
 import com.biblioteca.TipoFuncionario;
@@ -24,6 +25,11 @@ public class NuevoFuncionario extends javax.swing.JFrame {
      */
     public NuevoFuncionario() {
         funcionarios = new ArrayList();
+        initComponents();
+    }
+    
+    public NuevoFuncionario(ArrayList<Funcionario> funcionariosList){
+        funcionarios = funcionariosList;
         initComponents();
     }
 
@@ -309,6 +315,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                     fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
                     user.getText(), contrasenia,(TipoFuncionario) tipoFuncionario.getSelectedItem());
                 funcionarios.add(funcionario);
+                Biblioteca.guardarEnArchivo(funcionarios);
                 setAllToNull();
             }catch (IllegalArgumentException e){
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Argumento Invalido",2);
