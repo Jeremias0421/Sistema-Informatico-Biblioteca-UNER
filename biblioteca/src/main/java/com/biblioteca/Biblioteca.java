@@ -108,7 +108,7 @@ public class Biblioteca {
         if (lector.isMultado()) {
             throw new IllegalArgumentException("Lector multado");
         }
-        Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILO,
+        Prestamo prestamo = new Prestamo(plazo, Lectura.DOMICILIO,
                 LocalDate.of(2022, 10, 15), funcionario, lector, ejemplares);
         funcionario.tomarPrestamo(prestamo);
         lector.pedirPrestamo(prestamo);
