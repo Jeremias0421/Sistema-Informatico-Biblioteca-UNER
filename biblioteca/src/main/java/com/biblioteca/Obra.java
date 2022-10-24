@@ -32,21 +32,29 @@ public class Obra {
     private ArrayList<Ejemplar> ejemplares;
     /** Indice de la Obra */
     private ArrayList<String> temasIndice;
+    /** Tipo de Obra */
+    private TipoObra tipoObra;
 
     /**
+     * Instancia una nueva Obra.
      * 
-     * @param titulo
-     * @param subtitulo
-     * @param autor01
-     * @param autor02
-     * @param autor03
-     * @param areaTematica
-     * @param genero
-     * @param isbn
-     * @param edicion
+     * @param titulo       titulo principal de la Obra
+     * @param subtitulo    subtitulo de la Obra
+     * @param autor01      primer autor
+     * @param autor02      segundo autor
+     * @param autor03      tercer autor
+     * @param areaTematica tematica de la Obra
+     * @param genero       genero literario
+     * @param isbn         codigo estandar de Obras
+     * @param edicion      edicion de la Obra
      */
     public Obra(String titulo, String subtitulo, String autor01, String autor02, String autor03, String areaTematica,
-            String genero, String isbn, ArrayList<Edicion> edicion) {
+            String genero, String isbn, ArrayList<Edicion> edicion, TipoObra tipoObra) {
+
+        if (!validarISBN(isbn)) {
+            throw new IllegalArgumentException("ISBN invalido");
+        }
+
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.autor01 = autor01;
@@ -54,10 +62,11 @@ public class Obra {
         this.autor03 = autor03;
         this.areaTematica = areaTematica;
         this.genero = genero;
-        this.isbn = validarISBN(isbn);
+        this.isbn = isbn;
         this.ediciones = edicion;
         this.ejemplares = new ArrayList<>();
         this.temasIndice = new ArrayList<String>();
+        this.tipoObra = tipoObra;
     }
 
     /**
@@ -126,12 +135,22 @@ public class Obra {
 
     /**
      * 
-     * @param isbn ISBN a validar
-     * @return ISBN valido
+     * @return tipo de Obra
      */
-    private String validarISBN(String isbn) {
-        String isbnValido = null;
-        if (isbn.matches("^((978)|(979))(\\d{7}|\\d{10})")) {
+    public TipoObra getTipoObra() {
+        return tipoObra;
+    }
+
+    /**
+     * 
+     * @param isbn ISBN a validar
+     * @return {@code true} si el ISBN es un codigo valido para una Obra; de lo
+     *         contrario {@code false}
+     */
+    private boolean validarISBN(String isbn) {
+
+        boolean valido = false;
+        if (isbn.matches("^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$")) {
             int intNro;
             int digitoNro;
             int temp;
@@ -143,10 +162,10 @@ public class Obra {
                 sum = sum + temp;
             }
             if ((sum % 11) == 0) {
-                isbnValido = isbn;
+                valido = true;
             }
         }
-        return isbnValido;
+        return valido;
     }
 
     /**
@@ -172,4 +191,9 @@ public class Obra {
     public void añadirEjemplar(Ejemplar ejemplar) {
         this.ejemplares.add(ejemplar);
     }
+
+    public ArrayList<String> getTemasIndice() {
+        return temasIndice;
+    }
+
 }
