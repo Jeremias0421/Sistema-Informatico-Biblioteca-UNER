@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
-    static ArrayList<Ejemplar> ejemplaresDisponibles = new ArrayList<>();
-    static ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<>();
-    static ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<>();
+    static ArrayList<Ejemplar> ejemplaresDisponibles = new ArrayList<Ejemplar>();
+    static ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<Ejemplar>();
+    static ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<Ejemplar>();
     static ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
-    static ArrayList<Lector> clientes = new ArrayList<>();
+    static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
         ArrayList<Lector> listado = new ArrayList<>();
@@ -32,8 +32,19 @@ public class Biblioteca {
         return listado;
     }
 
+    public static Ejemplar buscarEjemplar(String ID) {
+        Ejemplar e = null;
+
+        for (Ejemplar ejemplar : ejemplaresDisponibles) {
+            if (ejemplar.getSeUbica().toString().equals(ID)) {
+                e = ejemplar;
+            }
+        }
+        return e;
+    }
+
     public static void obrasMasSolicitadasAlumnosYDocentes() {
-        
+
     }
 
     public static void obrasMasSolicitadasGeneral() {
