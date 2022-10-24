@@ -196,6 +196,12 @@ public class Obra {
         return temasIndice;
     }
 
+    
+    @Override
+    public String toString() {
+        return  titulo;
+    }
+
     public String toCSV() {
         return titulo + "," + subtitulo + "," + autor01 + "," + autor02
                 + "," + autor03 + "," + areaTematica + "," + genero + "," + isbn
