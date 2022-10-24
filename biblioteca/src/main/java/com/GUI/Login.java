@@ -123,7 +123,6 @@ public class Login extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(3, 33, 67));
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(null);
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
