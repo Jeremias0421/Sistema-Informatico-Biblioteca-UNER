@@ -13,8 +13,6 @@ public class PrestamoTest {
     Funcionario funcionario = null;
     ArrayList<Ejemplar> ejemplares;
 
-
-
     @Before
     public void setup(){
         //Datos necesarios para la creacion del Prestamo
@@ -56,7 +54,7 @@ public class PrestamoTest {
 
     @Test
     public void darPrestamo() {
-        prestamo = new Prestamo(5, Lectura.DOMICILO,
+        prestamo = new Prestamo(5, Lectura.DOMICILIO,
             LocalDate.of(2022,10,15), funcionario, estudiante, ejemplares);
         funcionario.tomarPrestamo(prestamo);
         assertEquals(1, funcionario.getListaprestamos().size());
