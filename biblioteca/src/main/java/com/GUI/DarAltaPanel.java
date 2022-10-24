@@ -4,8 +4,13 @@
  */
 package com.GUI;
 
+import com.biblioteca.Ejemplar;
+import com.biblioteca.Identificacion;
 import com.biblioteca.Obra;
+import com.biblioteca.TipoObra;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,15 +19,19 @@ import java.util.ArrayList;
 public class DarAltaPanel extends javax.swing.JFrame {
 
     ArrayList<Obra> listadoObras = null;
+    ArrayList<Ejemplar> listadoEjemplares = null;
     /**
      * Creates new form DarAltaPanel
      */
     public DarAltaPanel() {
         //Codigo con proposito de prueba:
         listadoObras = new ArrayList();
-        Obra obraTest = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", null);
+        listadoEjemplares = new ArrayList();
+        Obra obraTest = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", null, TipoObra.DIARIO);
         listadoObras.add(obraTest);
         //Codigo que o es de prueba:
+        
+        
         initComponents();
         customComponents();
     }
@@ -152,6 +161,11 @@ public class DarAltaPanel extends javax.swing.JFrame {
         guardarEjemplarBtn.setForeground(new java.awt.Color(255, 255, 255));
         guardarEjemplarBtn.setText("Guardar ejemplar");
         guardarEjemplarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarEjemplarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarEjemplarBtnActionPerformed(evt);
+            }
+        });
         bg.add(guardarEjemplarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 130, 30));
 
         columna.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
@@ -250,8 +264,40 @@ public class DarAltaPanel extends javax.swing.JFrame {
       new NuevaObra().setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
+    private void guardarEjemplarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEjemplarBtnActionPerformed
+        if(checkNoNulls()){
+            nuevoEjemplar();
+            setAllToNull();
+            JOptionPane.showMessageDialog(rootPane, "Ejemplar creado exitosamente!", "Confirmacion", 1);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Hay campos sin completar", "Error", 2);
+        }
+    }//GEN-LAST:event_guardarEjemplarBtnActionPerformed
+
     private void nuevoEjemplar(){
+        int pasilloValue = (Integer) pasillo.getValue();
+        int estanteValue = (Integer) estante.getValue();
+        int filaValue = (Integer) fila.getValue();
+        int columnaValue = (Integer) columna.getValue();
+        int posicionValue = (Integer) posicion.getValue();
         
+        Ejemplar ejemplar = null;
+        ejemplar = new Ejemplar(
+                observaciones.getText(),
+                codigoBarra.getText(),
+                LocalDate.now(),
+                fAdquisicion.getText(),
+                new Identificacion(
+                        ejemplar,
+                        pasilloValue,
+                        estanteValue,
+                        filaValue,
+                        columnaValue,
+                        posicionValue
+                ),
+                (Obra) menuObras.getItemAt(menuObras.getSelectedIndex())
+        );
+        listadoEjemplares.add(ejemplar);
     }
     
     private boolean checkNoNulls(){
@@ -260,6 +306,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
                 || fAdquisicion.getText().isEmpty()
                 || observaciones.getText().isEmpty()
         );
+    }
+    
+    private void setAllToNull(){
+        codigoBarra.setText(null);
+        fAdquisicion.setText(null);
+        observaciones.setText(null);
     }
     
     /**

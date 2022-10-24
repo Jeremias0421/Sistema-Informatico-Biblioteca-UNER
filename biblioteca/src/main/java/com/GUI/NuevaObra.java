@@ -519,7 +519,8 @@ public class NuevaObra extends javax.swing.JFrame {
                     aTematica.getText(),
                     genero.getText(),
                     isbn.getText(),
-                    ediciones
+                    ediciones,
+                    (TipoObra) TipoObras.getSelectedItem()
             );
 
             obras.add(obra);
