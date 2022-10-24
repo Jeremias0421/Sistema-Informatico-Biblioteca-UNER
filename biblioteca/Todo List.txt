@@ -28,3 +28,6 @@ Agregar Indice
 
 24/10
 *Completar constructor de Obra
+
+24/10
+*Completar controles sobre los fields de Nuevo Ejemplar GUI
