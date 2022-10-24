@@ -42,17 +42,17 @@ public class DevolucionTest {
         edicones.add(edicion1);
 
         Obra obra = new Obra("Titulo", "subtitulo", "autor01", "autor02", 
-            "autor03", "Matematica", "Educativo", "9788869185182", edicones);
+            "autor03", "Matematica", "Educativo", "9789700502748", edicones, TipoObra.LIBRO);
         edicion1.setObra(obra);
 
         Identificacion ubi = new Identificacion(null, 1, 1, 1, 1, 1);
-        Ejemplar ejemplar1 = new Ejemplar("Observaciones", "9788869185182", 
+        Ejemplar ejemplar1 = new Ejemplar("Observaciones", "9789700502748", 
                 LocalDate.of(2008, 4, 21), "Donacion", ubi, obra);
         ubi.setSeUbica(ejemplar1);
         
 
         Identificacion ubi2 = new Identificacion(null, 1, 1, 1, 1, 2);
-        Ejemplar ejemplar2 = new Ejemplar("Observaciones", "9788869185182", 
+        Ejemplar ejemplar2 = new Ejemplar("Observaciones", "9789700502748", 
                 LocalDate.of(2008, 4, 21), "Donacion", ubi2, obra);
         ubi2.setSeUbica(ejemplar2);
 

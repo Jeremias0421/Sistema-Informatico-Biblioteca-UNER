@@ -18,7 +18,7 @@ public class ObraTest {
         Edicion edicion = new Edicion("FEditorial", "Argentina", 3, 2001, 2, 367, "Español", Formato.PAPEL, null);
         ArrayList<Edicion> ediciones = new ArrayList<>();
         ediciones.add(edicion);
-        obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones);
+        obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "8475836917", ediciones, TipoObra.LIBRO);
         edicion.setObra(obra);
     }
 
@@ -29,7 +29,7 @@ public class ObraTest {
 
     @Test
     public void getIsbnTest() {
-        assertEquals("9780313338", obra.getIsbn());
+        assertEquals("8475836917", obra.getIsbn());
     }
     // @Test
     // public void setIsbnTest(){
@@ -48,7 +48,8 @@ public class ObraTest {
         assertEquals("Autor3",obra.getAutor03());
         assertEquals("Matematica",obra.getAreaTematica());
         assertEquals("Educacion",obra.getGenero());
-        assertEquals("9780313338",obra.getIsbn());
+        assertEquals("8475836917",obra.getIsbn());
+        assertEquals(TipoObra.LIBRO, obra.getTipoObra());
     }
 
     @Test
@@ -59,5 +60,11 @@ public class ObraTest {
         obra.añadirEjemplar(ejemplar1);
         obra.añadirEjemplar(ejemplar2);
         assertEquals(2, obra.getEjemplares().size());
+    }
+
+    @Test
+    public void isbnTreceDigitos(){
+        Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9789700502748", null, TipoObra.LIBRO);
+
     }
 }

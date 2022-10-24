@@ -23,7 +23,7 @@ public class EjemplarTests {
         ediciones.add(edicion1);
         ediciones.add(edicion2);
 
-        Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones);
+        Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones, TipoObra.LIBRO);
         
         LocalDate adquisicion = LocalDate.of(2019, 7, 22);
         Identificacion seUbica = new Identificacion(null, 1, 1, 1, 1, 1);

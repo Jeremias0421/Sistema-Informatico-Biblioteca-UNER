@@ -1,11 +1,9 @@
 package com.biblioteca;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,11 +28,11 @@ public class PrestamoTest {
 
         Edicion edicion1 = new Edicion("Editorial", "Argentina", 0, 
             2008, 2, 890, "Español", Formato.PAPEL, null);
-        ArrayList<Edicion> edicones = new ArrayList<>();
-        edicones.add(edicion1);
+        ArrayList<Edicion> ediciones = new ArrayList<>();
+        ediciones.add(edicion1);
 
         Obra obra = new Obra("Titulo", "subtitulo", "autor01", "autor02", 
-            "autor03", "Matematica", "Educativo", "9788869185182", edicones);
+            "autor03", "Matematica", "Educativo", "9789700502748", ediciones, TipoObra.LIBRO);
         edicion1.setObra(obra);
 
         Identificacion ubi = new Identificacion(null, 1, 1, 1, 1, 1);

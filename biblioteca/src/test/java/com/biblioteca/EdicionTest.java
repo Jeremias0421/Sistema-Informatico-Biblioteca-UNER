@@ -12,7 +12,7 @@ public class EdicionTest {
 
     @Before
     public void setup(){
-        obra = new Obra("Calculo de Varias Variables. Trascendentes Tempranas.", "", "Stewart, James", "", "", "Calculo", "Ciencias exactas", "9786075265520", null);
+        obra = new Obra("Calculo de Varias Variables. Trascendentes Tempranas.", "", "Stewart, James", "", "", "Calculo", "Ciencias exactas", "9789700502748", null, TipoObra.LIBRO);
         edicion = new Edicion("Cengage Learning", "Mexico", 8, 2018, 10_000, 656, "Español", Formato.PAPEL, obra);
         assertNotNull(obra);
         assertNotNull(edicion);
@@ -22,5 +22,6 @@ public class EdicionTest {
     public void test(){
         assertEquals("Calculo", obra.getAreaTematica());
         assertEquals("Cengage Learning", edicion.getEditorial());
+        assertEquals(TipoObra.LIBRO, obra.getTipoObra());
     }
 }
