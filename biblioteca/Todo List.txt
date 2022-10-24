@@ -25,3 +25,6 @@ Testear el metodo con JUnit
 *todo:
 Arreglar metodo de validacion de ISBN
 Agregar Indice
+
+24/10
+*Completar constructor de Obra
