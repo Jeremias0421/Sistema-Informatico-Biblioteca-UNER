@@ -48,9 +48,9 @@ public class EliminarFuncionario extends javax.swing.JFrame {
 
         tituloPanel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tituloPanel.setForeground(new java.awt.Color(255, 255, 255));
-        tituloPanel.setText("BAJA DE EJEMPLAR");
+        tituloPanel.setText("ELIMINAR FUNCIONARIO");
         tituloPanel.setFocusable(false);
-        jPanel1.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jPanel1.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
         jTable1.setBackground(new java.awt.Color(0, 8, 16));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));

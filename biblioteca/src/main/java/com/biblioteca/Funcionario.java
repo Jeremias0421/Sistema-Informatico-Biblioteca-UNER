@@ -128,7 +128,10 @@ public class Funcionario extends Persona {
      * @return representacion en String de los atributos del Funcionario
      */
     public String toCSV() {
-        return this.usuario + "," + this.contrasenia + "\n";
+        return super.toCSV() + usuario + "," + contrasenia + ","
+                + tipoFuncionario + "," + listaprestamos + "\n";
     }
 
+
+    
 }

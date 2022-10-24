@@ -1,8 +1,16 @@
 package com.biblioteca;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import com.GUI.Login;
 
 /**
  * Clase que representa a un sistema de Biblioteca.
@@ -18,6 +26,13 @@ public class Biblioteca {
     static ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<Ejemplar>();
     static ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
+
+    public static void main(String[] args) throws FileNotFoundException{
+        ArrayList<Funcionario> funcionarios = cargarFuncionarios();
+
+
+        new Login(funcionarios).setVisible(true);
+    }
 
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
         ArrayList<Lector> listado = new ArrayList<>();
@@ -233,6 +248,49 @@ public class Biblioteca {
             ejemplar.sacarReserva();
             reservados.remove(ejemplarRes);
             disponibles.add(ejemplarRes);
+        }
+    }
+
+
+    //Manejo de Ficheros
+
+    public static ArrayList<Funcionario> cargarFuncionarios() {
+        ArrayList<Funcionario> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/funcionarios.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                retorno.add(new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]), c[6], c[7], TipoFuncionario.valueOf(c[8])));
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarEnArchivo(ArrayList<Funcionario> funcionarios) {
+        try {
+            PrintWriter w = new PrintWriter("csv/funcionarios.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/funcionarios.csv"));
+            FileWriter fw = new FileWriter("csv/funcionarios.csv", false);
+            for (Funcionario f : funcionarios) {
+                fw.append(f.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
         }
     }
 }
