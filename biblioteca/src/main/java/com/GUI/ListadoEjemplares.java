@@ -65,6 +65,7 @@ public class ListadoEjemplares extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(3, 33, 67));
+        setResizable(false);
 
         bg.setBackground(new java.awt.Color(3, 33, 67));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
