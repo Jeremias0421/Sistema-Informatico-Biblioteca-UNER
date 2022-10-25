@@ -32,6 +32,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
     public EliminarFuncionario() {
         funcionarios = Biblioteca.cargarFuncionarios();
         initComponents();
+        mostrarFuncionarios();
     }
     
     public EliminarFuncionario(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){

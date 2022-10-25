@@ -303,10 +303,16 @@ public class Ejemplar {
     }
 
     public String toCSV() {
-        return ID.toCSV() + "," + observacionesGenerales + ","
+        if(reserva != null){
+            return ID.toCSV() + "," + observacionesGenerales + ","
                 + codigoDeBarra + "," + fechaAdquisicion + "," + formaAquisicion
                 + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","
-                + obra + "," + obra.getIsbn() + "\n";
+                + obra + "," + obra.getIsbn() + reserva.toCSV() + "\n";
+        }
+        return ID.toCSV() + "," + observacionesGenerales + ","
+        + codigoDeBarra + "," + fechaAdquisicion + "," + formaAquisicion
+        + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","
+        + obra + "," + obra.getIsbn() + "\n";
     }
 
     

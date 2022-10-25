@@ -565,6 +565,85 @@ public class Biblioteca {
     }
 
 
+    public static ArrayList<Ejemplar> cargarEjemplaresRservados(ArrayList<Obra> obras, ArrayList<Lector> lectors) {
+        ArrayList<Ejemplar> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresReservados.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                if (Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
+                
+                    Ejemplar ejemplar = new Ejemplar(
+                        c[5],
+                        c[6],
+                        LocalDate.parse(c[7]),
+                        c[8],
+                        new Identificacion(null, Integer.parseInt(c[0]), 
+                            Integer.parseInt(c[1]),
+                            Integer.parseInt(c[2]),
+                            Integer.parseInt(c[3]),
+                            Integer.parseInt(c[4])),
+                            null
+                    );
+
+                    //Control sobre si esta reservado para Linkearlo a su reserva
+                    if (!c[14].equals("null")) {
+                        for (Lector lector : lectors) {
+                            if(lector.getReserva().getFecha().equals(LocalDate.parse(c[14])) && lector.getNombre().equals(c[15])){
+                                ejemplar.reservarEjemplar(new Reserva(LocalDate.now(), lector, retorno));
+                                ejemplar.getReserva().setReservaCSV(LocalDate.parse(c[14]));
+                                lector.getReserva().linkEjemplarCSV(ejemplar);
+                            }
+                        }
+
+                        ejemplar.reservarEjemplar(new Reserva(LocalDate.parse(c[14]), null, retorno));
+                    }
+
+                    //Linkeo de ejemplar con su respectuva obra
+                    for (Obra obra : obras) {
+                        if(c[13].equals(obra.getIsbn())){
+                            ejemplar.setObra(obra);
+                            obra.añadirEjemplar(ejemplar);
+                        }
+                    }
+                    ejemplar.getSeUbica().setSeUbica(ejemplar);
+                    retorno.add(ejemplar);
+                }
+
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarEjemplaresReservados(ArrayList<Ejemplar> ejemplares) {
+        try {
+            PrintWriter w = new PrintWriter("csv/ejemplaresReservados.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplares.csv"));
+            FileWriter fw = new FileWriter("csv/ejemplaresReservados.csv", false);
+            for (Ejemplar e : ejemplares) {
+                fw.append(e.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+
     public static ArrayList<Lector> cargarLectores() {
         ArrayList<Lector> retorno = new ArrayList<>();
 

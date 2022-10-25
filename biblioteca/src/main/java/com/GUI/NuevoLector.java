@@ -423,7 +423,8 @@ public class NuevoLector extends javax.swing.JFrame {
     }//GEN-LAST:event_crearLectorBtnActionPerformed
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new TomarPrestamoPanel().setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed

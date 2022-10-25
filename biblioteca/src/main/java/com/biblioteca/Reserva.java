@@ -61,4 +61,18 @@ public class Reserva {
         return fecha;
     }
 
+    public String toCSV() {
+        return fecha + "," + lector.getDni();
+    }
+
+    public void setReservaCSV(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public void linkEjemplarCSV(Ejemplar ejemplar) {
+        this.ejemplares.add(ejemplar);
+    }
+    
+
+
 }
