@@ -133,7 +133,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
         eliminarBtn.setBackground(new java.awt.Color(96, 106, 135));
         eliminarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         eliminarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        eliminarBtn.setText("Eliminar");
+        eliminarBtn.setText("Dar baja");
         eliminarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
