@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.GUI.Login;
@@ -505,7 +507,7 @@ public class Biblioteca {
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
+                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
                 
                     Ejemplar ejemplar = new Ejemplar(
                         c[5],
@@ -575,7 +577,7 @@ public class Biblioteca {
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
+                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
                 
                     Ejemplar ejemplar = new Ejemplar(
                         c[5],
@@ -593,7 +595,7 @@ public class Biblioteca {
                     //Control sobre si esta reservado para Linkearlo a su reserva
                     if (!c[14].equals("null")) {
                         for (Lector lector : lectors) {
-                            if(lector.getReserva().getFecha().equals(LocalDate.parse(c[14])) && lector.getNombre().equals(c[15])){
+                            if(lector.getReserva().getFecha().equals(LocalDate.parse(c[14])) && lector.getDni().equals(c[15])){
                                 ejemplar.reservarEjemplar(new Reserva(LocalDate.now(), lector, retorno));
                                 ejemplar.getReserva().setReservaCSV(LocalDate.parse(c[14]));
                                 lector.getReserva().linkEjemplarCSV(ejemplar);
@@ -623,14 +625,117 @@ public class Biblioteca {
         return retorno;
     }
 
-    public static void guardarEjemplaresReservados(ArrayList<Ejemplar> ejemplares) {
+    public static void guardarEjemplaresReservados(ArrayList<Ejemplar> ejemplaresReservados) {
         try {
             PrintWriter w = new PrintWriter("csv/ejemplaresReservados.csv");
             w.print("");
             w.close();
-            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplares.csv"));
+            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresReservados.csv"));
             FileWriter fw = new FileWriter("csv/ejemplaresReservados.csv", false);
-            for (Ejemplar e : ejemplares) {
+            for (Ejemplar e : ejemplaresReservados) {
+                fw.append(e.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+    public static ArrayList<Ejemplar> cargarEjemplaresPrestados(ArrayList<Obra> obras, ArrayList<Lector> lectors, ArrayList<Funcionario> funcionarios) {
+        ArrayList<Ejemplar> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresPrestados.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
+                
+                    Ejemplar ejemplar = new Ejemplar(
+                        c[5],
+                        c[6],
+                        LocalDate.parse(c[7]),
+                        c[8],
+                        new Identificacion(null, Integer.parseInt(c[0]), 
+                            Integer.parseInt(c[1]),
+                            Integer.parseInt(c[2]),
+                            Integer.parseInt(c[3]),
+                            Integer.parseInt(c[4])),
+                            null
+                    );
+
+                    //Control sobre si esta reservado para Linkearlo a su reserva
+                    if (!c[16].equals("null")) {
+                        for (Lector lector : lectors) {
+                            //Busqueda del prestamo en los lectores para Linkearlo al ejemplar
+                            if(lector.getDni().equals(c[20])){
+
+                                //Busqueda del funcionario prestador para Linkearlo
+                                int funcionarioIndex = 0;
+                                for (Funcionario funcionario : funcionarios) {
+                                    if (funcionario.getDni().equals(c[19])) {
+                                        funcionarioIndex = funcionarios.indexOf(funcionario);
+                                    }
+                                }
+
+                                Prestamo prestamo = new Prestamo(
+                                    Integer.parseInt(c[14]),
+                                    Lectura.valueOf(c[15]),
+                                    LocalDate.parse(c[18]),
+                                    funcionarios.get(funcionarioIndex),
+                                    lector,
+                                    new ArrayList<>()//relleno con basura
+                                );
+                                ejemplar.darEnPrestamo(prestamo);
+                                ejemplar.getPrestamo().getEjemplaresPrestados().add(ejemplar);//(Funciona a medias)
+
+                                //Linkeo de fecha, hora y Ejemplar con su lector 
+                                ejemplar.getPrestamo().setCSV(LocalDate.parse(c[16]), LocalTime.parse(c[7]));
+                                lector.linkPrestamoCSV(prestamo);
+                                lector.getPrestamo().linkEjemplarCSV(ejemplar);
+                                //Linkeo de prestamo a Funcionario
+                                funcionarios.get(funcionarioIndex).linkPrestamoCSV(prestamo);
+
+                            }
+                        }
+
+                        ejemplar.reservarEjemplar(new Reserva(LocalDate.parse(c[14]), null, retorno));
+                    }
+
+                    //Linkeo de ejemplar con su respectivo prestamo
+                    for (Obra obra : obras) {
+                        if(c[13].equals(obra.getIsbn())){
+                            ejemplar.setObra(obra);
+                            obra.añadirEjemplar(ejemplar);
+                        }
+                    }
+                    ejemplar.getSeUbica().setSeUbica(ejemplar);
+                    retorno.add(ejemplar);
+                }
+
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarEjemplaresPrestados(ArrayList<Ejemplar> ejemplaresPrestados) {
+        try {
+            PrintWriter w = new PrintWriter("csv/ejemplaresPrestados.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresPrestados.csv"));
+            FileWriter fw = new FileWriter("csv/ejemplaresPrestados.csv", false);
+            for (Ejemplar e : ejemplaresPrestados) {
                 fw.append(e.toCSV());
             }
             fw.flush();

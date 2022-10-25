@@ -132,6 +132,35 @@ public class Funcionario extends Persona {
                 + tipoFuncionario + "," + listaprestamos + "\n";
     }
 
+    public void linkPrestamoCSV(Prestamo prestamo) {
+        this.listaprestamos.add(prestamo);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Funcionario other = (Funcionario) obj;
+        if (usuario == null) {
+            if (other.usuario != null)
+                return false;
+        } else if (!usuario.equals(other.usuario))
+            return false;
+        if (contrasenia == null) {
+            if (other.contrasenia != null)
+                return false;
+        } else if (!contrasenia.equals(other.contrasenia))
+            return false;
+        if (tipoFuncionario != other.tipoFuncionario)
+            return false;
+        return true;
+    }
+
+    
 
     
 }

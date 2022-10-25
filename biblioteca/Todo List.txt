@@ -33,3 +33,5 @@ Agregar Indice
 *Completar controles sobre los fields de Nuevo Ejemplar GUI
 
 *Fichero para ejemplares, obras, funcionarios 
+
+*Chequear Bien los metodos de carga de Prestados y Reservados

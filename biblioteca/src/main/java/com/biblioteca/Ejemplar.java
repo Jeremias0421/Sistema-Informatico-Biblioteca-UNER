@@ -309,6 +309,12 @@ public class Ejemplar {
                 + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","
                 + obra + "," + obra.getIsbn() + reserva.toCSV() + "\n";
         }
+        if (prestamo != null) {
+            return ID.toCSV() + "," + observacionesGenerales + ","
+            + codigoDeBarra + "," + fechaAdquisicion + "," + formaAquisicion
+            + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","
+            + obra + "," + obra.getIsbn() + prestamo.toCSV() + "\n";
+        }
         return ID.toCSV() + "," + observacionesGenerales + ","
         + codigoDeBarra + "," + fechaAdquisicion + "," + formaAquisicion
         + "," + fechaBaja + "," + motivoBaja + "," + disponible + ","

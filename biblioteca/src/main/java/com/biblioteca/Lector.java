@@ -361,5 +361,9 @@ public abstract class Lector extends Persona {
                 + reserva + "," + prestamo;
     }
 
+    public void linkPrestamoCSV(Prestamo prestamo) {
+        this.prestamo = prestamo;
+    }
+
     
 }

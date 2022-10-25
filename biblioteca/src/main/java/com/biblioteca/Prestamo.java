@@ -155,4 +155,62 @@ public class Prestamo {
         this.fechaDevolucion = nuevaFecha;
     }
 
+    public String toCSV() {
+        return plazo + "," + tipo + "," + fecha + "," + hora
+                + "," + fechaDevolucion + "," + funcionario.getDni() + "," + lector.getDni() + "\n";
+    }
+
+    public void setCSV(LocalDate fecha, LocalTime hora) {
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
+    public void linkEjemplarCSV(Ejemplar ejemplar) {
+        this.ejemplaresPrestados.add(ejemplar);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Prestamo other = (Prestamo) obj;
+        if (plazo != other.plazo)
+            return false;
+        if (tipo != other.tipo)
+            return false;
+        if (fecha == null) {
+            if (other.fecha != null)
+                return false;
+        } else if (!fecha.equals(other.fecha))
+            return false;
+        if (hora == null) {
+            if (other.hora != null)
+                return false;
+        } else if (!hora.equals(other.hora))
+            return false;
+        if (fechaDevolucion == null) {
+            if (other.fechaDevolucion != null)
+                return false;
+        } else if (!fechaDevolucion.equals(other.fechaDevolucion))
+            return false;
+        if (funcionario == null) {
+            if (other.funcionario != null)
+                return false;
+        } else if (!funcionario.equals(other.funcionario))
+            return false;
+        if (lector == null) {
+            if (other.lector != null)
+                return false;
+        } else if (!lector.equals(other.lector))
+            return false;
+        return true;
+    }
+
+    
+    
+
 }
