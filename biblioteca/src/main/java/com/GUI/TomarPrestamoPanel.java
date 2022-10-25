@@ -44,6 +44,7 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         obras = Biblioteca.cargarObras(ediciones);
         ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
         ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
+        lectores = Biblioteca.cargarLectores();
         //Final
         initComponents();
         mostrarEjemplares();
@@ -221,8 +222,9 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         ejemplaresPorPrestar = generarListaEjemplares();
         if(lector != null){
             //Realiza el prestamo
-            if(ejemplaresPorPrestar.size() > 0){
+            if(!ejemplaresPorPrestar.isEmpty()){
                 realizarPrestamo(lector);
+                mostrarEjemplares();
             }else{
                 JOptionPane.showConfirmDialog(rootPane, "No hay ejemplares seleccionados", "Error", 2);
             }
@@ -265,7 +267,7 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         ArrayList<Ejemplar> retorno = new ArrayList();
         
         for (int i = 0; i < model.getRowCount(); i++) {
-            boolean check = (boolean) model.getValueAt(i, 4);
+            boolean check = (boolean) model.getValueAt(i, 3);
             if(check){
                 retorno.add(ejemplaresDisponibles.get(i));
             }
@@ -278,10 +280,11 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         model.setRowCount(0);
 
         for (Ejemplar ejemplar : ejemplaresDisponibles) {
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = ejemplar.getObra().getTitulo();
             row[1] = ejemplar.getSeUbica();
             row[2] = ejemplar.getCodigoDeBarra();
+            row[3] = false;
             model.addRow(row);
         }
     }
