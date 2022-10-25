@@ -20,6 +20,7 @@ public class AdminPanel extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
     
     /**
      * Creates new form AdminPanel
@@ -28,11 +29,12 @@ public class AdminPanel extends javax.swing.JFrame {
         initComponents();
     }
     
-    public AdminPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public AdminPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         funcionarios = funcionariosList;
-        ejemplaresDisponibles = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
         initComponents();
     }
 
@@ -169,27 +171,27 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void registroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroBotonActionPerformed
         this.setVisible(false);
-        new NuevoFuncionario(funcionarios).setVisible(true);
+        new NuevoFuncionario(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_registroBotonActionPerformed
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
         this.setVisible(false);
-        new EliminarFuncionario(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
+        new EliminarFuncionario(funcionarios, ejemplaresDisponibles, obras, ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_eliminarFBtonActionPerformed
 
     private void logOutBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBotonActionPerformed
         this.setVisible(false);
-        new Login(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
+        new Login(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_logOutBotonActionPerformed
 
     private void darAltaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darAltaBotonActionPerformed
         this.setVisible(false);
-        new DarAltaPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
+        new DarAltaPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_darAltaBotonActionPerformed
 
     private void darBajaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darBajaBotonActionPerformed
         this.setVisible(false);
-        new DarBajaPanel(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
+        new DarBajaPanel(funcionarios, ejemplaresDisponibles, obras, ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_darBajaBotonActionPerformed
 
     private void irFuncionarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irFuncionarioBotonActionPerformed

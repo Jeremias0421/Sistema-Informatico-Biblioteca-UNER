@@ -20,6 +20,8 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresDIsponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
     
     /**
      * Creates new form FuncionarioPanel
@@ -28,9 +30,9 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionariosList;
-        ejemplaresDIsponibles = ejemplaresList;
+        ejemplaresDIsponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();

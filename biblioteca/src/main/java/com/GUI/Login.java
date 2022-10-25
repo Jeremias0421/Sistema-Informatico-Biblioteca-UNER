@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
-    
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
 
     /**
      * Creates new form Login
@@ -40,11 +40,12 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Login(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public Login(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         funcionarios = funcionarioList;
-        ejemplaresDisponibles = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
         initComponents();
     }
 
@@ -201,7 +202,7 @@ public class Login extends javax.swing.JFrame {
         if (funcionario != null){
             this.setVisible(false);
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
-                new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
+                new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
             }else{
                 new FuncionarioPanel().setVisible(true);
             }

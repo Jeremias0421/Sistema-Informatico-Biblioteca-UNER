@@ -23,6 +23,8 @@ public class EliminarFuncionario extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
     
     /**
      * Creates new form EliminarFuncionario
@@ -32,11 +34,12 @@ public class EliminarFuncionario extends javax.swing.JFrame {
         initComponents();
     }
     
-    public EliminarFuncionario(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public EliminarFuncionario(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         funcionarios = funcionarioList;
-        ejemplaresDisponibles = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
         initComponents();
         mostrarFuncionarios();
     }
@@ -143,7 +146,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
 
     }//GEN-LAST:event_volverActionPerformed
 

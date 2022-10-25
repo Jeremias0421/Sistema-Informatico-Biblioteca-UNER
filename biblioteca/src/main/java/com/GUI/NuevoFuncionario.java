@@ -24,6 +24,8 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
 
     
     /**
@@ -39,11 +41,12 @@ public class NuevoFuncionario extends javax.swing.JFrame {
         initComponents();
     }
     
-    public NuevoFuncionario(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public NuevoFuncionario(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         funcionarios = funcionariosList;
-        ejemplaresDisponibles = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
         initComponents();
     }
 
@@ -307,7 +310,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
+        new AdminPanel(funcionarios, ejemplaresDisponibles, obras, ediciones, ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void crearFuncionario(){

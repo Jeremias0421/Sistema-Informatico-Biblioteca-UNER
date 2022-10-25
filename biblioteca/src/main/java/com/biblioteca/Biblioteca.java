@@ -52,7 +52,7 @@ public class Biblioteca {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        new Login(funcionarios, ejemplaresDisponibles, obras, edicions).setVisible(true);
+        new Login(funcionarios, ejemplaresDisponibles, obras, edicions,ejemplaresDeBaja).setVisible(true);
 
 
 

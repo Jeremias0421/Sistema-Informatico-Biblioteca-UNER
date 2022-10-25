@@ -72,10 +72,10 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
     }
     
-    public DarBajaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
-        ejemplaresDeBaja = new ArrayList();//TODO: completar con fichero
+    public DarBajaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
+        ejemplaresDeBaja = deBajaList;
         funcionarios = funcionarioList;
-        ejemplaresDisponibles = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -196,12 +196,16 @@ public class DarBajaPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        darBajaEjemplar();
+        if(checkNoNulls()){
+            darBajaEjemplar();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "No hay motivo de baja", "Error", 2);
+        }
     }//GEN-LAST:event_eliminarBtnActionPerformed
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
 
     }//GEN-LAST:event_volverBtnActionPerformed
 
@@ -236,11 +240,16 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
             ejemplaresDeBaja.add(ejemplar);
             ejemplaresDisponibles.remove(jTable1.getSelectedRow());
+            Biblioteca.guardarEjemplaresDeBaja(ejemplaresDeBaja);
             Biblioteca.guardarEjemplaresDisponibles(ejemplaresDisponibles);
 
             model.removeRow(jTable1.getSelectedRow());
             mostrarEjemplares();
         }
+    }
+    
+    private boolean checkNoNulls(){
+        return !motivoBaja.getText().isEmpty();
     }
     
     /**

@@ -25,6 +25,8 @@ public class DarAltaPanel extends javax.swing.JFrame {
     ArrayList<Obra> listadoObras = null;
     ArrayList<Ejemplar> listadoEjemplaresDisponibles = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
     
     /**
      * Creates new form DarAltaPanel
@@ -42,11 +44,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
         customComponents();
     }
     
-    public DarAltaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public DarAltaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         funcionarios = funcionarioList;
-        listadoEjemplaresDisponibles = ejemplaresList;
+        listadoEjemplaresDisponibles = disponiblesList;
         listadoObras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
         
         initComponents();
         customComponents();
@@ -272,12 +275,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void nuevaObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaObraBtnActionPerformed
       this.setVisible(false);
-      new NuevaObra(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones).setVisible(true);
+      new NuevaObra(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
     private void guardarEjemplarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEjemplarBtnActionPerformed

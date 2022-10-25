@@ -22,9 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class NuevaObra extends javax.swing.JFrame {
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
+    
     
     DefaultListModel<Edicion> listModel;
             
@@ -38,13 +41,14 @@ public class NuevaObra extends javax.swing.JFrame {
         
     }
     
-    public NuevaObra(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public NuevaObra(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
         initComponents();
         this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
         funcionarios = funcionarioList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
     }
 
     /**
@@ -456,7 +460,7 @@ public class NuevaObra extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new DarAltaPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+        new DarAltaPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void checkColecStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkColecStateChanged

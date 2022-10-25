@@ -18,6 +18,8 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
 
     ArrayList<Lector> lectores = null;
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+
     
     /**
      * Creates new form TomarPrestamoPanel
