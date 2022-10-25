@@ -208,15 +208,17 @@ public class DarBajaPanel extends javax.swing.JFrame {
     private void mostrarEjemplares(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[4];
         
         for (Ejemplar ejemplar : ejemplares) {
+            Object[] row = new Object[4];
+
             row[0] = ejemplar.getObra().getTitulo();
             row[1] = ejemplar.getCodigoDeBarra();
             row[2] = ejemplar.getFechaAdquisicion().toString();
             row[3] = ejemplar.getSeUbica().toString();
+            
+            model.addRow(row);
         }
-        model.addRow(row);
     }
     
     private void darBajaEjemplar(){

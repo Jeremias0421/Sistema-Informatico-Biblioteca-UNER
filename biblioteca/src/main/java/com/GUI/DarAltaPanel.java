@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
@@ -313,6 +314,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
                 (Obra) menuObras.getItemAt(menuObras.getSelectedIndex())
         );
         listadoEjemplares.add(ejemplar);
+        Biblioteca.guardarEjemplares(listadoEjemplares);
     }
     
     private boolean checkNoNulls(){

@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
@@ -167,6 +168,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
             Funcionario funcionario = funcionarios.get(jTable1.getSelectedRow());
 
             funcionarios.remove(jTable1.getSelectedRow());
+            Biblioteca.guardarEnArchivo(funcionarios);
             model.removeRow(jTable1.getSelectedRow());
             mostrarFuncionarios();
         }
