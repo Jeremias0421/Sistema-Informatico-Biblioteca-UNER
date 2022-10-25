@@ -25,7 +25,12 @@ public class Biblioteca {
 
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
-    public static void main(String[] args) throws FileNotFoundException{
+    /**
+     *
+     * @param args
+     * @throws FileNotFoundException
+     */
+    public static void main(String[] args) throws FileNotFoundException {
         ArrayList<Funcionario> funcionarios = cargarFuncionarios();
         ArrayList<Edicion> edicions = cargarEdiciones();
         ArrayList<Obra> obras = cargarObras(edicions);
@@ -35,8 +40,7 @@ public class Biblioteca {
         ArrayList<Ejemplar> ejemplaresRerservados;
         ArrayList<Lector> lectores = cargarLectores();
 
-
-        //Look and Feel set
+        // Look and Feel set
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -56,11 +60,13 @@ public class Biblioteca {
 
         new Login().setVisible(true);
 
-
-
         // new Login(funcionarios).setVisible(true);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
         ArrayList<Lector> listado = new ArrayList<>();
 
@@ -74,6 +80,12 @@ public class Biblioteca {
         return listado;
     }
 
+    /**
+     *
+     * @param ID
+     * @param ejemplaresDisponibles
+     * @return
+     */
     public static Ejemplar buscarEjemplar(String ID, ArrayList<Ejemplar> ejemplaresDisponibles) {
         Ejemplar e = null;
 
@@ -85,15 +97,28 @@ public class Biblioteca {
         return e;
     }
 
+    /**
+     *
+     */
     public static void obrasMasSolicitadasAlumnosYDocentes() {
 
     }
 
+    /**
+     *
+     */
     public static void obrasMasSolicitadasGeneral() {
 
     }
 
-    public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia, ArrayList<Obra> listadoDeObras) {
+    /**
+     *
+     * @param areaReferencia
+     * @param listadoDeObras
+     * @return
+     */
+    public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia,
+            ArrayList<Obra> listadoDeObras) {
         ArrayList<Ejemplar> lista = new ArrayList<>();
 
         for (Obra obra : listadoDeObras) {
@@ -111,7 +136,14 @@ public class Biblioteca {
         return lista;
     }
 
-    public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha, ArrayList<Ejemplar> ejemplaresReservados) {
+    /**
+     *
+     * @param fecha
+     * @param ejemplaresReservados
+     * @return
+     */
+    public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha,
+            ArrayList<Ejemplar> ejemplaresReservados) {
         ArrayList<Ejemplar> e = new ArrayList<>();
 
         for (Ejemplar ejemplar : ejemplaresReservados) {
@@ -124,14 +156,42 @@ public class Biblioteca {
         return e;
     }
 
+    /**
+     *
+     */
     public static void listarMultasPorPeriodo() {
 
     }
 
-    public static void listarPorEditorial(String editorial) {
+    /**
+     *
+     * @param editorial
+     * @param ejemplaresDisponibles
+     * @return
+     */
+    public static ArrayList<Obra> listarPorEditorial(String editorial, ArrayList<Ejemplar> ejemplaresDisponibles) {
+        ArrayList<Obra> lista = new ArrayList<>();
 
+        for (Ejemplar ejemplar : ejemplaresDisponibles) {
+            for (Edicion e : ejemplar.getObra().getEdiciones()) {
+                if (e.getEditorial().equals(editorial)) {
+                    lista.add(e.getObra());
+                }
+            }
+        }
+        return lista;
     }
 
+    /**
+     *
+     * @param lector
+     * @param ejemplares
+     * @param funcionario
+     * @param plazo
+     * @param prestados
+     * @param disponibles
+     * @param reservados
+     */
     public static void darPrestamoDomicilio(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario,
             int plazo, ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles, ArrayList<Ejemplar> reservados) {
 
@@ -172,6 +232,15 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @param lector
+     * @param ejemplares
+     * @param funcionario
+     * @param prestados
+     * @param disponibles
+     * @param reservados
+     */
     public static void darPrestamoSala(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario,
             ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles, ArrayList<Ejemplar> reservados) {
 
@@ -214,6 +283,13 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @param prestamo
+     * @param funcionario
+     * @param prestados
+     * @param disponibles
+     */
     public static void devolverPrestamo(Prestamo prestamo, Funcionario funcionario, ArrayList<Ejemplar> prestados,
             ArrayList<Ejemplar> disponibles) {
         for (Ejemplar ejemplar : prestamo.getEjemplaresPrestados()) {
@@ -230,6 +306,14 @@ public class Biblioteca {
         lector.devolverPrestamo();
     }
 
+    /**
+     *
+     * @param lector
+     * @param fecha
+     * @param ejemplares
+     * @param disponibles
+     * @param reservados
+     */
     public static void reservarEjemplares(Lector lector, LocalDate fecha, ArrayList<Ejemplar> ejemplares,
             ArrayList<Ejemplar> disponibles,
             ArrayList<Ejemplar> reservados) {
@@ -254,6 +338,12 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @param lector
+     * @param reservados
+     * @param disponibles
+     */
     public static void levantarReserva(Lector lector, ArrayList<Ejemplar> reservados, ArrayList<Ejemplar> disponibles) {
         for (Ejemplar ejemplar : lector.getReserva().getEjemplares()) {
             disponibles.add(ejemplar);
@@ -263,6 +353,12 @@ public class Biblioteca {
         lector.reservarEjemplares(null);
     }
 
+    /**
+     *
+     * @param ejemplar
+     * @param reservados
+     * @param disponibles
+     */
     public static void reservaVencida(Ejemplar ejemplar, ArrayList<Ejemplar> reservados,
             ArrayList<Ejemplar> disponibles) {
         // Revoca la reserva de todos los ejemplares, Metodo llamado cuando supero la
@@ -278,33 +374,43 @@ public class Biblioteca {
         }
     }
 
+    // ****************Manejo de Ficheros**********************
 
-    //****************Manejo de Ficheros**********************
+    /**
+     *
+     * @return
+     */
 
     public static Funcionario getSesionActual() {
         ArrayList<Funcionario> tempList = new ArrayList<>();
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/actualSesion.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/actualSesion.csv"));
             String line = br.readLine();
 
             String[] c = line.split(",");
 
-            Funcionario retorno = new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]), c[6], c[7], TipoFuncionario.valueOf(c[8]));
+            Funcionario retorno = new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]),
+                    c[6], c[7], TipoFuncionario.valueOf(c[8]));
             tempList.add(retorno);
             br.close();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return tempList.get(0);
     }
 
+    /**
+     *
+     * @param funcionario
+     */
     public static void guardarSesionActual(Funcionario funcionario) {
         try {
             PrintWriter w = new PrintWriter("csv/actualSesion.csv");
             w.print("");
             w.close();
-            // BufferedReader br = new BufferedReader(new FileReader("csv/actualSesion.csv"));
+            // BufferedReader br = new BufferedReader(new
+            // FileReader("csv/actualSesion.csv"));
             FileWriter fw = new FileWriter("csv/actualSesion.csv", false);
             fw.append(funcionario.toCSV());
             fw.flush();
@@ -317,17 +423,22 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Funcionario> cargarFuncionarios() {
         ArrayList<Funcionario> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/funcionarios.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/funcionarios.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                retorno.add(new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]), c[6], c[7], TipoFuncionario.valueOf(c[8])));
+                retorno.add(new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]), c[6],
+                        c[7], TipoFuncionario.valueOf(c[8])));
                 line = br.readLine();
             }
             br.close();
@@ -337,12 +448,17 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param funcionarios
+     */
     public static void guardarFuncionarios(ArrayList<Funcionario> funcionarios) {
         try {
             PrintWriter w = new PrintWriter("csv/funcionarios.csv");
             w.print("");
             w.close();
-            // BufferedReader br = new BufferedReader(new FileReader("csv/funcionarios.csv"));
+            // BufferedReader br = new BufferedReader(new
+            // FileReader("csv/funcionarios.csv"));
             FileWriter fw = new FileWriter("csv/funcionarios.csv", false);
             for (Funcionario f : funcionarios) {
                 fw.append(f.toCSV());
@@ -357,38 +473,40 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Edicion> cargarEdiciones() {
         ArrayList<Edicion> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/ediciones.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/ediciones.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
                 retorno.add(new Edicion(
-                    c[0],
-                    c[1],
-                    Integer.parseInt(c[2]),
-                    Integer.parseInt(c[3]),
-                    Integer.parseInt(c[4]),
-                    Integer.parseInt(c[5]),
-                    c[6],
-                    Formato.valueOf(c[7]),
-                    new Obra(
-                        c[8],
-                        c[9],
-                        c[10],
-                        c[11],
-                        c[12],
-                        c[13],
-                        c[14],
-                        c[15],
-                        new ArrayList<>(),
-                        TipoObra.valueOf(c[16])
-                    )
-                ));
+                        c[0],
+                        c[1],
+                        Integer.parseInt(c[2]),
+                        Integer.parseInt(c[3]),
+                        Integer.parseInt(c[4]),
+                        Integer.parseInt(c[5]),
+                        c[6],
+                        Formato.valueOf(c[7]),
+                        new Obra(
+                                c[8],
+                                c[9],
+                                c[10],
+                                c[11],
+                                c[12],
+                                c[13],
+                                c[14],
+                                c[15],
+                                new ArrayList<>(),
+                                TipoObra.valueOf(c[16]))));
 
                 line = br.readLine();
             }
@@ -399,6 +517,10 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param ediciones
+     */
     public static void guardarEdiciones(ArrayList<Edicion> ediciones) {
         try {
             PrintWriter w = new PrintWriter("csv/ediciones.csv");
@@ -419,17 +541,23 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @param edicions
+     * @return
+     */
     public static ArrayList<Obra> cargarObras(ArrayList<Edicion> edicions) {
         ArrayList<Obra> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/obras.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/obras.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                Obra obra = new Obra(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], new ArrayList<>(),TipoObra.valueOf(c[8]));
+                Obra obra = new Obra(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], new ArrayList<>(),
+                        TipoObra.valueOf(c[8]));
 
                 retorno.add(obra);
                 for (Edicion edicion : edicions) {
@@ -447,6 +575,10 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param obras
+     */
     public static void guardarObras(ArrayList<Obra> obras) {
         try {
             PrintWriter w = new PrintWriter("csv/obras.csv");
@@ -467,33 +599,37 @@ public class Biblioteca {
         }
     }
 
+    /**
+     *
+     * @param obras
+     * @return
+     */
     public static ArrayList<Ejemplar> cargarEjemplaresDisponibles(ArrayList<Obra> obras) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresDisponibles.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresDisponibles.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
-                
+                if (Boolean.parseBoolean(c[11])) {// Controla el estado de Disponible
+
                     Ejemplar ejemplar = new Ejemplar(
-                        c[5],
-                        c[6],
-                        LocalDate.parse(c[7]),
-                        c[8],
-                        new Identificacion(null, Integer.parseInt(c[0]), 
-                            Integer.parseInt(c[1]),
-                            Integer.parseInt(c[2]),
-                            Integer.parseInt(c[3]),
-                            Integer.parseInt(c[4])),
-                            null
-                    );
+                            c[5],
+                            c[6],
+                            LocalDate.parse(c[7]),
+                            c[8],
+                            new Identificacion(null, Integer.parseInt(c[0]),
+                                    Integer.parseInt(c[1]),
+                                    Integer.parseInt(c[2]),
+                                    Integer.parseInt(c[3]),
+                                    Integer.parseInt(c[4])),
+                            null);
 
                     for (Obra obra : obras) {
-                        if(c[13].equals(obra.getIsbn())){
+                        if (c[13].equals(obra.getIsbn())) {
                             ejemplar.setObra(obra);
                             obra.añadirEjemplar(ejemplar);
                         }
@@ -511,6 +647,10 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param ejemplares
+     */
     public static void guardarEjemplaresDisponibles(ArrayList<Ejemplar> ejemplares) {
         try {
             PrintWriter w = new PrintWriter("csv/ejemplaresDisponibles.csv");
@@ -531,39 +671,42 @@ public class Biblioteca {
         }
     }
 
-    
+    /**
+     *
+     * @param obras
+     * @return
+     */
     public static ArrayList<Ejemplar> cargarEjemplaresDeBaja(ArrayList<Obra> obras) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresDeBaja.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresDeBaja.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
-                
-                    Ejemplar ejemplar = new Ejemplar(
-                        c[5],
-                        c[6],
-                        LocalDate.parse(c[7]),
-                        c[8],
-                        new Identificacion(null, Integer.parseInt(c[0]), 
-                            Integer.parseInt(c[1]),
-                            Integer.parseInt(c[2]),
-                            Integer.parseInt(c[3]),
-                            Integer.parseInt(c[4])),
-                            null
-                    );
+                if (!Boolean.parseBoolean(c[11])) {// Controla el estado de Disponible
 
-                    //Control sobre si esta de baja o no
+                    Ejemplar ejemplar = new Ejemplar(
+                            c[5],
+                            c[6],
+                            LocalDate.parse(c[7]),
+                            c[8],
+                            new Identificacion(null, Integer.parseInt(c[0]),
+                                    Integer.parseInt(c[1]),
+                                    Integer.parseInt(c[2]),
+                                    Integer.parseInt(c[3]),
+                                    Integer.parseInt(c[4])),
+                            null);
+
+                    // Control sobre si esta de baja o no
                     if (!c[9].equals("null")) {
                         ejemplar.setBajaCSV(LocalDate.parse(c[9]), c[1], Boolean.parseBoolean(c[11]));
                     }
 
                     for (Obra obra : obras) {
-                        if(c[13].equals(obra.getIsbn())){
+                        if (c[13].equals(obra.getIsbn())) {
                             ejemplar.setObra(obra);
                             obra.añadirEjemplar(ejemplar);
                         }
@@ -581,6 +724,10 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param ejemplares
+     */
     public static void guardarEjemplaresDeBaja(ArrayList<Ejemplar> ejemplares) {
         try {
             PrintWriter w = new PrintWriter("csv/ejemplaresDeBaja.csv");
@@ -601,36 +748,41 @@ public class Biblioteca {
         }
     }
 
-
+    /**
+     *
+     * @param obras
+     * @param lectors
+     * @return
+     */
     public static ArrayList<Ejemplar> cargarEjemplaresRservados(ArrayList<Obra> obras, ArrayList<Lector> lectors) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresReservados.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresReservados.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
-                
-                    Ejemplar ejemplar = new Ejemplar(
-                        c[5],
-                        c[6],
-                        LocalDate.parse(c[7]),
-                        c[8],
-                        new Identificacion(null, Integer.parseInt(c[0]), 
-                            Integer.parseInt(c[1]),
-                            Integer.parseInt(c[2]),
-                            Integer.parseInt(c[3]),
-                            Integer.parseInt(c[4])),
-                            null
-                    );
+                if (!Boolean.parseBoolean(c[11])) {// Controla el estado de Disponible
 
-                    //Control sobre si esta reservado para Linkearlo a su reserva
+                    Ejemplar ejemplar = new Ejemplar(
+                            c[5],
+                            c[6],
+                            LocalDate.parse(c[7]),
+                            c[8],
+                            new Identificacion(null, Integer.parseInt(c[0]),
+                                    Integer.parseInt(c[1]),
+                                    Integer.parseInt(c[2]),
+                                    Integer.parseInt(c[3]),
+                                    Integer.parseInt(c[4])),
+                            null);
+
+                    // Control sobre si esta reservado para Linkearlo a su reserva
                     if (!c[14].equals("null")) {
                         for (Lector lector : lectors) {
-                            if(lector.getReserva().getFecha().equals(LocalDate.parse(c[14])) && lector.getDni().equals(c[15])){
+                            if (lector.getReserva().getFecha().equals(LocalDate.parse(c[14]))
+                                    && lector.getDni().equals(c[15])) {
                                 ejemplar.reservarEjemplar(new Reserva(LocalDate.now(), lector, retorno));
                                 ejemplar.getReserva().setReservaCSV(LocalDate.parse(c[14]));
                                 lector.getReserva().linkEjemplarCSV(ejemplar);
@@ -640,9 +792,9 @@ public class Biblioteca {
                         ejemplar.reservarEjemplar(new Reserva(LocalDate.parse(c[14]), null, retorno));
                     }
 
-                    //Linkeo de ejemplar con su respectuva obra
+                    // Linkeo de ejemplar con su respectuva obra
                     for (Obra obra : obras) {
-                        if(c[13].equals(obra.getIsbn())){
+                        if (c[13].equals(obra.getIsbn())) {
                             ejemplar.setObra(obra);
                             obra.añadirEjemplar(ejemplar);
                         }
@@ -660,12 +812,17 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param ejemplaresReservados
+     */
     public static void guardarEjemplaresReservados(ArrayList<Ejemplar> ejemplaresReservados) {
         try {
             PrintWriter w = new PrintWriter("csv/ejemplaresReservados.csv");
             w.print("");
             w.close();
-            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresReservados.csv"));
+            // BufferedReader br = new BufferedReader(new
+            // FileReader("csv/ejemplaresReservados.csv"));
             FileWriter fw = new FileWriter("csv/ejemplaresReservados.csv", false);
             for (Ejemplar e : ejemplaresReservados) {
                 fw.append(e.toCSV());
@@ -680,38 +837,45 @@ public class Biblioteca {
         }
     }
 
-    public static ArrayList<Ejemplar> cargarEjemplaresPrestados(ArrayList<Obra> obras, ArrayList<Lector> lectors, ArrayList<Funcionario> funcionarios) {
+    /**
+     *
+     * @param obras
+     * @param lectors
+     * @param funcionarios
+     * @return
+     */
+    public static ArrayList<Ejemplar> cargarEjemplaresPrestados(ArrayList<Obra> obras, ArrayList<Lector> lectors,
+            ArrayList<Funcionario> funcionarios) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/ejemplaresPrestados.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresPrestados.csv"));
             String line = br.readLine();
 
             while (line != null) {
                 String[] c = line.split(",");
 
-                if (!Boolean.parseBoolean(c[11])) {//Controla el estado de Disponible
-                
-                    Ejemplar ejemplar = new Ejemplar(
-                        c[5],
-                        c[6],
-                        LocalDate.parse(c[7]),
-                        c[8],
-                        new Identificacion(null, Integer.parseInt(c[0]), 
-                            Integer.parseInt(c[1]),
-                            Integer.parseInt(c[2]),
-                            Integer.parseInt(c[3]),
-                            Integer.parseInt(c[4])),
-                            null
-                    );
+                if (!Boolean.parseBoolean(c[11])) {// Controla el estado de Disponible
 
-                    //Control sobre si esta reservado para Linkearlo a su reserva
+                    Ejemplar ejemplar = new Ejemplar(
+                            c[5],
+                            c[6],
+                            LocalDate.parse(c[7]),
+                            c[8],
+                            new Identificacion(null, Integer.parseInt(c[0]),
+                                    Integer.parseInt(c[1]),
+                                    Integer.parseInt(c[2]),
+                                    Integer.parseInt(c[3]),
+                                    Integer.parseInt(c[4])),
+                            null);
+
+                    // Control sobre si esta reservado para Linkearlo a su reserva
                     if (!c[16].equals("null")) {
                         for (Lector lector : lectors) {
-                            //Busqueda del prestamo en los lectores para Linkearlo al ejemplar
-                            if(lector.getDni().equals(c[20])){
+                            // Busqueda del prestamo en los lectores para Linkearlo al ejemplar
+                            if (lector.getDni().equals(c[20])) {
 
-                                //Busqueda del funcionario prestador para Linkearlo
+                                // Busqueda del funcionario prestador para Linkearlo
                                 int funcionarioIndex = 0;
                                 for (Funcionario funcionario : funcionarios) {
                                     if (funcionario.getDni().equals(c[19])) {
@@ -720,21 +884,21 @@ public class Biblioteca {
                                 }
 
                                 Prestamo prestamo = new Prestamo(
-                                    Integer.parseInt(c[14]),
-                                    Lectura.valueOf(c[15]),
-                                    LocalDate.parse(c[18]),
-                                    funcionarios.get(funcionarioIndex),
-                                    lector,
-                                    new ArrayList<>()//relleno con basura
+                                        Integer.parseInt(c[14]),
+                                        Lectura.valueOf(c[15]),
+                                        LocalDate.parse(c[18]),
+                                        funcionarios.get(funcionarioIndex),
+                                        lector,
+                                        new ArrayList<>()// relleno con basura
                                 );
                                 ejemplar.darEnPrestamo(prestamo);
-                                ejemplar.getPrestamo().getEjemplaresPrestados().add(ejemplar);//(Funciona a medias)
+                                ejemplar.getPrestamo().getEjemplaresPrestados().add(ejemplar);// (Funciona a medias)
 
-                                //Linkeo de fecha, hora y Ejemplar con su lector 
+                                // Linkeo de fecha, hora y Ejemplar con su lector
                                 ejemplar.getPrestamo().setCSV(LocalDate.parse(c[16]), LocalTime.parse(c[7]));
                                 lector.linkPrestamoCSV(prestamo);
                                 lector.getPrestamo().linkEjemplarCSV(ejemplar);
-                                //Linkeo de prestamo a Funcionario
+                                // Linkeo de prestamo a Funcionario
                                 funcionarios.get(funcionarioIndex).linkPrestamoCSV(prestamo);
 
                             }
@@ -743,9 +907,9 @@ public class Biblioteca {
                         ejemplar.reservarEjemplar(new Reserva(LocalDate.parse(c[14]), null, retorno));
                     }
 
-                    //Linkeo de ejemplar con su respectivo prestamo
+                    // Linkeo de ejemplar con su respectivo prestamo
                     for (Obra obra : obras) {
-                        if(c[13].equals(obra.getIsbn())){
+                        if (c[13].equals(obra.getIsbn())) {
                             ejemplar.setObra(obra);
                             obra.añadirEjemplar(ejemplar);
                         }
@@ -763,12 +927,17 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param ejemplaresPrestados
+     */
     public static void guardarEjemplaresPrestados(ArrayList<Ejemplar> ejemplaresPrestados) {
         try {
             PrintWriter w = new PrintWriter("csv/ejemplaresPrestados.csv");
             w.print("");
             w.close();
-            // BufferedReader br = new BufferedReader(new FileReader("csv/ejemplaresPrestados.csv"));
+            // BufferedReader br = new BufferedReader(new
+            // FileReader("csv/ejemplaresPrestados.csv"));
             FileWriter fw = new FileWriter("csv/ejemplaresPrestados.csv", false);
             for (Ejemplar e : ejemplaresPrestados) {
                 fw.append(e.toCSV());
@@ -783,12 +952,15 @@ public class Biblioteca {
         }
     }
 
-
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Lector> cargarLectores() {
         ArrayList<Lector> retorno = new ArrayList<>();
 
         try {
-            BufferedReader br  = new BufferedReader(new FileReader("csv/lectores.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("csv/lectores.csv"));
             String line = br.readLine();
 
             while (line != null) {
@@ -796,57 +968,54 @@ public class Biblioteca {
 
                 if (c[0].equals(Estudiante.class.toString())) {
                     Estudiante estudiante = new Estudiante(
-                        c[1],
-                        c[2],
-                        c[3],
-                        LocalDate.parse(c[4]),
-                        c[5],
-                        TipoDni.valueOf(c[6]), 
-                        c[7],
-                        c[8],
-                        c[9],
-                        c[10], 
-                        Integer.parseInt(c[11]),
-                        c[12],
-                        c[13]
-                    );
+                            c[1],
+                            c[2],
+                            c[3],
+                            LocalDate.parse(c[4]),
+                            c[5],
+                            TipoDni.valueOf(c[6]),
+                            c[7],
+                            c[8],
+                            c[9],
+                            c[10],
+                            Integer.parseInt(c[11]),
+                            c[12],
+                            c[13]);
                     retorno.add(estudiante);
 
-                }else if(c[0].equals(Publico.class.toString())){
+                } else if (c[0].equals(Publico.class.toString())) {
                     Publico publico = new Publico(
-                        c[1],
-                        c[2],
-                        c[3],
-                        LocalDate.parse(c[4]),
-                        c[5],
-                        TipoDni.valueOf(c[6]), 
-                        c[7],
-                        c[8],
-                        c[9],
-                        c[10], 
-                        Integer.parseInt(c[11]),
-                        c[12],
-                        c[13]
-                    );
+                            c[1],
+                            c[2],
+                            c[3],
+                            LocalDate.parse(c[4]),
+                            c[5],
+                            TipoDni.valueOf(c[6]),
+                            c[7],
+                            c[8],
+                            c[9],
+                            c[10],
+                            Integer.parseInt(c[11]),
+                            c[12],
+                            c[13]);
                     retorno.add(publico);
 
-                }else if(c[0].equals(Docente.class.toString())){
+                } else if (c[0].equals(Docente.class.toString())) {
                     Docente docente = new Docente(
-                        c[1],
-                        c[2],
-                        c[3],
-                        LocalDate.parse(c[4]),
-                        c[5],
-                        TipoDni.valueOf(c[6]), 
-                        c[7],
-                        c[8],
-                        c[9],
-                        c[10], 
-                        Integer.parseInt(c[11]),
-                        c[12],
-                        c[13],
-                        c[17]
-                    );
+                            c[1],
+                            c[2],
+                            c[3],
+                            LocalDate.parse(c[4]),
+                            c[5],
+                            TipoDni.valueOf(c[6]),
+                            c[7],
+                            c[8],
+                            c[9],
+                            c[10],
+                            Integer.parseInt(c[11]),
+                            c[12],
+                            c[13],
+                            c[17]);
                     retorno.add(docente);
                 }
 
@@ -859,6 +1028,10 @@ public class Biblioteca {
         return retorno;
     }
 
+    /**
+     *
+     * @param funcionarios
+     */
     public static void guardarLectores(ArrayList<Lector> funcionarios) {
         try {
             PrintWriter w = new PrintWriter("csv/lectores.csv");
@@ -879,5 +1052,4 @@ public class Biblioteca {
         }
     }
 
-    
 }
