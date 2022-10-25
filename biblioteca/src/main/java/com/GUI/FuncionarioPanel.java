@@ -196,7 +196,8 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_listPrestamosBotonActionPerformed
 
     private void listEjemplaresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listEjemplaresBotonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new ListadoEjemplares().setVisible(true);
     }//GEN-LAST:event_listEjemplaresBotonActionPerformed
 
     private void tomarPrestamoButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarPrestamoButonActionPerformed
