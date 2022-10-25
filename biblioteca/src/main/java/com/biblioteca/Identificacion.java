@@ -166,11 +166,6 @@ public class Identificacion {
         if (getClass() != obj.getClass())
             return false;
         Identificacion other = (Identificacion) obj;
-        if (ejemplar == null) {
-            if (other.ejemplar != null)
-                return false;
-        } else if (!ejemplar.equals(other.ejemplar))
-            return false;
         if (pasillo != other.pasillo)
             return false;
         if (estante != other.estante)

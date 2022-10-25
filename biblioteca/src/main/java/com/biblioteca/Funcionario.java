@@ -129,7 +129,7 @@ public class Funcionario extends Persona {
      */
     public String toCSV() {
         return super.toCSV() + usuario + "," + contrasenia + ","
-                + tipoFuncionario + "," + listaprestamos + "\n";
+                + tipoFuncionario + "\n";
     }
 
     public void linkPrestamoCSV(Prestamo prestamo) {

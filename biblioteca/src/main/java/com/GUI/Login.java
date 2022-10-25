@@ -195,6 +195,7 @@ public class Login extends javax.swing.JFrame {
     private void Logear(){
         Funcionario funcionario = checkLogin();
         if (funcionario != null){
+            Biblioteca.guardarSesionActual(funcionario);
             this.setVisible(false);
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
                 new AdminPanel().setVisible(true);

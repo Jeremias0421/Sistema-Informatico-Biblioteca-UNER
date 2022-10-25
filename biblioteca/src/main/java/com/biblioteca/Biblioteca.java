@@ -23,7 +23,6 @@ import com.GUI.Login;
  */
 public class Biblioteca {
 
-    static ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
     public static void main(String[] args) throws FileNotFoundException{
@@ -94,7 +93,7 @@ public class Biblioteca {
 
     }
 
-    public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia) {
+    public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia, ArrayList<Obra> listadoDeObras) {
         ArrayList<Ejemplar> lista = new ArrayList<>();
 
         for (Obra obra : listadoDeObras) {
@@ -281,6 +280,42 @@ public class Biblioteca {
 
 
     //****************Manejo de Ficheros**********************
+
+    public static Funcionario getSesionActual() {
+        ArrayList<Funcionario> tempList = new ArrayList<>();
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/actualSesion.csv"));
+            String line = br.readLine();
+
+            String[] c = line.split(",");
+
+            Funcionario retorno = new Funcionario(c[0], c[1], c[2], LocalDate.parse(c[3]), c[4], TipoDni.valueOf(c[5]), c[6], c[7], TipoFuncionario.valueOf(c[8]));
+            tempList.add(retorno);
+            br.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tempList.get(0);
+    }
+
+    public static void guardarSesionActual(Funcionario funcionario) {
+        try {
+            PrintWriter w = new PrintWriter("csv/actualSesion.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/actualSesion.csv"));
+            FileWriter fw = new FileWriter("csv/actualSesion.csv", false);
+            fw.append(funcionario.toCSV());
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
 
     public static ArrayList<Funcionario> cargarFuncionarios() {
         ArrayList<Funcionario> retorno = new ArrayList<>();

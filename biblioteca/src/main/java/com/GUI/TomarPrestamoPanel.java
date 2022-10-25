@@ -29,7 +29,7 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
     ArrayList<Lector> lectores = null;
     ArrayList<Ejemplar> ejemplaresPrestados = null;
     ArrayList<Ejemplar> ejemplaresReservados = null;
-    Funcionario sesionActual = null;
+    Funcionario sesionActual = Biblioteca.getSesionActual();
     
     //Listas locales
     ArrayList<Ejemplar> ejemplaresPorPrestar = null;
@@ -45,6 +45,8 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
         ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
         lectores = Biblioteca.cargarLectores();
+        ejemplaresPrestados = new ArrayList(); //Problema de lectura del csv
+        ejemplaresReservados = new ArrayList(); //Problema de lectura del csv
         //Final
         initComponents();
         mostrarEjemplares();
@@ -256,6 +258,10 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
             try{
                 Biblioteca.darPrestamoSala(lector, ejemplaresPorPrestar, sesionActual, ejemplaresPrestados, ejemplaresDisponibles, ejemplaresReservados);
                 //TODO: guardar cambios
+                //No implementar hasta corregir problema con csv
+                //Biblioteca.guardarEjemplaresDisponibles(ejemplaresDeBaja);
+                Biblioteca.guardarEjemplaresReservados(ejemplaresReservados);
+                Biblioteca.guardarEjemplaresPrestados(ejemplaresPrestados);
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
             }
