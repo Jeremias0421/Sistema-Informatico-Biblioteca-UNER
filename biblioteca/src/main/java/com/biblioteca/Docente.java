@@ -76,4 +76,10 @@ public final class Docente extends Lector {
         return carrera.matches("[A-Z][a-z A-Z]*");
     }
 
+    public String toCSV() {
+        return super.toCSV() + "," + carrera + "\n";
+    }
+
+
+    
 }

@@ -348,4 +348,18 @@ public abstract class Lector extends Persona {
     private boolean validarLocalidad(String localidad) {
         return localidad.matches("([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
     }
+
+    /**
+     * Formatea el objeto para guardarlo en .csv
+     * 
+     * @return 
+     */
+    public String toCSV() {
+        return this.getClass() + "," + super.toCSV() + correoElectronico + "," + nroCelular + ","
+                + nacionalidad + "," + domicilio + "," + nroPostal + ","
+                + departamento + "," + localidad + "," + multasAcumuladas + ","
+                + reserva + "," + prestamo;
+    }
+
+    
 }

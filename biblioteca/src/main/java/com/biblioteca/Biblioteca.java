@@ -32,7 +32,7 @@ public class Biblioteca {
         ArrayList<Ejemplar> ejemplaresDeBaja = cargarEjemplaresDeBaja(obras);
         ArrayList<Ejemplar> ejemplaresPrestados;
         ArrayList<Ejemplar> ejemplaresRerservados;
-        ArrayList<Lector> lectores;
+        ArrayList<Lector> lectores = cargarLectores();
 
 
         //Look and Feel set
@@ -553,6 +553,102 @@ public class Biblioteca {
             FileWriter fw = new FileWriter("csv/ejemplaresDeBaja.csv", false);
             for (Ejemplar e : ejemplares) {
                 fw.append(e.toCSV());
+            }
+            fw.flush();
+            fw.close();
+            // br.close();ñ
+        } catch (FileNotFoundException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        } catch (IOException ex) {
+            System.out.println("Main.guardarEnArchivo()");
+        }
+    }
+
+
+    public static ArrayList<Lector> cargarLectores() {
+        ArrayList<Lector> retorno = new ArrayList<>();
+
+        try {
+            BufferedReader br  = new BufferedReader(new FileReader("csv/lectores.csv"));
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] c = line.split(",");
+
+                if (c[0].equals(Estudiante.class.toString())) {
+                    Estudiante estudiante = new Estudiante(
+                        c[1],
+                        c[2],
+                        c[3],
+                        LocalDate.parse(c[4]),
+                        c[5],
+                        TipoDni.valueOf(c[6]), 
+                        c[7],
+                        c[8],
+                        c[9],
+                        c[10], 
+                        Integer.parseInt(c[11]),
+                        c[12],
+                        c[13]
+                    );
+                    retorno.add(estudiante);
+
+                }else if(c[0].equals(Publico.class.toString())){
+                    Publico publico = new Publico(
+                        c[1],
+                        c[2],
+                        c[3],
+                        LocalDate.parse(c[4]),
+                        c[5],
+                        TipoDni.valueOf(c[6]), 
+                        c[7],
+                        c[8],
+                        c[9],
+                        c[10], 
+                        Integer.parseInt(c[11]),
+                        c[12],
+                        c[13]
+                    );
+                    retorno.add(publico);
+
+                }else if(c[0].equals(Docente.class.toString())){
+                    Docente docente = new Docente(
+                        c[1],
+                        c[2],
+                        c[3],
+                        LocalDate.parse(c[4]),
+                        c[5],
+                        TipoDni.valueOf(c[6]), 
+                        c[7],
+                        c[8],
+                        c[9],
+                        c[10], 
+                        Integer.parseInt(c[11]),
+                        c[12],
+                        c[13],
+                        c[17]
+                    );
+                    retorno.add(docente);
+                }
+
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public static void guardarLectores(ArrayList<Lector> funcionarios) {
+        try {
+            PrintWriter w = new PrintWriter("csv/lectores.csv");
+            w.print("");
+            w.close();
+            // BufferedReader br = new BufferedReader(new FileReader("csv/lectores.csv"));
+            FileWriter fw = new FileWriter("csv/lectores.csv", false);
+            for (Lector f : funcionarios) {
+                fw.append(f.toCSV());
             }
             fw.flush();
             fw.close();

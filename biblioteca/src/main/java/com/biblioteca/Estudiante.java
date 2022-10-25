@@ -35,4 +35,10 @@ public final class Estudiante extends Lector {
                 domicilio, nroPostal, departamento, localidad);
     }
 
+    public String toCSV() {
+        return super.toCSV() + "\n";
+    }
+
+    
+
 }

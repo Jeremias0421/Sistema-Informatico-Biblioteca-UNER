@@ -1,0 +1,2 @@
+class com.biblioteca.Docente,Pedro,Fernandez,Masculino,1978-03-02,33678098,DNI_TARJETA,pedro@gmail.com,3454679045,Argentina,1ero de Mayo,3200,Concordia,Concordia,[],null,null,Lic en Sistemas
+class com.biblioteca.Estudiante,Ezequiel,Dalzotto,Masculino,2001-07-02,43481387,DNI_TARJETA,dalzottoezequiel@gmail.com,3454334584,Argentina,Ev Peron 1575,3200,Concordia,Concordia,[],null,null

@@ -44,4 +44,10 @@ public final class Publico extends Lector {
                 domicilio, nroPostal, departamento, localidad);
     }
 
+    public String toCSV() {
+        return super.toCSV() + "\n";
+    }
+
+
+    
 }

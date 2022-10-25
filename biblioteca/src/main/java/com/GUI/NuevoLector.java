@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Docente;
 import com.biblioteca.Estudiante;
 import com.biblioteca.Lector;
@@ -25,7 +26,7 @@ public class NuevoLector extends javax.swing.JFrame {
      * Creates new form NuevoLector
      */
     public NuevoLector() {
-        lectores = new ArrayList();
+        lectores = Biblioteca.cargarLectores();
         initComponents();
     }
 
@@ -519,7 +520,7 @@ public class NuevoLector extends javax.swing.JFrame {
             }
             
             //Guardar en Archivo las creaciones de lector
-            
+            Biblioteca.guardarLectores(lectores);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Falta completar campos", "Error", 2);
         }
