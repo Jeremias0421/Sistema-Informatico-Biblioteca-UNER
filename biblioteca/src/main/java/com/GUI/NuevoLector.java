@@ -67,8 +67,8 @@ public class NuevoLector extends javax.swing.JFrame {
         userTxt10 = new javax.swing.JTextField();
         userTxt11 = new javax.swing.JTextField();
         userTxt12 = new javax.swing.JTextField();
-        crearFuncionarioBtn = new javax.swing.JButton();
-        crearFuncionarioBtn1 = new javax.swing.JButton();
+        crearLectorBtn = new javax.swing.JButton();
+        volverBtn = new javax.swing.JButton();
         carreraCartel = new javax.swing.JTextField();
         userTxt14 = new javax.swing.JTextField();
         carrera = new javax.swing.JTextField();
@@ -312,29 +312,29 @@ public class NuevoLector extends javax.swing.JFrame {
         userTxt12.setFocusable(false);
         bg.add(userTxt12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 80, -1));
 
-        crearFuncionarioBtn.setBackground(new java.awt.Color(96, 106, 135));
-        crearFuncionarioBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        crearFuncionarioBtn.setForeground(new java.awt.Color(255, 255, 255));
-        crearFuncionarioBtn.setText("Guardar Lector");
-        crearFuncionarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        crearFuncionarioBtn.addActionListener(new java.awt.event.ActionListener() {
+        crearLectorBtn.setBackground(new java.awt.Color(96, 106, 135));
+        crearLectorBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        crearLectorBtn.setForeground(new java.awt.Color(255, 255, 255));
+        crearLectorBtn.setText("Guardar Lector");
+        crearLectorBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        crearLectorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearFuncionarioBtnActionPerformed(evt);
+                crearLectorBtnActionPerformed(evt);
             }
         });
-        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 130, 30));
+        bg.add(crearLectorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 130, 30));
 
-        crearFuncionarioBtn1.setBackground(new java.awt.Color(96, 106, 135));
-        crearFuncionarioBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        crearFuncionarioBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        crearFuncionarioBtn1.setText("Volver");
-        crearFuncionarioBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        crearFuncionarioBtn1.addActionListener(new java.awt.event.ActionListener() {
+        volverBtn.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn.setText("Volver");
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearFuncionarioBtn1ActionPerformed(evt);
+                volverBtnActionPerformed(evt);
             }
         });
-        bg.add(crearFuncionarioBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 130, 30));
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 130, 30));
 
         carreraCartel.setEditable(false);
         carreraCartel.setBackground(new java.awt.Color(3, 33, 67));
@@ -378,55 +378,55 @@ public class NuevoLector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
-        
+        crearLector();
     }//GEN-LAST:event_nombreActionPerformed
 
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
-        
+        crearLector();
     }//GEN-LAST:event_apellidoActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
-        
+        crearLector();
     }//GEN-LAST:event_dniActionPerformed
 
     private void nacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacimientoActionPerformed
-        
+        crearLector();
     }//GEN-LAST:event_nacimientoActionPerformed
 
     private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_correoActionPerformed
 
     private void celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_celularActionPerformed
 
     private void nacionalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacionalidadActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_nacionalidadActionPerformed
 
     private void domicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domicilioActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_domicilioActionPerformed
 
     private void departamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentoActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_departamentoActionPerformed
 
     private void localidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localidadActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_localidadActionPerformed
 
-    private void crearFuncionarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtnActionPerformed
+    private void crearLectorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearLectorBtnActionPerformed
         crearLector();
-    }//GEN-LAST:event_crearFuncionarioBtnActionPerformed
+    }//GEN-LAST:event_crearLectorBtnActionPerformed
 
-    private void crearFuncionarioBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtn1ActionPerformed
+    private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_crearFuncionarioBtn1ActionPerformed
+    }//GEN-LAST:event_volverBtnActionPerformed
 
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
-        // TODO add your handling code here:
+        crearLector();
     }//GEN-LAST:event_carreraActionPerformed
 
     private void crearLector(){
@@ -596,8 +596,7 @@ public class NuevoLector extends javax.swing.JFrame {
     private javax.swing.JTextField celular;
     private javax.swing.JSpinner codgioPostal;
     private javax.swing.JTextField correo;
-    private javax.swing.JButton crearFuncionarioBtn;
-    private javax.swing.JButton crearFuncionarioBtn1;
+    private javax.swing.JButton crearLectorBtn;
     private javax.swing.JTextField departamento;
     private javax.swing.JTextField dni;
     private javax.swing.JTextField domicilio;
@@ -623,5 +622,6 @@ public class NuevoLector extends javax.swing.JFrame {
     private javax.swing.JTextField userTxt7;
     private javax.swing.JTextField userTxt8;
     private javax.swing.JTextField userTxt9;
+    private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 }
