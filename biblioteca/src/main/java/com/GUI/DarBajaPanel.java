@@ -236,6 +236,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
             ejemplaresDeBaja.add(ejemplar);
             ejemplares.remove(jTable1.getSelectedRow());
+            Biblioteca.guardarEjemplares(ejemplares);
 
             model.removeRow(jTable1.getSelectedRow());
             mostrarEjemplares();

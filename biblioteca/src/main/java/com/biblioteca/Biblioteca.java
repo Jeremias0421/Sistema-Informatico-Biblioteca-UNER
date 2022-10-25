@@ -444,11 +444,11 @@ public class Biblioteca {
                     c[6],
                     LocalDate.parse(c[7]),
                     c[8],
-                    new Identificacion(null, Integer.parseInt(c[1]), 
+                    new Identificacion(null, Integer.parseInt(c[0]), 
+                        Integer.parseInt(c[1]),
                         Integer.parseInt(c[2]),
                         Integer.parseInt(c[3]),
-                        Integer.parseInt(c[4]),
-                        Integer.parseInt(c[5])),
+                        Integer.parseInt(c[4])),
                     null
                 );
                 for (Obra obra : obras) {
