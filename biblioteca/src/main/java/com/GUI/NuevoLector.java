@@ -4,7 +4,14 @@
  */
 package com.GUI;
 
+import com.biblioteca.Docente;
+import com.biblioteca.Estudiante;
+import com.biblioteca.Lector;
+import com.biblioteca.Publico;
 import com.biblioteca.TipoDni;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,10 +19,13 @@ import com.biblioteca.TipoDni;
  */
 public class NuevoLector extends javax.swing.JFrame {
 
+    ArrayList<Lector> lectores = null;
+    
     /**
      * Creates new form NuevoLector
      */
     public NuevoLector() {
+        lectores = new ArrayList();
         initComponents();
     }
 
@@ -41,6 +51,7 @@ public class NuevoLector extends javax.swing.JFrame {
         userTxt2 = new javax.swing.JTextField();
         userTxt3 = new javax.swing.JTextField();
         userTxt4 = new javax.swing.JTextField();
+        tipoLector = new javax.swing.JComboBox<>();
         userTxt5 = new javax.swing.JTextField();
         tipoDni = new javax.swing.JComboBox<>();
         celular = new javax.swing.JTextField();
@@ -58,6 +69,9 @@ public class NuevoLector extends javax.swing.JFrame {
         userTxt12 = new javax.swing.JTextField();
         crearFuncionarioBtn = new javax.swing.JButton();
         crearFuncionarioBtn1 = new javax.swing.JButton();
+        carreraCartel = new javax.swing.JTextField();
+        userTxt14 = new javax.swing.JTextField();
+        carrera = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -166,6 +180,12 @@ public class NuevoLector extends javax.swing.JFrame {
         userTxt4.setBorder(null);
         userTxt4.setFocusable(false);
         bg.add(userTxt4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 50, -1));
+
+        tipoLector.setBackground(new java.awt.Color(0, 8, 16));
+        tipoLector.setForeground(new java.awt.Color(255, 255, 255));
+        tipoLector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTUDIANTE", "PUBLICO_GENERAL", "DOCENTE" }));
+        tipoLector.setSelectedIndex(-1);
+        bg.add(tipoLector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, -1));
 
         userTxt5.setEditable(false);
         userTxt5.setBackground(new java.awt.Color(3, 33, 67));
@@ -302,7 +322,7 @@ public class NuevoLector extends javax.swing.JFrame {
                 crearFuncionarioBtnActionPerformed(evt);
             }
         });
-        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 130, 30));
+        bg.add(crearFuncionarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 130, 30));
 
         crearFuncionarioBtn1.setBackground(new java.awt.Color(96, 106, 135));
         crearFuncionarioBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -314,7 +334,34 @@ public class NuevoLector extends javax.swing.JFrame {
                 crearFuncionarioBtn1ActionPerformed(evt);
             }
         });
-        bg.add(crearFuncionarioBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 130, 30));
+        bg.add(crearFuncionarioBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 130, 30));
+
+        carreraCartel.setEditable(false);
+        carreraCartel.setBackground(new java.awt.Color(3, 33, 67));
+        carreraCartel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        carreraCartel.setForeground(new java.awt.Color(255, 255, 255));
+        carreraCartel.setText("Carrera");
+        carreraCartel.setBorder(null);
+        carreraCartel.setFocusable(false);
+        bg.add(carreraCartel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 70, -1));
+
+        userTxt14.setEditable(false);
+        userTxt14.setBackground(new java.awt.Color(3, 33, 67));
+        userTxt14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        userTxt14.setForeground(new java.awt.Color(255, 255, 255));
+        userTxt14.setText("Tipo");
+        userTxt14.setBorder(null);
+        userTxt14.setFocusable(false);
+        bg.add(userTxt14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 70, -1));
+
+        carrera.setBackground(new java.awt.Color(0, 8, 16));
+        carrera.setForeground(new java.awt.Color(255, 255, 255));
+        carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carreraActionPerformed(evt);
+            }
+        });
+        bg.add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +371,7 @@ public class NuevoLector extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
         );
 
         pack();
@@ -371,13 +418,141 @@ public class NuevoLector extends javax.swing.JFrame {
     }//GEN-LAST:event_localidadActionPerformed
 
     private void crearFuncionarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtnActionPerformed
-        
+        crearLector();
     }//GEN-LAST:event_crearFuncionarioBtnActionPerformed
 
     private void crearFuncionarioBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearFuncionarioBtn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_crearFuncionarioBtn1ActionPerformed
 
+    private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carreraActionPerformed
+
+    private void crearLector(){
+        if(checkNoNulls() && tipoLector.getSelectedIndex() != -1){
+            //Creacion de fecha de nacimiento
+            String formattedDate = nacimiento.getText();
+            String splittedDate[] = formattedDate.split("/");
+
+            LocalDate fechaNacimiento = LocalDate.of(
+                        Integer.parseInt(splittedDate[2]),
+                        Integer.parseInt(splittedDate[1]),
+                        Integer.parseInt(splittedDate[0])
+            );
+
+            int codigoPostalValue = (int) codgioPostal.getValue();
+            
+            switch (tipoLector.getSelectedIndex()) {
+                case 0:
+                    try{
+                        Estudiante estudiante = new Estudiante(
+                                nombre.getText(),
+                                apellido.getText(),
+                                (String) sexo.getSelectedItem(),
+                                fechaNacimiento,
+                                dni.getText(),
+                                (TipoDni) tipoDni.getSelectedItem(),
+                                correo.getText(),
+                                celular.getText(),
+                                nacionalidad.getText(),
+                                domicilio.getText(),
+                                codigoPostalValue,
+                                departamento.getText(),
+                                localidad.getText());
+                        
+                        lectores.add(estudiante);
+                        setAllToNull();
+                        JOptionPane.showMessageDialog(rootPane, "Lector guardado con exito", "Info", 1);
+                    }catch(IllegalArgumentException e){
+                        JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
+                    }   break;
+                case 1:
+                    try{
+                        Publico publico = new Publico(
+                                nombre.getText(),
+                                apellido.getText(),
+                                (String) sexo.getSelectedItem(),
+                                fechaNacimiento,
+                                dni.getText(),
+                                (TipoDni) tipoDni.getSelectedItem(),
+                                correo.getText(),
+                                celular.getText(),
+                                nacionalidad.getText(),
+                                domicilio.getText(),
+                                codigoPostalValue,
+                                departamento.getText(),
+                                localidad.getText());
+                        
+                        lectores.add(publico);
+                        setAllToNull();
+                        JOptionPane.showMessageDialog(rootPane, "Lector guardado con exito", "Info", 1);
+                    }catch(IllegalArgumentException e){
+                        JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
+                    }   break;
+                case 2:
+                    try{
+                        Docente docente = new Docente(
+                                nombre.getText(),
+                                apellido.getText(),
+                                (String) sexo.getSelectedItem(),
+                                fechaNacimiento,
+                                dni.getText(),
+                                (TipoDni) tipoDni.getSelectedItem(),
+                                correo.getText(),
+                                celular.getText(),
+                                nacionalidad.getText(),
+                                domicilio.getText(),
+                                codigoPostalValue,
+                                departamento.getText(),
+                                localidad.getText(),
+                                carrera.getText()
+                        );
+                        lectores.add(docente);
+                        setAllToNull();
+                        JOptionPane.showMessageDialog(rootPane, "Lector guardado con exito", "Info", 1);
+                    }catch(IllegalArgumentException e){
+                        JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
+                    }   break;
+                default:
+                    break;
+            }
+            
+            //Guardar en Archivo las creaciones de lector
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Falta completar campos", "Error", 2);
+        }
+    }
+    
+    private boolean checkNoNulls(){
+        return !(nombre.getText().isEmpty()
+                || apellido.getText().isEmpty()
+                || nacimiento.getText().isEmpty()
+                || dni.getText().isEmpty()
+                || correo.getText().isEmpty()
+                || celular.getText().isEmpty()
+                || nacionalidad.getText().isEmpty()
+                || domicilio.getText().isEmpty()
+                || departamento.getText().isEmpty()
+                || localidad.getText().isEmpty()
+                || carrera.getText().isEmpty());
+    }
+    
+    private void setAllToNull(){
+        nombre.setText(null);
+        apellido.setText(null);
+        nacimiento.setText(null);
+        dni.setText(null);
+        correo.setText(null);
+        celular.setText(null);
+        nacionalidad.setText(null);
+        domicilio.setText(null);
+        departamento.setText(null);
+        localidad.setText(null);
+        carrera.setText(null);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -416,6 +591,8 @@ public class NuevoLector extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
     private javax.swing.JPanel bg;
+    private javax.swing.JTextField carrera;
+    private javax.swing.JTextField carreraCartel;
     private javax.swing.JTextField celular;
     private javax.swing.JSpinner codgioPostal;
     private javax.swing.JTextField correo;
@@ -430,12 +607,14 @@ public class NuevoLector extends javax.swing.JFrame {
     private javax.swing.JTextField nombre;
     private javax.swing.JComboBox<String> sexo;
     private javax.swing.JComboBox<TipoDni> tipoDni;
+    private javax.swing.JComboBox<String> tipoLector;
     private javax.swing.JLabel tituloPanel;
     private javax.swing.JTextField userTxt;
     private javax.swing.JTextField userTxt1;
     private javax.swing.JTextField userTxt10;
     private javax.swing.JTextField userTxt11;
     private javax.swing.JTextField userTxt12;
+    private javax.swing.JTextField userTxt14;
     private javax.swing.JTextField userTxt2;
     private javax.swing.JTextField userTxt3;
     private javax.swing.JTextField userTxt4;
