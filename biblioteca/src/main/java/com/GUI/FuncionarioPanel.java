@@ -9,6 +9,7 @@ import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
 import com.biblioteca.Obra;
+import com.biblioteca.TipoFuncionario;
 import java.util.ArrayList;
 
 /**
@@ -34,6 +35,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         obras = Biblioteca.cargarObras(ediciones);
         ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
         ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
+        sesionActual = Biblioteca.getSesionActual();
         initComponents();
     }
     
@@ -67,6 +69,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         tituloPanel = new javax.swing.JLabel();
         logoFuncionario = new javax.swing.JLabel();
         listMultadosBoton = new javax.swing.JButton();
+        volverBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FuncionarioHome");
@@ -93,7 +96,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 logoutButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 357, 100, -1));
+        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 100, -1));
 
         tomarPrestamoButon.setBackground(new java.awt.Color(96, 106, 135));
         tomarPrestamoButon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -129,7 +132,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         listEjemplaresBoton.setBackground(new java.awt.Color(96, 106, 135));
         listEjemplaresBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         listEjemplaresBoton.setForeground(new java.awt.Color(255, 255, 255));
-        listEjemplaresBoton.setText("Listado ejemplaresDIsponibles");
+        listEjemplaresBoton.setText("Listado ejemplares");
         listEjemplaresBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listEjemplaresBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +165,18 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         listMultadosBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(listMultadosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 150, 40));
 
+        volverBtn1.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn1.setText("Volver");
+        volverBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverBtn1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(volverBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 100, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,6 +208,13 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void volverBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtn1ActionPerformed
+        if(sesionActual.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
+            this.setVisible(false);
+            new AdminPanel().setVisible(true);
+        }
+    }//GEN-LAST:event_volverBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,5 +263,6 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     private javax.swing.JLabel tituloPanel;
     private javax.swing.JButton tomarPrestamoButon;
     private javax.swing.JLabel unerLogo;
+    private javax.swing.JButton volverBtn1;
     // End of variables declaration//GEN-END:variables
 }
