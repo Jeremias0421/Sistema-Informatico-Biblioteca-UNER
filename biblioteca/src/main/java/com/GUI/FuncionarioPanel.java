@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class FuncionarioPanel extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDIsponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     
@@ -30,7 +30,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     
     public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionariosList;
-        ejemplares = ejemplaresList;
+        ejemplaresDIsponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -118,7 +118,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         listEjemplaresBoton.setBackground(new java.awt.Color(96, 106, 135));
         listEjemplaresBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         listEjemplaresBoton.setForeground(new java.awt.Color(255, 255, 255));
-        listEjemplaresBoton.setText("Listado ejemplares");
+        listEjemplaresBoton.setText("Listado ejemplaresDIsponibles");
         listEjemplaresBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listEjemplaresBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

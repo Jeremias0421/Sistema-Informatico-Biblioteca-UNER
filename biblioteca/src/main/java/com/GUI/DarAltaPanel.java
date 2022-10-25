@@ -23,7 +23,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
     ArrayList<Obra> listadoObras = null;
-    ArrayList<Ejemplar> listadoEjemplares = null;
+    ArrayList<Ejemplar> listadoEjemplaresDisponibles = null;
     ArrayList<Edicion> ediciones = null;
     
     /**
@@ -32,7 +32,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
     public DarAltaPanel() {
         //Codigo con proposito de prueba:
         listadoObras = new ArrayList();
-        listadoEjemplares = new ArrayList();
+        listadoEjemplaresDisponibles = new ArrayList();
         Obra obraTest = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", null, TipoObra.DIARIO);
         listadoObras.add(obraTest);
         //Codigo que o es de prueba:
@@ -44,7 +44,7 @@ public class DarAltaPanel extends javax.swing.JFrame {
     
     public DarAltaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionarioList;
-        listadoEjemplares = ejemplaresList;
+        listadoEjemplaresDisponibles = ejemplaresList;
         listadoObras = obrasList;
         ediciones = edicionesList;
         
@@ -272,12 +272,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,listadoEjemplares,listadoObras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void nuevaObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaObraBtnActionPerformed
       this.setVisible(false);
-      new NuevaObra(funcionarios,listadoEjemplares,listadoObras,ediciones).setVisible(true);
+      new NuevaObra(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones).setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
     private void guardarEjemplarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEjemplarBtnActionPerformed
@@ -313,8 +313,8 @@ public class DarAltaPanel extends javax.swing.JFrame {
                 ),
                 (Obra) menuObras.getItemAt(menuObras.getSelectedIndex())
         );
-        listadoEjemplares.add(ejemplar);
-        Biblioteca.guardarEjemplares(listadoEjemplares);
+        listadoEjemplaresDisponibles.add(ejemplar);
+        Biblioteca.guardarEjemplaresDisponibles(listadoEjemplaresDisponibles);
     }
     
     private boolean checkNoNulls(){

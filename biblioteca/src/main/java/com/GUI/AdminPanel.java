@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AdminPanel extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     
@@ -30,7 +30,7 @@ public class AdminPanel extends javax.swing.JFrame {
     
     public AdminPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionariosList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -174,22 +174,22 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void eliminarFBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarFBtonActionPerformed
         this.setVisible(false);
-        new EliminarFuncionario(funcionarios, ejemplares, obras, ediciones).setVisible(true);
+        new EliminarFuncionario(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_eliminarFBtonActionPerformed
 
     private void logOutBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBotonActionPerformed
         this.setVisible(false);
-        new Login(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+        new Login(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
     }//GEN-LAST:event_logOutBotonActionPerformed
 
     private void darAltaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darAltaBotonActionPerformed
         this.setVisible(false);
-        new DarAltaPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+        new DarAltaPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
     }//GEN-LAST:event_darAltaBotonActionPerformed
 
     private void darBajaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darBajaBotonActionPerformed
         this.setVisible(false);
-        new DarBajaPanel(funcionarios, ejemplares, obras, ediciones).setVisible(true);
+        new DarBajaPanel(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_darBajaBotonActionPerformed
 
     private void irFuncionarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irFuncionarioBotonActionPerformed

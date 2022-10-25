@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     
@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionarioList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
         if (funcionario != null){
             this.setVisible(false);
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
-                new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+                new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
             }else{
                 new FuncionarioPanel().setVisible(true);
             }

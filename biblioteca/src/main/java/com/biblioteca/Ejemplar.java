@@ -279,6 +279,12 @@ public class Ejemplar {
         this.motivoBaja = motivoBaja;
     }
 
+    public void setBajaCSV(LocalDate fechaBajaDate, String motivoBaja, boolean disponible){
+        this.fechaBaja = fechaBajaDate;
+        this.motivoBaja = motivoBaja;
+        this.disponible = disponible;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

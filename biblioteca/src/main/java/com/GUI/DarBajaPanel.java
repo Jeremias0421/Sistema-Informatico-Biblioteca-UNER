@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DarBajaPanel extends javax.swing.JFrame {
 
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Ejemplar> ejemplaresDeBaja = null;
     ArrayList<Funcionario> funcionarios = null;
     ArrayList<Obra> obras = null;
@@ -64,9 +64,9 @@ public class DarBajaPanel extends javax.swing.JFrame {
         obra.añadirEjemplar(ejemplar);
         
         //Init code
-        ejemplares = new ArrayList();
+        ejemplaresDisponibles = new ArrayList();
         ejemplaresDeBaja = new ArrayList();
-        ejemplares.add(ejemplar);
+        ejemplaresDisponibles.add(ejemplar);
         initComponents();
         mostrarEjemplares();
 
@@ -75,7 +75,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
     public DarBajaPanel(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         ejemplaresDeBaja = new ArrayList();//TODO: completar con fichero
         funcionarios = funcionarioList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -201,7 +201,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
 
     }//GEN-LAST:event_volverBtnActionPerformed
 
@@ -209,7 +209,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         
-        for (Ejemplar ejemplar : ejemplares) {
+        for (Ejemplar ejemplar : ejemplaresDisponibles) {
             Object[] row = new Object[4];
 
             row[0] = ejemplar.getObra().getTitulo();
@@ -227,7 +227,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
         }else{
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-            Ejemplar ejemplar = ejemplares.get(jTable1.getSelectedRow());
+            Ejemplar ejemplar = ejemplaresDisponibles.get(jTable1.getSelectedRow());
             try {
                 ejemplar.darDeBaja(motivoBaja.getText());
             } catch (Exception ex) {
@@ -235,8 +235,8 @@ public class DarBajaPanel extends javax.swing.JFrame {
             }
 
             ejemplaresDeBaja.add(ejemplar);
-            ejemplares.remove(jTable1.getSelectedRow());
-            Biblioteca.guardarEjemplares(ejemplares);
+            ejemplaresDisponibles.remove(jTable1.getSelectedRow());
+            Biblioteca.guardarEjemplaresDisponibles(ejemplaresDisponibles);
 
             model.removeRow(jTable1.getSelectedRow());
             mostrarEjemplares();

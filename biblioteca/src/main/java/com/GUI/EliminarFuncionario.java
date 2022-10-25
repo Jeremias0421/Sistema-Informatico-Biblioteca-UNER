@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class EliminarFuncionario extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     
@@ -34,7 +34,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
     
     public EliminarFuncionario(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionarioList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -143,7 +143,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplares,obras,ediciones).setVisible(true);
+        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones).setVisible(true);
 
     }//GEN-LAST:event_volverActionPerformed
 
@@ -168,7 +168,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
             Funcionario funcionario = funcionarios.get(jTable1.getSelectedRow());
 
             funcionarios.remove(jTable1.getSelectedRow());
-            Biblioteca.guardarEnArchivo(funcionarios);
+            Biblioteca.guardarFuncionarios(funcionarios);
             model.removeRow(jTable1.getSelectedRow());
             mostrarFuncionarios();
         }

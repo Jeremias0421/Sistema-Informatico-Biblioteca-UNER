@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class TomarPrestamoPanel extends javax.swing.JFrame {
 
     ArrayList<Lector> lectores = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     
     /**
      * Creates new form TomarPrestamoPanel
@@ -25,7 +25,7 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
     public TomarPrestamoPanel() {
         //Test
         lectores = new ArrayList();
-        ejemplares = new ArrayList();
+        ejemplaresDisponibles = new ArrayList();
         //Final
         initComponents();
     }

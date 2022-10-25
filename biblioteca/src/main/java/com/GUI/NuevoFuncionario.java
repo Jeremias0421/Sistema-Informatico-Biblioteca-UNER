@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class NuevoFuncionario extends javax.swing.JFrame {
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplares = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
 
@@ -41,7 +41,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
     
     public NuevoFuncionario(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> ejemplaresList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
         funcionarios = funcionariosList;
-        ejemplares = ejemplaresList;
+        ejemplaresDisponibles = ejemplaresList;
         obras = obrasList;
         ediciones = edicionesList;
         initComponents();
@@ -307,7 +307,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios, ejemplares, obras, ediciones).setVisible(true);
+        new AdminPanel(funcionarios, ejemplaresDisponibles, obras, ediciones).setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void crearFuncionario(){
@@ -329,7 +329,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
                     fechaNacimiento, dni.getText(), (TipoDni) tipoDni.getSelectedItem(),
                     user.getText(), contrasenia,(TipoFuncionario) tipoFuncionario.getSelectedItem());
                 funcionarios.add(funcionario);
-                Biblioteca.guardarEnArchivo(funcionarios);
+                Biblioteca.guardarFuncionarios(funcionarios);
                 setAllToNull();
             }catch (IllegalArgumentException e){
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Argumento Invalido",2);
