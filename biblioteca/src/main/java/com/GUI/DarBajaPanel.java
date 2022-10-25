@@ -35,38 +35,11 @@ public class DarBajaPanel extends javax.swing.JFrame {
      * Creates new form DarBajaPanel
      */
     public DarBajaPanel() {
-        //Test code
-        Edicion edicion = new Edicion("FEditorial", "Argentina", 1, 2002, 10_000, 367, "Español", Formato.PAPEL, null);
-        Edicion edicion1 = new Edicion("FEditorial", "Argentina", 2, 2008, 10_000, 367, "Español", Formato.PAPEL, null);
-        Edicion edicion2 = new Edicion("FEditorial", "Argentina", 3, 20015, 10_100, 367, "Español", Formato.PAPEL, null);
-
-        ArrayList<Edicion> ediciones = new ArrayList<>();
-        ediciones.add(edicion);
-        ediciones.add(edicion1);
-        ediciones.add(edicion2);
-        
-        
-
-        Obra obra = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", ediciones, TipoObra.DIARIO);
-        ArrayList<Obra> obras = new ArrayList();
-        obras.add(obra);
-        for (Edicion edicions : ediciones) {
-            edicions.setObra(obra);
-        }
-        Biblioteca.guardarEdiciones(ediciones);        
-        Biblioteca.guardarObras(obras);
-        
-        LocalDate adquisicion = LocalDate.of(2019, 7, 22);
-        Identificacion seUbica = new Identificacion(null, 1, 1, 1, 1, 1);
-
-        Ejemplar ejemplar = new Ejemplar("Observaciones", "9780313338", adquisicion, "Internet", seUbica, obra);
-        seUbica.setSeUbica(ejemplar);
-        obra.añadirEjemplar(ejemplar);
-        
-        //Init code
-        ejemplaresDisponibles = new ArrayList();
-        ejemplaresDeBaja = new ArrayList();
-        ejemplaresDisponibles.add(ejemplar);
+        funcionarios = Biblioteca.cargarFuncionarios();
+        ediciones = Biblioteca.cargarEdiciones();
+        obras = Biblioteca.cargarObras(ediciones);
+        ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
+        ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
         initComponents();
         mostrarEjemplares();
 
@@ -205,7 +178,7 @@ public class DarBajaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
+        new AdminPanel().setVisible(true);
 
     }//GEN-LAST:event_volverBtnActionPerformed
 

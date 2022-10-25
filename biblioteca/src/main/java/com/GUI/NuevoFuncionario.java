@@ -32,7 +32,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
      * Creates new form RegistroFuncionario
      */
     public NuevoFuncionario() {
-        funcionarios = new ArrayList();
+        funcionarios = Biblioteca.cargarFuncionarios();
         initComponents();
     }
     
@@ -310,7 +310,7 @@ public class NuevoFuncionario extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios, ejemplaresDisponibles, obras, ediciones, ejemplaresDeBaja).setVisible(true);
+        new AdminPanel().setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void crearFuncionario(){

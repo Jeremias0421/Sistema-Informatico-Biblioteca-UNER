@@ -39,9 +39,11 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
      * Creates new form TomarPrestamoPanel
      */
     public TomarPrestamoPanel() {
-        //Test
-        lectores = new ArrayList();
-        ejemplaresDisponibles = new ArrayList();
+        funcionarios = Biblioteca.cargarFuncionarios();
+        ediciones = Biblioteca.cargarEdiciones();
+        obras = Biblioteca.cargarObras(ediciones);
+        ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
+        ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
         //Final
         initComponents();
         mostrarEjemplares();
@@ -225,7 +227,8 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
                 JOptionPane.showConfirmDialog(rootPane, "No hay ejemplares seleccionados", "Error", 2);
             }
         }else{
-            //Crea un nuevo Lector
+            this.setVisible(false);
+            new NuevoLector().setVisible(true);
         }
     }//GEN-LAST:event_prestarBtnActionPerformed
 

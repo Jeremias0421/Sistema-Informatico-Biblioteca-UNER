@@ -30,7 +30,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
      * Creates new form EliminarFuncionario
      */
     public EliminarFuncionario() {
-        funcionarios = new ArrayList();
+        funcionarios = Biblioteca.cargarFuncionarios();
         initComponents();
     }
     
@@ -146,7 +146,7 @@ public class EliminarFuncionario extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
+        new AdminPanel().setVisible(true);
 
     }//GEN-LAST:event_volverActionPerformed
 

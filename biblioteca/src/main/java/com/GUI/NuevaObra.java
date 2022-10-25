@@ -37,7 +37,8 @@ public class NuevaObra extends javax.swing.JFrame {
     public NuevaObra() {
         initComponents();
         this.listModel = (DefaultListModel<Edicion>) this.jListEdiciones.getModel();
-        obras = new ArrayList();
+        ediciones = Biblioteca.cargarEdiciones();
+        obras = Biblioteca.cargarObras(ediciones);
         
     }
     
@@ -460,7 +461,7 @@ public class NuevaObra extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new DarAltaPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
+        new DarAltaPanel().setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void checkColecStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkColecStateChanged

@@ -32,11 +32,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
      * Creates new form DarAltaPanel
      */
     public DarAltaPanel() {
-        //Codigo con proposito de prueba:
-        listadoObras = new ArrayList();
-        listadoEjemplaresDisponibles = new ArrayList();
-        Obra obraTest = new Obra("Calculo 1", "Subtitulo", "Autor1", "Autor2", "Autor3", "Matematica", "Educacion", "9780313338", null, TipoObra.DIARIO);
-        listadoObras.add(obraTest);
+        funcionarios = Biblioteca.cargarFuncionarios();
+        ediciones = Biblioteca.cargarEdiciones();
+        listadoObras = Biblioteca.cargarObras(ediciones);
+        listadoEjemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(listadoObras);
+        ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(listadoObras);
+        
         //Codigo que o es de prueba:
         
         
@@ -275,12 +276,12 @@ public class DarAltaPanel extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new AdminPanel(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones,ejemplaresDeBaja).setVisible(true);
+        new AdminPanel().setVisible(true);
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void nuevaObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaObraBtnActionPerformed
       this.setVisible(false);
-      new NuevaObra(funcionarios,listadoEjemplaresDisponibles,listadoObras,ediciones,ejemplaresDeBaja).setVisible(true);
+      new NuevaObra().setVisible(true);
     }//GEN-LAST:event_nuevaObraBtnActionPerformed
 
     private void guardarEjemplarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEjemplarBtnActionPerformed

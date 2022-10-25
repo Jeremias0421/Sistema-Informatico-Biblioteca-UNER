@@ -4,6 +4,7 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
 import com.biblioteca.Funcionario;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class FuncionarioPanel extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
-    ArrayList<Ejemplar> ejemplaresDIsponibles = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     ArrayList<Ejemplar> ejemplaresDeBaja = null;
@@ -28,12 +29,17 @@ public class FuncionarioPanel extends javax.swing.JFrame {
      * Creates new form FuncionarioPanel
      */
     public FuncionarioPanel() {
+        funcionarios = Biblioteca.cargarFuncionarios();
+        ediciones = Biblioteca.cargarEdiciones();
+        obras = Biblioteca.cargarObras(ediciones);
+        ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
+        ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
         initComponents();
     }
     
     public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList,ArrayList<Ejemplar> deBajaList, Funcionario funcionario){
         funcionarios = funcionariosList;
-        ejemplaresDIsponibles = disponiblesList;
+        ejemplaresDisponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
         ejemplaresDeBaja = deBajaList;
@@ -180,12 +186,12 @@ public class FuncionarioPanel extends javax.swing.JFrame {
 
     private void tomarPrestamoButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarPrestamoButonActionPerformed
         this.setVisible(false);
-        new TomarPrestamoPanel(funcionarios, ejemplaresDIsponibles, obras, ediciones, ejemplaresDeBaja, sesionActual).setVisible(true);
+        new TomarPrestamoPanel().setVisible(true);
     }//GEN-LAST:event_tomarPrestamoButonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.setVisible(false);
-        new Login(funcionarios, ejemplaresDIsponibles,obras, ediciones,ejemplaresDeBaja).setVisible(true);
+        new Login().setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
