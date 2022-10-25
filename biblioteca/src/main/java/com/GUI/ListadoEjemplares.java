@@ -4,17 +4,45 @@
  */
 package com.GUI;
 
+import com.biblioteca.Biblioteca;
+import com.biblioteca.Edicion;
+import com.biblioteca.Ejemplar;
+import com.biblioteca.Funcionario;
+import com.biblioteca.Lector;
+import com.biblioteca.Obra;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dalzo
  */
 public class ListadoEjemplares extends javax.swing.JFrame {
 
+    ArrayList<Funcionario> funcionarios = null;
+    ArrayList<Ejemplar> ejemplaresDisponibles = null;
+    ArrayList<Obra> obras = null;
+    ArrayList<Edicion> ediciones = null;
+    ArrayList<Ejemplar> ejemplaresDeBaja = null;
+    ArrayList<Lector> lectores = null;
+    ArrayList<Ejemplar> ejemplaresPrestados = null;
+    ArrayList<Ejemplar> ejemplaresReservados = null;
+    
+    
     /**
      * Creates new form ListadoEjemplares
      */
     public ListadoEjemplares() {
+        funcionarios = Biblioteca.cargarFuncionarios();
+        ediciones = Biblioteca.cargarEdiciones();
+        obras = Biblioteca.cargarObras(ediciones);
+        ejemplaresDisponibles = Biblioteca.cargarEjemplaresDisponibles(obras);
+        ejemplaresDeBaja = Biblioteca.cargarEjemplaresDeBaja(obras);
+        lectores = Biblioteca.cargarLectores();
+        ejemplaresPrestados = new ArrayList(); //Problema de lectura del csv
+        ejemplaresReservados = new ArrayList(); //Problema de lectura del csv
         initComponents();
+        mostrarEjemplares(ejemplaresDisponibles);
     }
 
     /**
@@ -30,6 +58,10 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         tituloPanel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        areaTematica = new javax.swing.JTextField();
+        cartelCodigo = new javax.swing.JTextField();
+        volverBtn = new javax.swing.JButton();
+        buscarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(3, 33, 67));
@@ -74,6 +106,43 @@ public class ListadoEjemplares extends javax.swing.JFrame {
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 740, 300));
 
+        areaTematica.setBackground(new java.awt.Color(0, 8, 16));
+        areaTematica.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(areaTematica, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 250, -1));
+
+        cartelCodigo.setEditable(false);
+        cartelCodigo.setBackground(new java.awt.Color(3, 33, 67));
+        cartelCodigo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        cartelCodigo.setText("Area Tematica");
+        cartelCodigo.setBorder(null);
+        cartelCodigo.setFocusable(false);
+        bg.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 110, 20));
+
+        volverBtn.setBackground(new java.awt.Color(96, 106, 135));
+        volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volverBtn.setForeground(new java.awt.Color(255, 255, 255));
+        volverBtn.setText("Volver");
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverBtnActionPerformed(evt);
+            }
+        });
+        bg.add(volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 30));
+
+        buscarBtn.setBackground(new java.awt.Color(96, 106, 135));
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buscarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        buscarBtn.setText("Buscar");
+        buscarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
+        bg.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 130, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,6 +157,33 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
+        this.setVisible(false);
+        new FuncionarioPanel().setVisible(true);
+    }//GEN-LAST:event_volverBtnActionPerformed
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        if(areaTematica.getText().isEmpty()){
+            mostrarEjemplares(ejemplaresDisponibles);
+        }else{
+            mostrarEjemplares(Biblioteca.ejemplaresDisponiblesSegunTematica(areaTematica.getText(), obras));
+        }
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void mostrarEjemplares(ArrayList<Ejemplar> ejemplares){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (Ejemplar ejemplar : ejemplares) {
+            Object[] row = new Object[4];
+            row[0] = ejemplar.getObra().getTitulo();
+            row[1] = ejemplar.getSeUbica();
+            row[2] = ejemplar.getCodigoDeBarra();
+            row[3] = ejemplar.getObra().getAreaTematica();
+            model.addRow(row);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -124,9 +220,13 @@ public class ListadoEjemplares extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField areaTematica;
     private javax.swing.JPanel bg;
+    private javax.swing.JButton buscarBtn;
+    private javax.swing.JTextField cartelCodigo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel tituloPanel;
+    private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 }
