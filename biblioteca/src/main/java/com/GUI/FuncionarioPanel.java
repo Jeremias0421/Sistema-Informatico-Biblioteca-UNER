@@ -21,6 +21,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     ArrayList<Ejemplar> ejemplaresDeBaja = null;
+    Funcionario sesionActual = null;
 
     
     /**
@@ -30,11 +31,13 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList){
+    public FuncionarioPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList,ArrayList<Ejemplar> deBajaList, Funcionario funcionario){
         funcionarios = funcionariosList;
         ejemplaresDIsponibles = disponiblesList;
         obras = obrasList;
         ediciones = edicionesList;
+        ejemplaresDeBaja = deBajaList;
+        sesionActual = funcionario;
         initComponents();
     }
 
@@ -176,12 +179,13 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_listEjemplaresBotonActionPerformed
 
     private void tomarPrestamoButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarPrestamoButonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new TomarPrestamoPanel(funcionarios, ejemplaresDIsponibles, obras, ediciones, ejemplaresDeBaja, sesionActual).setVisible(true);
     }//GEN-LAST:event_tomarPrestamoButonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.setVisible(false);
-        new Login().setVisible(true);
+        new Login(funcionarios, ejemplaresDIsponibles,obras, ediciones,ejemplaresDeBaja).setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**

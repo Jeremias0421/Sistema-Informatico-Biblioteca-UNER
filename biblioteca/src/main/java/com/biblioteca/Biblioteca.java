@@ -21,8 +21,6 @@ import com.GUI.Login;
  */
 public class Biblioteca {
 
-    static ArrayList<Ejemplar> ejemplaresPrestados = new ArrayList<Ejemplar>();
-    static ArrayList<Ejemplar> ejemplaresReservados = new ArrayList<Ejemplar>();
     static ArrayList<Obra> listadoDeObras = new ArrayList<Obra>();
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
@@ -32,6 +30,9 @@ public class Biblioteca {
         ArrayList<Obra> obras = cargarObras(edicions);
         ArrayList<Ejemplar> ejemplaresDisponibles = cargarEjemplaresDisponibles(obras);
         ArrayList<Ejemplar> ejemplaresDeBaja = cargarEjemplaresDeBaja(obras);
+        ArrayList<Ejemplar> ejemplaresPrestados;
+        ArrayList<Ejemplar> ejemplaresRerservados;
+        ArrayList<Lector> lectores;
 
 
         //Look and Feel set
@@ -109,7 +110,7 @@ public class Biblioteca {
         return lista;
     }
 
-    public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha) {
+    public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha, ArrayList<Ejemplar> ejemplaresReservados) {
         ArrayList<Ejemplar> e = new ArrayList<>();
 
         for (Ejemplar ejemplar : ejemplaresReservados) {

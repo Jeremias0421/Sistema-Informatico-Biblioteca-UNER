@@ -204,7 +204,7 @@ public class Login extends javax.swing.JFrame {
             if (funcionario.getTipoFuncionario().equals(TipoFuncionario.ADMIN)){
                 new AdminPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja).setVisible(true);
             }else{
-                new FuncionarioPanel().setVisible(true);
+                new FuncionarioPanel(funcionarios,ejemplaresDisponibles,obras,ediciones,ejemplaresDeBaja,funcionario).setVisible(true);
             }
         }else{
             JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
