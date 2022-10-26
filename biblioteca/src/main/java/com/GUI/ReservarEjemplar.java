@@ -11,6 +11,7 @@ import com.biblioteca.Funcionario;
 import com.biblioteca.Lector;
 import com.biblioteca.Lectura;
 import com.biblioteca.Obra;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dalzo
  */
-public class TomarPrestamoPanel extends javax.swing.JFrame {
+public class ReservarEjemplar extends javax.swing.JFrame {
 
     ArrayList<Funcionario> funcionarios = null;
     ArrayList<Ejemplar> ejemplaresDisponibles = null;
@@ -32,13 +33,13 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
     Funcionario sesionActual = Biblioteca.getSesionActual();
     
     //Listas locales
-    ArrayList<Ejemplar> ejemplaresPorPrestar = null;
+    ArrayList<Ejemplar> ejemplaresPorReservar = null;
 
     
     /**
      * Creates new form TomarPrestamoPanel
      */
-    public TomarPrestamoPanel() {
+    public ReservarEjemplar() {
         funcionarios = Biblioteca.cargarFuncionarios();
         ediciones = Biblioteca.cargarEdiciones();
         obras = Biblioteca.cargarObras(ediciones);
@@ -48,17 +49,6 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         ejemplaresPrestados = new ArrayList(); //Problema de lectura del csv
         ejemplaresReservados = new ArrayList(); //Problema de lectura del csv
         //Final
-        initComponents();
-        mostrarEjemplares();
-    }
-    
-    public TomarPrestamoPanel(ArrayList<Funcionario> funcionariosList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList,ArrayList<Ejemplar> deBajaList, Funcionario funcionario){
-        funcionarios = funcionariosList;
-        ejemplaresDisponibles = disponiblesList;
-        obras = obrasList;
-        ediciones = edicionesList;
-        ejemplaresDeBaja = deBajaList;
-        sesionActual = funcionario;
         initComponents();
         mostrarEjemplares();
     }
@@ -75,14 +65,12 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         tituloPanel = new javax.swing.JLabel();
-        plazo = new javax.swing.JSpinner();
+        fecha = new javax.swing.JFormattedTextField();
         cartelCodigo = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
         volverBtn = new javax.swing.JButton();
         prestarBtn = new javax.swing.JButton();
-        cartelPlazo = new javax.swing.JTextField();
-        cartelLectura = new javax.swing.JTextField();
-        tipoLectura = new javax.swing.JComboBox<>();
+        cartelFecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -95,12 +83,14 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
 
         tituloPanel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tituloPanel.setForeground(new java.awt.Color(255, 255, 255));
-        tituloPanel.setText("TOMA DE PRESTAMO");
+        tituloPanel.setText("RESERVA DE EJEMPLAR");
         tituloPanel.setFocusable(false);
         bg.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
-        plazo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        bg.add(plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 60, -1));
+        fecha.setBackground(new java.awt.Color(0, 8, 16));
+        fecha.setForeground(new java.awt.Color(255, 255, 255));
+        fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        bg.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 220, -1));
 
         cartelCodigo.setEditable(false);
         cartelCodigo.setBackground(new java.awt.Color(3, 33, 67));
@@ -139,28 +129,14 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         });
         bg.add(prestarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 130, 30));
 
-        cartelPlazo.setEditable(false);
-        cartelPlazo.setBackground(new java.awt.Color(3, 33, 67));
-        cartelPlazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        cartelPlazo.setForeground(new java.awt.Color(255, 255, 255));
-        cartelPlazo.setText("Plazo");
-        cartelPlazo.setBorder(null);
-        cartelPlazo.setFocusable(false);
-        bg.add(cartelPlazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, -1));
-
-        cartelLectura.setEditable(false);
-        cartelLectura.setBackground(new java.awt.Color(3, 33, 67));
-        cartelLectura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        cartelLectura.setForeground(new java.awt.Color(255, 255, 255));
-        cartelLectura.setText("Lectura en");
-        cartelLectura.setBorder(null);
-        cartelLectura.setFocusable(false);
-        bg.add(cartelLectura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
-
-        tipoLectura.setBackground(new java.awt.Color(0, 8, 16));
-        tipoLectura.setForeground(new java.awt.Color(255, 255, 255));
-        tipoLectura.setModel(new javax.swing.DefaultComboBoxModel<>(Lectura.values()));
-        bg.add(tipoLectura, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 250, -1));
+        cartelFecha.setEditable(false);
+        cartelFecha.setBackground(new java.awt.Color(3, 33, 67));
+        cartelFecha.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelFecha.setForeground(new java.awt.Color(255, 255, 255));
+        cartelFecha.setText("Fecha");
+        cartelFecha.setBorder(null);
+        cartelFecha.setFocusable(false);
+        bg.add(cartelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 50, -1));
 
         jTable1.setBackground(new java.awt.Color(0, 8, 16));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +174,7 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         jTable1.getTableHeader().setResizingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 740, 300));
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 740, 330));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,11 +197,11 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
 
     private void prestarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestarBtnActionPerformed
         Lector lector = getLector();
-        ejemplaresPorPrestar = generarListaEjemplares();
+        ejemplaresPorReservar = generarListaEjemplares();
         if(lector != null){
             //Realiza el prestamo
-            if(!ejemplaresPorPrestar.isEmpty()){
-                realizarPrestamo(lector);
+            if(!ejemplaresPorReservar.isEmpty()){
+                realizarReserva(lector);
                 mostrarEjemplares();
             }else{
                 JOptionPane.showConfirmDialog(rootPane, "No hay ejemplares seleccionados", "Error", 2);
@@ -245,27 +221,21 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
         return null;
     }
     
-    private void realizarPrestamo(Lector lector){
-        if(tipoLectura.getSelectedItem().equals(Lectura.DOMICILIO)){
+    private void realizarReserva(Lector lector){
+        String formattedDate = fecha.getText();
+            String splittedDate[] = formattedDate.split("/");
+
+            LocalDate fechaReservada = LocalDate.of(
+                        Integer.parseInt(splittedDate[2]),
+                        Integer.parseInt(splittedDate[1]),
+                        Integer.parseInt(splittedDate[0])
+            );
+            
             try{
-                int plazoValue = (Integer) plazo.getValue();
-                Biblioteca.darPrestamoDomicilio(lector, ejemplaresPorPrestar, sesionActual, plazoValue, ejemplaresPrestados, ejemplaresDisponibles, ejemplaresReservados);
-                //TODO: guardar cambios
+                Biblioteca.reservarEjemplares(lector, fechaReservada, ejemplaresPorReservar, ejemplaresDisponibles, ejemplaresReservados);
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
             }
-        }else if((tipoLectura.getSelectedItem().equals(Lectura.SALA))){
-            try{
-                Biblioteca.darPrestamoSala(lector, ejemplaresPorPrestar, sesionActual, ejemplaresPrestados, ejemplaresDisponibles, ejemplaresReservados);
-                //TODO: guardar cambios
-                //No implementar hasta corregir problema con csv
-                //Biblioteca.guardarEjemplaresDisponibles(ejemplaresDeBaja);
-                Biblioteca.guardarEjemplaresReservados(ejemplaresReservados);
-                Biblioteca.guardarEjemplaresPrestados(ejemplaresPrestados);
-            }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", 2);
-            }
-        }
     }
     
     private ArrayList<Ejemplar> generarListaEjemplares(){
@@ -311,20 +281,21 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TomarPrestamoPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarEjemplar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TomarPrestamoPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarEjemplar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TomarPrestamoPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarEjemplar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TomarPrestamoPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarEjemplar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TomarPrestamoPanel().setVisible(true);
+                new ReservarEjemplar().setVisible(true);
             }
         });
     }
@@ -332,14 +303,12 @@ public class TomarPrestamoPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JTextField cartelCodigo;
-    private javax.swing.JTextField cartelLectura;
-    private javax.swing.JTextField cartelPlazo;
+    private javax.swing.JTextField cartelFecha;
     private javax.swing.JTextField dni;
+    private javax.swing.JFormattedTextField fecha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JSpinner plazo;
     private javax.swing.JButton prestarBtn;
-    private javax.swing.JComboBox<Lectura> tipoLectura;
     private javax.swing.JLabel tituloPanel;
     private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables

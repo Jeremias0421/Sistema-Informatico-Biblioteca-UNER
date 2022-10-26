@@ -21,14 +21,24 @@ import javax.swing.JOptionPane;
 public class NuevoLector extends javax.swing.JFrame {
 
     ArrayList<Lector> lectores = null;
+    String parentClass = null;
     
     /**
      * Creates new form NuevoLector
      */
+    public NuevoLector(String parentClass) {
+        lectores = Biblioteca.cargarLectores();
+        initComponents();
+        
+        this.parentClass = parentClass;
+   }
+    
     public NuevoLector() {
         lectores = Biblioteca.cargarLectores();
         initComponents();
-    }
+        
+        this.parentClass = parentClass;
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -424,7 +434,11 @@ public class NuevoLector extends javax.swing.JFrame {
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
         this.setVisible(false);
-        new TomarPrestamoPanel().setVisible(true);
+        if(parentClass.equals(TomarPrestamoPanel.class.getName())){
+            new TomarPrestamoPanel().setVisible(true);
+        }else{
+            new ReservarEjemplar().setVisible(true);
+        }
     }//GEN-LAST:event_volverBtnActionPerformed
 
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
