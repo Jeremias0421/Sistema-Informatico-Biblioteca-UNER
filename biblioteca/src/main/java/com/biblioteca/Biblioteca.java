@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,7 +14,10 @@ import java.util.ArrayList;
 import com.GUI.Login;
 
 /**
- * Clase que representa a un sistema de Biblioteca.
+ * Clase principal del sistema que permite transacciones de prestamos y
+ * devoluciones a los clientes de la biblioteca.
+ * 
+ * Esta clase ademas permite el alta y baja de ejemplares.
  * 
  * @author Ezequiel Dalzotto
  * @author Jeremias Panozzo
@@ -23,12 +25,15 @@ import com.GUI.Login;
  */
 public class Biblioteca {
 
+    /**Listado de los clientes de la Biblioteca */
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
     /**
-     *
+     * Inicio del programa.
+     * 
      * @param args
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException si los archivos con los datos no son
+     *                               encontrados.
      */
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<Funcionario> funcionarios = cargarFuncionarios();
@@ -64,8 +69,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @return
+     * Lista a todos aquellos lectores que no han devuelto al momento los ejemplares
+     * prestados.
+     * 
+     * @return listado de Lectores.
      */
     public ArrayList<Lector> lectoresConObrasNoDevueltas() {
         ArrayList<Lector> listado = new ArrayList<>();
@@ -81,10 +88,12 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ID
-     * @param ejemplaresDisponibles
-     * @return
+     * Permite buscar un determinado Ejemplar que se encuentra disponible para un
+     * Prestamo.
+     * 
+     * @param ID                    identificacion del Ejemplar
+     * @param ejemplaresDisponibles ejemplares a buscar
+     * @return ejemplar solicitado
      */
     public static Ejemplar buscarEjemplar(String ID, ArrayList<Ejemplar> ejemplaresDisponibles) {
         Ejemplar e = null;
@@ -112,10 +121,12 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param areaReferencia
-     * @param listadoDeObras
-     * @return
+     * Permite listar a todos aquellos ejemplares, segun el area tematica
+     * solicitada, que se encuentran disponibles para Prestamos.
+     * 
+     * @param areaReferencia area de referencia a buscar
+     * @param listadoDeObras lista de obras en donde buscar
+     * @return lista con los ejemplares pertenecientes al area tematica solicitada.
      */
     public static ArrayList<Ejemplar> ejemplaresDisponiblesSegunTematica(String areaReferencia,
             ArrayList<Obra> listadoDeObras) {
@@ -132,15 +143,16 @@ public class Biblioteca {
                 }
             }
         }
-
         return lista;
     }
 
     /**
-     *
-     * @param fecha
-     * @param ejemplaresReservados
-     * @return
+     * Permite listar a todos aquellos ejemplares que han sido reservados en la
+     * fecha indicada.
+     * 
+     * @param fecha                fecha solicitada a buscar
+     * @param ejemplaresReservados lista de ejemplares reservados
+     * @return lista con los ejemplares reservados despues de la fecha
      */
     public static ArrayList<Ejemplar> obrasReservadasPorFecha(LocalDate fecha,
             ArrayList<Ejemplar> ejemplaresReservados) {
@@ -148,14 +160,13 @@ public class Biblioteca {
 
         for (Ejemplar ejemplar : ejemplaresReservados) {
 
-            
-            if(ejemplar.getReserva() != null){
+            if (ejemplar.getReserva() != null) {
                 LocalDate f = ejemplar.getReserva().getFecha();
                 if (f.isAfter(fecha)) {
                     e.add(ejemplar);
                 }
             }
-            
+
         }
         return e;
     }
@@ -168,10 +179,11 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param editorial
-     * @param ejemplaresDisponibles
-     * @return
+     * Lista los ejemplares pertenecientes a una editorial.
+     * 
+     * @param editorial             editorial a buscar
+     * @param ejemplaresDisponibles lista de ejemplares en donde buscar
+     * @return lista con los ejemplares pertenecientes a la editorial solicitada
      */
     public static ArrayList<Obra> listarPorEditorial(String editorial, ArrayList<Obra> obras) {
         ArrayList<Obra> lista = new ArrayList<>();
@@ -187,14 +199,24 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param lector
-     * @param ejemplares
-     * @param funcionario
-     * @param plazo
-     * @param prestados
-     * @param disponibles
-     * @param reservados
+     * Permite dar un Prestamo a domicilio a un determinado Lector.
+     * 
+     * Un Prestamo a domicilio contiene un plazo dias en la cual el Lector debe
+     * devolver los ejemplares que solicito.
+     * 
+     * @param lector      lector que solicita el Prestamo
+     * @param ejemplares  ejemplares solicitados
+     * @param funcionario funcionario que otorga el Prestamo
+     * @param plazo       plazo de dias
+     * @param prestados   lista de ejemplares prestados
+     * @param disponibles lista de ejemplares disponibles
+     * @param reservados  lista de ejemplares reservados
+     * @exception IllegalArgumentException si el ejemplar se encuentra reservado por
+     *                                     otro Lector distinto al que solicita el
+     *                                     Prestamo, si la reserva ha vencido, o si
+     *                                     el Lector se encuentra
+     *                                     multado
+     * @see Prestamo
      */
     public static void darPrestamoDomicilio(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario,
             int plazo, ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles, ArrayList<Ejemplar> reservados) {
@@ -237,13 +259,19 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param lector
-     * @param ejemplares
-     * @param funcionario
-     * @param prestados
-     * @param disponibles
-     * @param reservados
+     * Permite dar un Prestamo en sala a un determinado Lector.
+     * 
+     * @param lector      lector que solicita el Prestamo
+     * @param ejemplares  ejemplares solicitados
+     * @param funcionario funcionario que otorga el Prestamo
+     * @param prestados   lista de ejemplares prestados
+     * @param disponibles lista de ejemplares disponbles
+     * @param reservados  lista de ejemplares reservados
+     * @exception IllegalArgumentException si el ejemplar se encuentra reservado por
+     *                                     otro Lector distinto al que solicita el
+     *                                     Prestamo, si la reserva ha vencido, o si
+     *                                     el Lector se encuentra
+     *                                     multado
      */
     public static void darPrestamoSala(Lector lector, ArrayList<Ejemplar> ejemplares, Funcionario funcionario,
             ArrayList<Ejemplar> prestados, ArrayList<Ejemplar> disponibles, ArrayList<Ejemplar> reservados) {
@@ -288,11 +316,15 @@ public class Biblioteca {
     }
 
     /**
+     * Permite la devolucion de un Prestamo.
+     * 
+     * Si el plazo del Prestamo ha vencido el Lector sera multado, haciendo que no
+     * pueda solicitar otro Prestamo hasta que el plazo se venza.
      *
-     * @param prestamo
-     * @param funcionario
-     * @param prestados
-     * @param disponibles
+     * @param prestamo    prestamo a devolver
+     * @param funcionario funcionario que toma la devolucion
+     * @param prestados   lista de ejemplares prestados
+     * @param disponibles lista de ejemplares disponibles
      */
     public static void devolverPrestamo(Prestamo prestamo, Funcionario funcionario, ArrayList<Ejemplar> prestados,
             ArrayList<Ejemplar> disponibles) {
@@ -311,12 +343,16 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param lector
-     * @param fecha
-     * @param ejemplares
-     * @param disponibles
-     * @param reservados
+     * Permite la reserva de ejemplares, impidiendo que otros lectores pudieran
+     * reservar o pedir prestado el ejemplar.
+     * 
+     * @param lector      lector que solicita la reserva
+     * @param fecha       fecha para la cual se reserva
+     * @param ejemplares  ejemplares a reservar
+     * @param disponibles ejemplares disponibles
+     * @param reservados  ejemplares reservados
+     * @exception IllegalArgumentException si el ejemplar no esta disponible, o si
+     *                                     el lector esta multado
      */
     public static void reservarEjemplares(Lector lector, LocalDate fecha, ArrayList<Ejemplar> ejemplares,
             ArrayList<Ejemplar> disponibles,
@@ -343,10 +379,12 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param lector
-     * @param reservados
-     * @param disponibles
+     * Permite levantar la reserva permitiendo al Lector solicitar el Prestamo que
+     * reservo.
+     * 
+     * @param lector      Lector que solicito la reserva
+     * @param reservados  ejemplares que reservo el Lector
+     * @param disponibles lista de ejemplares disponibles
      */
     public static void levantarReserva(Lector lector, ArrayList<Ejemplar> reservados, ArrayList<Ejemplar> disponibles) {
         for (Ejemplar ejemplar : lector.getReserva().getEjemplares()) {
@@ -358,10 +396,13 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ejemplar
-     * @param reservados
-     * @param disponibles
+     * Levanta la reserva de la lista de ejemplares reservados. Esto permite que el
+     * Lector
+     * 
+     * @param ejemplar    ejemplar reservdo
+     * @param reservados  lista de ejemplares reservados
+     * @param disponibles lista de ejemplares disponibles
+     * @exception IllegalArgumentException
      */
     public static void reservaVencida(Ejemplar ejemplar, ArrayList<Ejemplar> reservados,
             ArrayList<Ejemplar> disponibles) {
@@ -381,10 +422,11 @@ public class Biblioteca {
     // ****************Manejo de Ficheros**********************
 
     /**
-     *
-     * @return
+     * Permite conocer el Funcionario que se encuentra en la sesion actual del
+     * sistema.
+     * 
+     * @return funcionario logeado
      */
-
     public static Funcionario getSesionActual() {
         ArrayList<Funcionario> tempList = new ArrayList<>();
         try {
@@ -405,8 +447,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param funcionario
+     * Permite guardar los datos del Funcionario que se encuentra logeado
+     * actualmente en el sistema.
+     * 
+     * @param funcionario funcionario logeado
      */
     public static void guardarSesionActual(Funcionario funcionario) {
         try {
@@ -428,8 +472,9 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @return
+     * Lee del archivo funcionarios.csv los datos de los funcionarios.
+     * 
+     * @return lista con los datos de los funcionarios
      */
     public static ArrayList<Funcionario> cargarFuncionarios() {
         ArrayList<Funcionario> retorno = new ArrayList<>();
@@ -453,8 +498,9 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param funcionarios
+     * Escribe los datos de los Funcionarios en el archivo funcionarios.csv.
+     * 
+     * @param funcionarios datos de los funcionarios a escribir
      */
     public static void guardarFuncionarios(ArrayList<Funcionario> funcionarios) {
         try {
@@ -478,8 +524,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @return
+     * Lee del archivo ediciones.csv los datos de las distintas ediciones de los
+     * ejemplares.
+     * 
+     * @return lista con las ediciones
      */
     public static ArrayList<Edicion> cargarEdiciones() {
         ArrayList<Edicion> retorno = new ArrayList<>();
@@ -522,8 +570,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ediciones
+     * Escribe en el archivo ediciones.csv los datos de las distintas ediciones de
+     * los ejemplares.
+     * 
+     * @param ediciones datos de las ediciones a guardar
      */
     public static void guardarEdiciones(ArrayList<Edicion> ediciones) {
         try {
@@ -546,9 +596,11 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param edicions
-     * @return
+     * Lee del arhcivo obras.csv los datos de las distintas obras guardadas en
+     * biblioteca.
+     * 
+     * @param edicions ediciones de las obras
+     * @return lista con las obras
      */
     public static ArrayList<Obra> cargarObras(ArrayList<Edicion> edicions) {
         ArrayList<Obra> retorno = new ArrayList<>();
@@ -580,8 +632,9 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param obras
+     * Escribe en el archivo.csv los datos de las distintas obras disponibles.
+     * 
+     * @param obras obras a guardar
      */
     public static void guardarObras(ArrayList<Obra> obras) {
         try {
@@ -604,9 +657,11 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param obras
-     * @return
+     * Lee del archivo ejemplaresDisponibles.csv los datos de los ejemplares que se
+     * encuentran disponibles.
+     * 
+     * @param obras obras a leer
+     * @return lista con los ejemplares solicitadas
      */
     public static ArrayList<Ejemplar> cargarEjemplaresDisponibles(ArrayList<Obra> obras) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
@@ -652,8 +707,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ejemplares
+     * Escribe los datos de los ejemplares disponibles en el archivo
+     * ejemplaresDisponibles.csv
+     * 
+     * @param ejemplares ejemplares a guardar
      */
     public static void guardarEjemplaresDisponibles(ArrayList<Ejemplar> ejemplares) {
         try {
@@ -676,9 +733,11 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param obras
-     * @return
+     * Lee los ejemplares que se encuentran de baja del archivo ejemplaresDeBaja.csv
+     * 
+     * 
+     * @param obras obras a leer
+     * @return lista de ejemplares que se encuentran de baja
      */
     public static ArrayList<Ejemplar> cargarEjemplaresDeBaja(ArrayList<Obra> obras) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
@@ -729,8 +788,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ejemplares
+     * Escribe los datos de los ejemplares que se encuentran de baja en el arhchivo
+     * ejemplaresDeBaja.csv
+     * 
+     * @param ejemplares lista de ejemplares a guardar
      */
     public static void guardarEjemplaresDeBaja(ArrayList<Ejemplar> ejemplares) {
         try {
@@ -752,11 +813,14 @@ public class Biblioteca {
         }
     }
 
+    // No funciona
     /**
-     *
-     * @param obras
-     * @param lectors
-     * @return
+     * Lee los ejemplares que se encuentran de reservados por lectores del archivo
+     * ejemplaresReservados.csv
+     * 
+     * @param obras   obras con los ejemplares reservados
+     * @param lectors listado de lectores que reservaron
+     * @return lista de ejemplares que se encuentran reservados
      */
     public static ArrayList<Ejemplar> cargarEjemplaresRservados(ArrayList<Obra> obras, ArrayList<Lector> lectors) {
         ArrayList<Ejemplar> retorno = new ArrayList<>();
@@ -817,8 +881,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ejemplaresReservados
+     * Escribe los datos de los ejemplares que se encuentran reservados por lectores
+     * en el archivo ejemplaresReservados.csv
+     * 
+     * @param ejemplaresReservados lista de ejemplares reservados
      */
     public static void guardarEjemplaresReservados(ArrayList<Ejemplar> ejemplaresReservados) {
         try {
@@ -842,11 +908,13 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param obras
-     * @param lectors
-     * @param funcionarios
-     * @return
+     * Escribe los datos de los ejemplares que se encuentran en prestamo en el
+     * archivo ejemplaresPrestados.csv
+     * 
+     * @param obras        obras perteneciente a los ejemplares
+     * @param lectors      lectores que solicitaron prestamos
+     * @param funcionarios funcionarios que tomaron el prestamo
+     * @return lista de ejemplares prestados
      */
     public static ArrayList<Ejemplar> cargarEjemplaresPrestados(ArrayList<Obra> obras, ArrayList<Lector> lectors,
             ArrayList<Funcionario> funcionarios) {
@@ -932,8 +1000,10 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param ejemplaresPrestados
+     * Escribe los datos de los ejemplares que se encuentran en prestamo en el
+     * archivo ejemplaresPrestados.csv
+     * 
+     * @param ejemplaresPrestados lista con los ejemplares en prestamo
      */
     public static void guardarEjemplaresPrestados(ArrayList<Ejemplar> ejemplaresPrestados) {
         try {
@@ -957,8 +1027,9 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @return
+     * Lee los lectores del archivo lectores.csv
+     * 
+     * @return listado con los lectores guardados
      */
     public static ArrayList<Lector> cargarLectores() {
         ArrayList<Lector> retorno = new ArrayList<>();
@@ -1033,17 +1104,18 @@ public class Biblioteca {
     }
 
     /**
-     *
-     * @param funcionarios
+     * Escribe los datos de los lectores en un archivo lectores.csv
+     * 
+     * @param lectores listado de lectores a guardar
      */
-    public static void guardarLectores(ArrayList<Lector> funcionarios) {
+    public static void guardarLectores(ArrayList<Lector> lectores) {
         try {
             PrintWriter w = new PrintWriter("csv/lectores.csv");
             w.print("");
             w.close();
             // BufferedReader br = new BufferedReader(new FileReader("csv/lectores.csv"));
             FileWriter fw = new FileWriter("csv/lectores.csv", false);
-            for (Lector f : funcionarios) {
+            for (Lector f : lectores) {
                 fw.append(f.toCSV());
             }
             fw.flush();
