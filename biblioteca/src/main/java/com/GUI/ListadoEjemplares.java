@@ -7,9 +7,15 @@ package com.GUI;
 import com.biblioteca.Biblioteca;
 import com.biblioteca.Edicion;
 import com.biblioteca.Ejemplar;
+import com.biblioteca.Estudiante;
+import com.biblioteca.Formato;
 import com.biblioteca.Funcionario;
+import com.biblioteca.Identificacion;
 import com.biblioteca.Lector;
 import com.biblioteca.Obra;
+import com.biblioteca.TipoDni;
+import com.biblioteca.TipoObra;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +34,9 @@ public class ListadoEjemplares extends javax.swing.JFrame {
     ArrayList<Ejemplar> ejemplaresPrestados = null;
     ArrayList<Ejemplar> ejemplaresReservados = null;
     
+    //Para demostracion
+    ArrayList<Ejemplar> ejemplaresGral = null;
+    
     
     /**
      * Creates new form ListadoEjemplares
@@ -42,7 +51,8 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         ejemplaresPrestados = new ArrayList(); //Problema de lectura del csv
         ejemplaresReservados = new ArrayList(); //Problema de lectura del csv
         initComponents();
-        mostrarEjemplares(ejemplaresDisponibles);
+        setup();
+        mostrarEjemplares(ejemplaresGral);
     }
 
     /**
@@ -56,12 +66,15 @@ public class ListadoEjemplares extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         tituloPanel = new javax.swing.JLabel();
+        fReserva = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         areaTematica = new javax.swing.JTextField();
         cartelCodigo = new javax.swing.JTextField();
         volverBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
+        filtrarReserva = new javax.swing.JButton();
+        cartelCodigo1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(3, 33, 67));
@@ -74,23 +87,28 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         tituloPanel.setForeground(new java.awt.Color(255, 255, 255));
         tituloPanel.setText("LISTADO DE EJEMPLARES");
         tituloPanel.setFocusable(false);
-        bg.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
+        bg.add(tituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
+
+        fReserva.setBackground(new java.awt.Color(0, 8, 16));
+        fReserva.setForeground(new java.awt.Color(255, 255, 255));
+        fReserva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        bg.add(fReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 250, -1));
 
         jTable1.setBackground(new java.awt.Color(0, 8, 16));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Titulo", " Identificacion", "Codigo", "Area de Referencia"
+                "Titulo", " Identificacion", "Codigo", "Area de Referencia", "Fecha Reserva"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -105,7 +123,7 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         jTable1.getTableHeader().setResizingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 740, 300));
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 300));
 
         areaTematica.setBackground(new java.awt.Color(0, 8, 16));
         areaTematica.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,10 +133,10 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         cartelCodigo.setBackground(new java.awt.Color(3, 33, 67));
         cartelCodigo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         cartelCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        cartelCodigo.setText("Area Tematica");
+        cartelCodigo.setText("Fecha Reserva");
         cartelCodigo.setBorder(null);
         cartelCodigo.setFocusable(false);
-        bg.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 110, 20));
+        bg.add(cartelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 110, 20));
 
         volverBtn.setBackground(new java.awt.Color(96, 106, 135));
         volverBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -135,20 +153,41 @@ public class ListadoEjemplares extends javax.swing.JFrame {
         buscarBtn.setBackground(new java.awt.Color(96, 106, 135));
         buscarBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         buscarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        buscarBtn.setText("Buscar");
+        buscarBtn.setText("Buscar por area");
         buscarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
             }
         });
-        bg.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 130, 30));
+        bg.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, 170, 30));
+
+        filtrarReserva.setBackground(new java.awt.Color(96, 106, 135));
+        filtrarReserva.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        filtrarReserva.setForeground(new java.awt.Color(255, 255, 255));
+        filtrarReserva.setText("Filtrar por fecha reserva");
+        filtrarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        filtrarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarReservaActionPerformed(evt);
+            }
+        });
+        bg.add(filtrarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 170, 30));
+
+        cartelCodigo1.setEditable(false);
+        cartelCodigo1.setBackground(new java.awt.Color(3, 33, 67));
+        cartelCodigo1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        cartelCodigo1.setForeground(new java.awt.Color(255, 255, 255));
+        cartelCodigo1.setText("Area Tematica");
+        cartelCodigo1.setBorder(null);
+        cartelCodigo1.setFocusable(false);
+        bg.add(cartelCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 110, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,24 +204,99 @@ public class ListadoEjemplares extends javax.swing.JFrame {
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if(areaTematica.getText().isEmpty()){
-            mostrarEjemplares(ejemplaresDisponibles);
+            mostrarEjemplares(ejemplaresGral);
         }else{
             mostrarEjemplares(Biblioteca.ejemplaresDisponiblesSegunTematica(areaTematica.getText(), obras));
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void filtrarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarReservaActionPerformed
+        if(fReserva.getText().isEmpty()){
+            mostrarEjemplares(ejemplaresGral);
+        }else{
+            String formattedDate = fReserva.getText();
+            String splittedDate[] = formattedDate.split("/");
+
+            LocalDate fechaReserva = LocalDate.of(
+                        Integer.parseInt(splittedDate[2]),
+                        Integer.parseInt(splittedDate[1]),
+                        Integer.parseInt(splittedDate[0])
+            );
+            
+            mostrarEjemplares(Biblioteca.obrasReservadasPorFecha(fechaReserva, ejemplaresGral));
+        }
+        fReserva.setText(null);
+    }//GEN-LAST:event_filtrarReservaActionPerformed
 
     private void mostrarEjemplares(ArrayList<Ejemplar> ejemplares){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
         for (Ejemplar ejemplar : ejemplares) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = ejemplar.getObra().getTitulo();
             row[1] = ejemplar.getSeUbica();
             row[2] = ejemplar.getCodigoDeBarra();
             row[3] = ejemplar.getObra().getAreaTematica();
+            if(ejemplar.getReserva() != null){
+                row[4] = ejemplar.getReserva().getFecha();
+            }
             model.addRow(row);
         }
+    }
+    
+    
+    //Demostracion cargando Objetos en Memoria
+    public void setup() {
+        LocalDate nacimiento = LocalDate.of(2002, 3, 04);
+        Estudiante estudiante = new Estudiante("Jeremias", "Panozzo", "Masculino", nacimiento, "44441299", TipoDni.DNI_TARJETA,
+                "jeremiaspanozzo@gmail.com", "3456025247", "Argentino", "Concejal Veiga 1881", 3200, "Concordia",
+                "Argentina");
+        
+        Edicion edicion1 = new Edicion("Editorial", "Argentina", 0, 
+        2008, 2, 890, "Español", Formato.PAPEL, null);
+        ArrayList<Edicion> edicionesTemp = new ArrayList<>();
+        ediciones.add(edicion1);
+
+        Obra obra = new Obra("Titulo", "subtitulo", "autor01", "autor02", 
+            "autor03", "Matematica", "Educativo", "9789700502748", edicionesTemp, TipoObra.LIBRO);
+        edicion1.setObra(obra);
+        obras.add(obra);
+
+        Identificacion ubi = new Identificacion(null, 1, 1, 1, 1, 1);
+        Ejemplar ejemplar1 = new Ejemplar("Observaciones", "9789700502748", 
+                LocalDate.of(2008, 4, 21), "Donacion", ubi, obra);
+        ubi.setSeUbica(ejemplar1);
+        
+
+        Identificacion ubi2 = new Identificacion(null, 1, 1, 1, 1, 2);
+        Ejemplar ejemplar2 = new Ejemplar("Observaciones", "9789700502748", 
+                LocalDate.of(2008, 4, 21), "Donacion", ubi2, obra);
+        ubi2.setSeUbica(ejemplar2);
+
+        ArrayList<Ejemplar> ejemplaresPorReservar = new ArrayList();
+        
+        ejemplaresPorReservar = new ArrayList<>();
+        ejemplaresPorReservar.add(ejemplar1);
+        ejemplaresPorReservar.add(ejemplar2);
+
+        //Ejemplares Disponibles
+        ejemplaresDisponibles.add(ejemplar1);
+        ejemplaresDisponibles.add(ejemplar2);
+
+        LocalDate fechaReserva = LocalDate.of(2022, 10, 28);
+        Biblioteca.reservarEjemplares(estudiante, fechaReserva, ejemplaresPorReservar, ejemplaresDisponibles,
+        ejemplaresReservados);
+        
+        ejemplaresGral = new ArrayList();
+        for (Ejemplar ejemplar : ejemplaresDisponibles) {
+            ejemplaresGral.add(ejemplar);
+        }
+        for (Ejemplar ejemplar : ejemplaresReservados) {
+            ejemplaresGral.add(ejemplar);
+        }
+        
+
     }
     
     /**
@@ -225,6 +339,9 @@ public class ListadoEjemplares extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JTextField cartelCodigo;
+    private javax.swing.JTextField cartelCodigo1;
+    private javax.swing.JFormattedTextField fReserva;
+    private javax.swing.JButton filtrarReserva;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel tituloPanel;

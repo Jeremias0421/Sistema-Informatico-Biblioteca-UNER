@@ -148,10 +148,14 @@ public class Biblioteca {
 
         for (Ejemplar ejemplar : ejemplaresReservados) {
 
-            LocalDate f = ejemplar.getReserva().getFecha();
-            if (f.isAfter(fecha)) {
-                e.add(ejemplar);
+            
+            if(ejemplar.getReserva() != null){
+                LocalDate f = ejemplar.getReserva().getFecha();
+                if (f.isAfter(fecha)) {
+                    e.add(ejemplar);
+                }
             }
+            
         }
         return e;
     }
@@ -169,11 +173,11 @@ public class Biblioteca {
      * @param ejemplaresDisponibles
      * @return
      */
-    public static ArrayList<Obra> listarPorEditorial(String editorial, ArrayList<Ejemplar> ejemplaresDisponibles) {
+    public static ArrayList<Obra> listarPorEditorial(String editorial, ArrayList<Obra> obras) {
         ArrayList<Obra> lista = new ArrayList<>();
 
-        for (Ejemplar ejemplar : ejemplaresDisponibles) {
-            for (Edicion e : ejemplar.getObra().getEdiciones()) {
+        for (Obra obra : obras) {
+            for (Edicion e : obra.getEdiciones()) {
                 if (e.getEditorial().equals(editorial)) {
                     lista.add(e.getObra());
                 }

@@ -70,6 +70,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         logoFuncionario = new javax.swing.JLabel();
         listMultadosBoton = new javax.swing.JButton();
         volverBtn1 = new javax.swing.JButton();
+        listObrasBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FuncionarioHome");
@@ -96,7 +97,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 logoutButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 100, -1));
+        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 100, -1));
 
         tomarPrestamoButon.setBackground(new java.awt.Color(96, 106, 135));
         tomarPrestamoButon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -175,7 +176,19 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 volverBtn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(volverBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 100, -1));
+        jPanel1.add(volverBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 100, -1));
+
+        listObrasBtn.setBackground(new java.awt.Color(96, 106, 135));
+        listObrasBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        listObrasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        listObrasBtn.setText("Listado Obras");
+        listObrasBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listObrasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listObrasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(listObrasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +198,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         pack();
@@ -216,6 +229,10 @@ public class FuncionarioPanel extends javax.swing.JFrame {
             new AdminPanel().setVisible(true);
         }
     }//GEN-LAST:event_volverBtn1ActionPerformed
+
+    private void listObrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listObrasBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listObrasBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,6 +274,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton listEjemplaresBoton;
     private javax.swing.JButton listMultadosBoton;
+    private javax.swing.JButton listObrasBtn;
     private javax.swing.JButton listPrestamosBoton;
     private javax.swing.JLabel logoFuncionario;
     private javax.swing.JButton logoutButton;

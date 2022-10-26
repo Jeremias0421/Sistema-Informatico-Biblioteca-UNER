@@ -26,9 +26,8 @@ public class NuevaObra extends javax.swing.JFrame {
     ArrayList<Obra> obras = null;
     ArrayList<Edicion> ediciones = null;
     ArrayList<Ejemplar> ejemplaresDeBaja = null;
-
     
-    
+    int contEdiciones;
     DefaultListModel<Edicion> listModel;
             
     /**
@@ -40,6 +39,8 @@ public class NuevaObra extends javax.swing.JFrame {
         ediciones = Biblioteca.cargarEdiciones();
         obras = Biblioteca.cargarObras(ediciones);
         
+        //Local
+        contEdiciones = 1;
     }
     
     public NuevaObra(ArrayList<Funcionario> funcionarioList, ArrayList<Ejemplar> disponiblesList, ArrayList<Obra> obrasList, ArrayList<Edicion> edicionesList, ArrayList<Ejemplar> deBajaList){
@@ -99,10 +100,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelAnio = new javax.swing.JTextField();
         cartelVol = new javax.swing.JTextField();
         editorial = new javax.swing.JTextField();
-        volumenes = new javax.swing.JTextField();
-        anio = new javax.swing.JTextField();
         idioma = new javax.swing.JTextField();
-        pags = new javax.swing.JTextField();
         cartelPags = new javax.swing.JTextField();
         cartelIdioma = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -110,6 +108,9 @@ public class NuevaObra extends javax.swing.JFrame {
         formato = new javax.swing.JComboBox<>();
         cartelIsbnColeccion = new javax.swing.JTextField();
         isbnColeccion = new javax.swing.JTextField();
+        anio = new javax.swing.JSpinner();
+        vols = new javax.swing.JSpinner();
+        pags = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -338,11 +339,11 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelFormato.setText("Formato");
         cartelFormato.setBorder(null);
         cartelFormato.setFocusable(false);
-        bg.add(cartelFormato, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 70, -1));
+        bg.add(cartelFormato, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 70, -1));
 
         pais.setBackground(new java.awt.Color(0, 8, 16));
         pais.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 220, 20));
+        bg.add(pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 118, 220, -1));
 
         cartelEditorial.setEditable(false);
         cartelEditorial.setBackground(new java.awt.Color(3, 33, 67));
@@ -351,7 +352,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelEditorial.setText("Editorial");
         cartelEditorial.setBorder(null);
         cartelEditorial.setFocusable(false);
-        bg.add(cartelEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 70, -1));
+        bg.add(cartelEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 70, -1));
 
         cartelPais.setEditable(false);
         cartelPais.setBackground(new java.awt.Color(3, 33, 67));
@@ -360,7 +361,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelPais.setText("Pais");
         cartelPais.setBorder(null);
         cartelPais.setFocusable(false);
-        bg.add(cartelPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 50, -1));
+        bg.add(cartelPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 50, -1));
 
         cartelAnio.setEditable(false);
         cartelAnio.setBackground(new java.awt.Color(3, 33, 67));
@@ -369,7 +370,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelAnio.setText("Año");
         cartelAnio.setBorder(null);
         cartelAnio.setFocusable(false);
-        bg.add(cartelAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 50, -1));
+        bg.add(cartelAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 50, -1));
 
         cartelVol.setEditable(false);
         cartelVol.setBackground(new java.awt.Color(3, 33, 67));
@@ -378,27 +379,15 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelVol.setText("Volumenes");
         cartelVol.setBorder(null);
         cartelVol.setFocusable(false);
-        bg.add(cartelVol, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 80, -1));
+        bg.add(cartelVol, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 90, -1));
 
         editorial.setBackground(new java.awt.Color(0, 8, 16));
         editorial.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(editorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 220, 20));
-
-        volumenes.setBackground(new java.awt.Color(0, 8, 16));
-        volumenes.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(volumenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 220, 20));
-
-        anio.setBackground(new java.awt.Color(0, 8, 16));
-        anio.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 220, 20));
+        bg.add(editorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 88, 220, -1));
 
         idioma.setBackground(new java.awt.Color(0, 8, 16));
         idioma.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(idioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 220, 20));
-
-        pags.setBackground(new java.awt.Color(0, 8, 16));
-        pags.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(pags, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 220, 20));
+        bg.add(idioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 238, 220, -1));
 
         cartelPags.setEditable(false);
         cartelPags.setBackground(new java.awt.Color(3, 33, 67));
@@ -407,7 +396,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelPags.setText("Paginas");
         cartelPags.setBorder(null);
         cartelPags.setFocusable(false);
-        bg.add(cartelPags, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 60, -1));
+        bg.add(cartelPags, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 60, -1));
 
         cartelIdioma.setEditable(false);
         cartelIdioma.setBackground(new java.awt.Color(3, 33, 67));
@@ -416,7 +405,7 @@ public class NuevaObra extends javax.swing.JFrame {
         cartelIdioma.setText("Idioma");
         cartelIdioma.setBorder(null);
         cartelIdioma.setFocusable(false);
-        bg.add(cartelIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 60, -1));
+        bg.add(cartelIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 60, -1));
 
         jListEdiciones.setBackground(new java.awt.Color(0, 8, 16));
         jListEdiciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -428,7 +417,7 @@ public class NuevaObra extends javax.swing.JFrame {
         formato.setBackground(new java.awt.Color(0, 8, 16));
         formato.setForeground(new java.awt.Color(255, 255, 255));
         formato.setModel(new javax.swing.DefaultComboBoxModel<>(Formato.values()));
-        bg.add(formato, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 220, -1));
+        bg.add(formato, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 220, -1));
 
         cartelIsbnColeccion.setEditable(false);
         cartelIsbnColeccion.setBackground(new java.awt.Color(3, 33, 67));
@@ -444,6 +433,15 @@ public class NuevaObra extends javax.swing.JFrame {
         isbnColeccion.setForeground(new java.awt.Color(255, 255, 255));
         isbnColeccion.setFocusable(false);
         bg.add(isbnColeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 180, -1));
+
+        anio.setModel(new javax.swing.SpinnerNumberModel(1, 1, 2022, 1));
+        bg.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 220, -1));
+
+        vols.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        bg.add(vols, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 220, -1));
+
+        pags.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        bg.add(pags, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 220, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -484,7 +482,7 @@ public class NuevaObra extends javax.swing.JFrame {
     }//GEN-LAST:event_checkColecStateChanged
 
     private void guardarEdicionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEdicionBtnActionPerformed
-        listModel.addElement(new Edicion("editorial", "pais", 1, 2001, 2, 200, "español", Formato.CD, null));
+        listModel.addElement(new Edicion(editorial.getText(), pais.getText(), contEdiciones,(int) anio.getValue(),(int) vols.getValue(),(int) vols.getValue(), idioma.getText(), (Formato) formato.getSelectedItem(), null));
     }//GEN-LAST:event_guardarEdicionBtnActionPerformed
 
     private void guardarObraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarObraBtnActionPerformed
@@ -651,7 +649,7 @@ public class NuevaObra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<TipoObra> TipoObras;
     private javax.swing.JTextField aTematica;
-    private javax.swing.JTextField anio;
+    private javax.swing.JSpinner anio;
     private javax.swing.JPanel bg;
     private javax.swing.JTextField cartelATematica;
     private javax.swing.JTextField cartelAnio;
@@ -688,7 +686,7 @@ public class NuevaObra extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nombreColeccion;
     private javax.swing.JTextField pAutor;
-    private javax.swing.JTextField pags;
+    private javax.swing.JSpinner pags;
     private javax.swing.JTextField pais;
     private javax.swing.JTextField sAutor;
     private javax.swing.JTextField subtitulo;
@@ -696,7 +694,7 @@ public class NuevaObra extends javax.swing.JFrame {
     private javax.swing.JTextField titulo;
     private javax.swing.JLabel tituloPanel;
     private javax.swing.JLabel tituloPanel1;
-    private javax.swing.JTextField volumenes;
+    private javax.swing.JSpinner vols;
     private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 }
