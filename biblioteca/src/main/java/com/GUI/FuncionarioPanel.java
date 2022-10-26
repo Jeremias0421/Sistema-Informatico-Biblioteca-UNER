@@ -164,6 +164,11 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         listMultadosBoton.setForeground(new java.awt.Color(255, 255, 255));
         listMultadosBoton.setText("Lectores multados");
         listMultadosBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listMultadosBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listMultadosBotonActionPerformed(evt);
+            }
+        });
         jPanel1.add(listMultadosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 150, 40));
 
         volverBtn1.setBackground(new java.awt.Color(96, 106, 135));
@@ -231,8 +236,14 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_volverBtn1ActionPerformed
 
     private void listObrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listObrasBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new ListadoObras().setVisible(true);
     }//GEN-LAST:event_listObrasBtnActionPerformed
+
+    private void listMultadosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listMultadosBotonActionPerformed
+        this.setVisible(false);
+        new LectoresMultados().setVisible(true);
+    }//GEN-LAST:event_listMultadosBotonActionPerformed
 
     /**
      * @param args the command line arguments
