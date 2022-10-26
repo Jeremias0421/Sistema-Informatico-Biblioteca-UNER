@@ -133,7 +133,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 listPrestamosBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(listPrestamosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 150, 40));
+        jPanel1.add(listPrestamosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 150, 40));
 
         listEjemplaresBoton.setBackground(new java.awt.Color(96, 106, 135));
         listEjemplaresBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -198,7 +198,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 listObrasBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(listObrasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 150, 40));
+        jPanel1.add(listObrasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,7 +251,8 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_listMultadosBotonActionPerformed
 
     private void RecibirPrestamoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecibirPrestamoBotonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new RecibirPrestamo().setVisible(true);
     }//GEN-LAST:event_RecibirPrestamoBotonActionPerformed
 
     /**
