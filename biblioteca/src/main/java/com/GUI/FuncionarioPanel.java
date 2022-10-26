@@ -63,7 +63,6 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
         tomarPrestamoButon = new javax.swing.JButton();
         RecibirPrestamoBoton = new javax.swing.JButton();
-        listPrestamosBoton = new javax.swing.JButton();
         listEjemplaresBoton = new javax.swing.JButton();
         reservarBoton = new javax.swing.JButton();
         tituloPanel = new javax.swing.JLabel();
@@ -122,18 +121,6 @@ public class FuncionarioPanel extends javax.swing.JFrame {
             }
         });
         jPanel1.add(RecibirPrestamoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 150, 40));
-
-        listPrestamosBoton.setBackground(new java.awt.Color(96, 106, 135));
-        listPrestamosBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        listPrestamosBoton.setForeground(new java.awt.Color(255, 255, 255));
-        listPrestamosBoton.setText("Lisatado prestamos");
-        listPrestamosBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        listPrestamosBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listPrestamosBotonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(listPrestamosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 150, 40));
 
         listEjemplaresBoton.setBackground(new java.awt.Color(96, 106, 135));
         listEjemplaresBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -214,10 +201,6 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listPrestamosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPrestamosBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listPrestamosBotonActionPerformed
-
     private void listEjemplaresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listEjemplaresBotonActionPerformed
         this.setVisible(false);
         new ListadoEjemplares().setVisible(true);
@@ -296,7 +279,6 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     private javax.swing.JButton listEjemplaresBoton;
     private javax.swing.JButton listMultadosBoton;
     private javax.swing.JButton listObrasBtn;
-    private javax.swing.JButton listPrestamosBoton;
     private javax.swing.JLabel logoFuncionario;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton reservarBoton;
