@@ -25,7 +25,7 @@ import com.GUI.Login;
  */
 public class Biblioteca {
 
-    /**Listado de los clientes de la Biblioteca */
+    /** Listado de los clientes de la Biblioteca */
     static ArrayList<Lector> clientes = new ArrayList<Lector>();
 
     /**
@@ -107,7 +107,7 @@ public class Biblioteca {
     }
 
     /**
-     *
+     * @
      */
     public static void obrasMasSolicitadasAlumnosYDocentes() {
 
@@ -181,8 +181,8 @@ public class Biblioteca {
     /**
      * Lista los ejemplares pertenecientes a una editorial.
      * 
-     * @param editorial             editorial a buscar
-     * @param ejemplaresDisponibles lista de ejemplares en donde buscar
+     * @param editorial editorial a buscar
+     * @param obras     lista de ejemplares en donde buscar
      * @return lista con los ejemplares pertenecientes a la editorial solicitada
      */
     public static ArrayList<Obra> listarPorEditorial(String editorial, ArrayList<Obra> obras) {
